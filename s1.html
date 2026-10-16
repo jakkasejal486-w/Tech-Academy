@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+<title>SQL Lesson 1 - SQL Basics</title>
+<style>
+*{
+box-sizing:border-box;
+}
+body{
+background-color:black;
+color:white; 
+margin:0;
+padding:100px 30px 40px;
+}
+nav{
+position:fixed;
+top:0;
+left:0;
+right:0;
+width:100%;
+height:70px;
+background-color:#1e3a5f;
+padding:10px 20px;
+display:flex;
+align-items:center;
+gap:10px;
+z-index:1000;
+}
+nav a{
+color:#40E0D0;
+text-decoration:none;
+font-size:15px;
+font-weight:bold;
+white-space:nowrap;
+}
+nav a:hover{
+color:white;
+}
+nav p{
+color:white;
+font-size:20px;
+margin:0;
+padding:0;
+white-space:nowrap;
+}
+.student-dashboard{
+margin-left:auto;
+position:relative;
+flex-shrink:0;
+}
+.student-logo{
+width:55px;
+height:55px;
+border-radius:50%;
+border:3px solid #40E0D0;
+background-color:#1e3a5f;
+color:white;
+font-size:27px;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:0;
+transition:0.2s;
+}
+.student-logo:hover{
+background-color:#40E0D0;
+color:#1e3a5f;
+}
+.student-menu{
+display:none;
+position:absolute;
+top:65px;
+right:0;
+width:200px;
+background-color:#1e3a5f;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 5px 20px rgba(0,0,0,0.5);
+z-index:2000;
+}
+.student-menu.show{
+display:flex;
+flex-direction:column;
+}
+.student-menu a{
+color:#40E0D0;
+text-decoration:none;
+padding:15px 18px;
+font-size:16px;
+font-weight:bold;
+border-bottom:1px solid rgba(64,224,208,0.2);
+white-space:nowrap;
+}
+.student-menu a:hover{
+background-color:#40E0D0;
+color:#1e3a5f;
+}
+.course-notes{
+max-width:1100px;
+margin:auto;
+}
+.course-notes h1{
+color:#40E0D0;
+text-align:center;
+font-size:36px;
+margin-bottom:40px;
+}
+.course-notes h2{
+color:#40E0D0;
+font-size:27px;
+margin-top:40px;
+border-bottom:1px solid #1e3a5f;
+padding-bottom:10px;
+}
+.course-notes h3{
+color:#40E0D0;
+font-size:21px;
+margin-top:25px;
+}
+.course-notes p{
+color:white;
+font-size:17px;
+line-height:1.8;
+}
+.course-notes ul,
+.course-notes ol{
+color:white;
+font-size:17px;
+line-height:2;
+}
+.course-notes li{
+margin-bottom:5px;
+}
+.course-notes code{
+color:#40E0D0;
+font-family:Consolas,monospace;
+}
+.course-notes pre{
+background-color:#111;
+border:1px solid #1e3a5f;
+border-left:5px solid #40E0D0;
+padding:20px;
+overflow-x:auto;
+border-radius:8px;
+line-height:1.6;
+}
+.course-notes pre code{
+color:#40E0D0;
+font-size:15px;
+}
+.course-notes table{
+width:100%;
+border-collapse:collapse;
+margin:20px 0 30px;
+}
+.course-notes th{
+background-color:#1e3a5f;
+color:#40E0D0;
+font-size:17px;
+padding:14px;
+border:1px solid #40E0D0;
+}
+.course-notes td{
+color:white;
+padding:14px;
+border:1px solid #40E0D0;
+font-size:16px;
+}
+.course-notes tr:nth-child(even){
+background-color:#111;
+}
+.course-notes tr:hover{
+background-color:#1e3a5f;
+}
+.lesson-summary{
+background-color:#111;
+border:2px solid #40E0D0;
+border-radius:10px;
+padding:25px;
+margin-top:50px;
+}
+.lesson-summary h2{
+margin-top:0;
+border-bottom:none;
+}
+</style>
+</head>
+<body>
+
+<nav>
+
+<p>|</p>
+<a href="index.html">HOME</a>
+
+<p>|</p>
+<a href="information.html">INFO</a>
+
+<p>|</p>
+<a href="courses.html">COURSES</a>
+
+<p>|</p>
+<a href="login.html">LOGIN</a>
+
+<p>|</p>
+<a href="forms.html">REGISTRATION</a>
+
+<p>|</p>
+<a href="contact.html">📞 CONTACT US</a>
+
+<div class="student-dashboard">
+
+<button class="student-logo" onclick="toggleStudentMenu()" title="Student Dashboard">🎓</button>
+
+<div class="student-menu" id="studentMenu">
+  
+<a href="student-dashboard.php">
+🏠 Dashboard</a>  
+<a href="logout.php">🏠Logout</a> 
+
+
+</div>
+
+</div>
+
+</nav>
+
+
+<div class="course-notes">
+
+<h1>SQL Lesson 1: SQL Basics and Database Fundamentals</h1>
+
+
+<h2>1. Introduction to SQL</h2>
+
+<p>SQL stands for Structured Query Language.</p>
+
+<p>SQL is a language used to communicate with relational databases.</p>
+
+<p>It is used to create databases, create tables, store data, retrieve data, modify data and delete data.</p>
+
+<p>SQL is widely used in websites, applications, banking systems, educational systems and business applications.</p>
+
+
+<h2>2. What is a Database?</h2>
+
+<p>A database is an organized collection of data that can be stored, managed and accessed easily.</p>
+
+<p>For example, an online learning academy can store information about students, courses, registrations and results in a database.</p>
+
+<h3>Example</h3>
+
+<table>
+
+<tr>
+<th>Student ID</th>
+<th>Name</th>
+<th>Email</th>
+<th>Course</th>
+</tr>
+
+<tr>
+<td>101</td>
+<td>Sejal</td>
+<td>sejal@example.com</td>
+<td>HTML</td>
+</tr>
+
+<tr>
+<td>102</td>
+<td>Rahul</td>
+<td>rahul@example.com</td>
+<td>CSS</td>
+</tr>
+
+<tr>
+<td>103</td>
+<td>Priya</td>
+<td>priya@example.com</td>
+<td>SQL</td>
+</tr>
+
+</table>
+
+
+<h2>3. What is a Database Management System?</h2>
+
+<p>A Database Management System, or DBMS, is software used to create, manage and control databases.</p>
+
+<p>It allows users and applications to store and retrieve data efficiently.</p>
+
+<h3>Examples of DBMS</h3>
+
+<ul>
+<li>MySQL</li>
+<li>MariaDB</li>
+<li>Oracle Database</li>
+<li>Microsoft SQL Server</li>
+<li>PostgreSQL</li>
+</ul>
+
+
+<h2>4. What is MySQL?</h2>
+
+<p>MySQL is a popular relational database management system that uses SQL.</p>
+
+<p>It is commonly used for web applications and can be used with technologies such as PHP, JavaScript, Python and other programming languages.</p>
+
+<p>Your Online Tech Learning Academy project can use MySQL or MariaDB to store student and course information.</p>
+
+
+<h2>5. SQL and MySQL Difference</h2>
+
+<table>
+
+<tr>
+<th>SQL</th>
+<th>MySQL</th>
+</tr>
+
+<tr>
+<td>SQL is a query language.</td>
+<td>MySQL is a database management system.</td>
+</tr>
+
+<tr>
+<td>SQL is used to communicate with databases.</td>
+<td>MySQL stores and manages databases.</td>
+</tr>
+
+<tr>
+<td>SQL provides commands such as SELECT and INSERT.</td>
+<td>MySQL executes SQL commands.</td>
+</tr>
+
+</table>
+
+
+<h2>6. Relational Database</h2>
+
+<p>A relational database stores data in tables.</p>
+
+<p>Tables contain rows and columns.</p>
+
+<p>Different tables can also be connected using relationships.</p>
+
+<h3>Example</h3>
+
+<p>A learning academy database might contain these tables:</p>
+
+<ul>
+<li>students</li>
+<li>courses</li>
+<li>enrollments</li>
+<li>assignments</li>
+<li>results</li>
+</ul>
+
+
+<h2>7. What is a Table?</h2>
+
+<p>A table is used to store related data in a database.</p>
+
+<p>A table consists of rows and columns.</p>
+
+<h3>Example</h3>
+
+<table>
+
+<tr>
+<th>id</th>
+<th>name</th>
+<th>email</th>
+</tr>
+
+<tr>
+<td>1</td>
+<td>Sejal</td>
+<td>sejal@example.com</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>Amit</td>
+<td>amit@example.com</td>
+</tr>
+
+</table>
+
+
+<h2>8. Rows</h2>
+
+<p>A row represents one complete record in a table.</p>
+
+<p>For example, one row in a students table can represent one student.</p>
+
+<h3>Example</h3>
+
+<pre><code>1 | Sejal | sejal@example.com</code></pre>
+
+
+<h2>9. Columns</h2>
+
+<p>A column represents a particular type of information stored in a table.</p>
+
+<p>For example, a students table can contain columns such as id, name and email.</p>
+
+<h3>Example</h3>
+
+<pre><code>id
+name
+email
+phone</code></pre>
+
+
+<h2>10. Creating a Database</h2>
+
+<p>The <code>CREATE DATABASE</code> command is used to create a new database.</p>
+
+<h3>Syntax</h3>
+
+<pre><code>CREATE DATABASE database_name;</code></pre>
+
+<h3>Example</h3>
+
+<pre><code>CREATE DATABASE tech_learning_academy;</code></pre>
+
+<p>This creates a database named <code>tech_learning_academy</code>.</p>
+
+
+<h2>11. Showing Databases</h2>
+
+<p>The <code>SHOW DATABASES</code> command displays the databases available in the database server.</p>
+
+<h3>Example</h3>
+
+<pre><code>SHOW DATABASES;</code></pre>
+
+
+<h2>12. Selecting a Database</h2>
+
+<p>The <code>USE</code> command selects a database that you want to work with.</p>
+
+<h3>Syntax</h3>
+
+<pre><code>USE database_name;</code></pre>
+
+<h3>Example</h3>
+
+<pre><code>USE tech_learning_academy;</code></pre>
+
+
+<h2>13. Creating a Table</h2>
+
+<p>The <code>CREATE TABLE</code> command is used to create a new table inside a database.</p>
+
+<h3>Syntax</h3>
+
+<pre><code>CREATE TABLE table_name(
+column1 datatype,
+column2 datatype,
+column3 datatype
+);</code></pre>
+
+
+<h2>14. Creating a Students Table</h2>
+
+<p>For your project, a students table can be created like this:</p>
+
+<pre><code>CREATE TABLE students(
+id INT,
+name VARCHAR(100),
+email VARCHAR(100),
+phone VARCHAR(15)
+);</code></pre>
+
+
+<h2>15. SQL Data Types</h2>
+
+<p>Data types specify what type of data a column can store.</p>
+
+<table>
+
+<tr>
+<th>Data Type</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>INT</td>
+<td>Stores whole numbers.</td>
+</tr>
+
+<tr>
+<td>VARCHAR</td>
+<td>Stores variable-length text.</td>
+</tr>
+
+<tr>
+<td>CHAR</td>
+<td>Stores fixed-length text.</td>
+</tr>
+
+<tr>
+<td>DATE</td>
+<td>Stores dates.</td>
+</tr>
+
+<tr>
+<td>TIME</td>
+<td>Stores time values.</td>
+</tr>
+
+<tr>
+<td>DECIMAL</td>
+<td>Stores decimal numbers.</td>
+</tr>
+
+<tr>
+<td>BOOLEAN</td>
+<td>Stores true or false values.</td>
+</tr>
+
+</table>
+
+
+<h2>16. INT Data Type</h2>
+
+<p>The <code>INT</code> data type is used to store whole numbers.</p>
+
+<h3>Example</h3>
+
+<pre><code>id INT</code></pre>
+
+
+<h2>17. VARCHAR Data Type</h2>
+
+<p>The <code>VARCHAR</code> data type is used to store text with a specified maximum length.</p>
+
+<h3>Example</h3>
+
+<pre><code>name VARCHAR(100)</code></pre>
+
+<p>This allows the name column to store text up to the specified length.</p>
+
+
+<h2>18. DATE Data Type</h2>
+
+<p>The <code>DATE</code> data type is used to store dates.</p>
+
+<h3>Example</h3>
+
+<pre><code>birth_date DATE</code></pre>
+
+
+<h2>19. Creating a Complete Course Table</h2>
+
+<pre><code>CREATE TABLE courses(
+course_id INT,
+course_name VARCHAR(100),
+duration VARCHAR(50),
+level VARCHAR(50)
+);</code></pre>
+
+
+<h2>20. Viewing Tables</h2>
+
+<p>The <code>SHOW TABLES</code> command displays all tables in the selected database.</p>
+
+<h3>Example</h3>
+
+<pre><code>SHOW TABLES;</code></pre>
+
+
+<h2>21. Viewing Table Structure</h2>
+
+<p>The <code>DESCRIBE</code> command can be used to view the structure of a table.</p>
+
+<h3>Example</h3>
+
+<pre><code>DESCRIBE students;</code></pre>
+
+<p>It shows information such as column names, data types and other properties.</p>
+
+
+<h2>22. Inserting Data</h2>
+
+<p>The <code>INSERT INTO</code> command is used to add new records to a table.</p>
+
+<h3>Syntax</h3>
+
+<pre><code>INSERT INTO table_name(column1,column2,column3)
+VALUES(value1,value2,value3);</code></pre>
+
+
+<h2>23. Inserting Student Data</h2>
+
+<pre><code>INSERT INTO students(id,name,email,phone)
+VALUES(1,'Sejal','sejal@example.com','9876543210');</code></pre>
+
+
+<h2>24. Inserting Multiple Records</h2>
+
+<p>Multiple records can be inserted using a single INSERT statement.</p>
+
+<pre><code>INSERT INTO students(id,name,email,phone)
+VALUES
+(1,'Sejal','sejal@example.com','9876543210'),
+(2,'Rahul','rahul@example.com','9876543211'),
+(3,'Priya','priya@example.com','9876543212');</code></pre>
+
+
+<h2>25. Selecting Data</h2>
+
+<p>The <code>SELECT</code> command is used to retrieve data from a table.</p>
+
+<h3>Syntax</h3>
+
+<pre><code>SELECT column_name
+FROM table_name;</code></pre>
+
+
+<h2>26. Selecting All Data</h2>
+
+<p>The <code>*</code> symbol represents all columns.</p>
+
+<h3>Example</h3>
+
+<pre><code>SELECT * FROM students;</code></pre>
+
+<p>This displays all columns and all records from the students table.</p>
+
+
+<h2>27. Selecting Specific Columns</h2>
+
+<p>You can select only the columns you need.</p>
+
+<h3>Example</h3>
+
+<pre><code>SELECT name,email
+FROM students;</code></pre>
+
+
+<h2>28. Updating Data</h2>
+
+<p>The <code>UPDATE</code> command is used to modify existing records.</p>
+
+<h3>Syntax</h3>
+
+<pre><code>UPDATE table_name
+SET column_name=value
+WHERE condition;</code></pre>
+
+
+<h3>Example</h3>
+
+<pre><code>UPDATE students
+SET email='newemail@example.com'
+WHERE id=1;</code></pre>
+
+
+<h2>29. Deleting Data</h2>
+
+<p>The <code>DELETE</code> command is used to remove records from a table.</p>
+
+<h3>Example</h3>
+
+<pre><code>DELETE FROM students
+WHERE id=3;</code></pre>
+
+<p>The WHERE condition is important because it specifies which record should be deleted.</p>
+
+
+<h2>30. SQL Comments</h2>
+
+<p>Comments are used to explain SQL code and are ignored when the SQL statement is executed.</p>
+
+<h3>Single-Line Comment</h3>
+
+<pre><code>-- This is a SQL comment</code></pre>
+
+<h3>Example</h3>
+
+<pre><code>-- Display all students
+
+SELECT * FROM students;</code></pre>
+
+
+<h2>31. SQL Operators</h2>
+
+<p>SQL operators are used to perform comparisons and logical operations.</p>
+
+<table>
+
+<tr>
+<th>Operator</th>
+<th>Meaning</th>
+</tr>
+
+<tr>
+<td>=</td>
+<td>Equal to</td>
+</tr>
+
+<tr>
+<td>!=</td>
+<td>Not equal to</td>
+</tr>
+
+<tr>
+<td>&gt;</td>
+<td>Greater than</td>
+</tr>
+
+<tr>
+<td>&lt;</td>
+<td>Less than</td>
+</tr>
+
+<tr>
+<td>&gt;=</td>
+<td>Greater than or equal to</td>
+</tr>
+
+<tr>
+<td>&lt;=</td>
+<td>Less than or equal to</td>
+</tr>
+
+</table>
+
+
+<h2>32. WHERE Clause</h2>
+
+<p>The <code>WHERE</code> clause is used to filter records according to a condition.</p>
+
+<h3>Example</h3>
+
+<pre><code>SELECT *
+FROM students
+WHERE id=1;</code></pre>
+
+
+<h2>33. AND Operator</h2>
+
+<p>The <code>AND</code> operator is used when multiple conditions must be true.</p>
+
+<h3>Example</h3>
+
+<pre><code>SELECT *
+FROM students
+WHERE id=1 AND name='Sejal';</code></pre>
+
+
+<h2>34. OR Operator</h2>
+
+<p>The <code>OR</code> operator returns records when at least one condition is true.</p>
+
+<h3>Example</h3>
+
+<pre><code>SELECT *
+FROM students
+WHERE name='Sejal' OR name='Priya';</code></pre>
+
+
+<h2>35. NOT Operator</h2>
+
+<p>The <code>NOT</code> operator is used to reverse a condition.</p>
+
+<h3>Example</h3>
+
+<pre><code>SELECT *
+FROM students
+WHERE NOT name='Sejal';</code></pre>
+
+
+<h2>36. ORDER BY</h2>
+
+<p>The <code>ORDER BY</code> clause is used to sort query results.</p>
+
+<h3>Ascending Order</h3>
+
+<pre><code>SELECT *
+FROM students
+ORDER BY name ASC;</code></pre>
+
+<h3>Descending Order</h3>
+
+<pre><code>SELECT *
+FROM students
+ORDER BY name DESC;</code></pre>
+
+
+<h2>37. SQL NULL Value</h2>
+
+<p>NULL represents a missing or unknown value.</p>
+
+<p>NULL is different from zero and an empty string.</p>
+
+<h3>Example</h3>
+
+<pre><code>SELECT *
+FROM students
+WHERE email IS NULL;</code></pre>
+
+
+<h2>38. Complete SQL Example for Your Project</h2>
+
+<p>The following example creates a database and stores student information for an online learning academy.</p>
+
+<pre><code>CREATE DATABASE tech_learning_academy;
+
+USE tech_learning_academy;
+
+CREATE TABLE students(
+id INT,
+name VARCHAR(100),
+email VARCHAR(100),
+phone VARCHAR(15)
+);
+
+INSERT INTO students(id,name,email,phone)
+VALUES
+(1,'Sejal','sejal@example.com','9876543210'),
+(2,'Rahul','rahul@example.com','9876543211'),
+(3,'Priya','priya@example.com','9876543212');
+
+SELECT * FROM students;
+
+SELECT name,email
+FROM students
+WHERE id=1;
+
+UPDATE students
+SET email='newemail@example.com'
+WHERE id=1;
+
+DELETE FROM students
+WHERE id=3;</code></pre>
+
+
+<h2>39. SQL Commands Learned in Lesson 1</h2>
+
+<table>
+
+<tr>
+<th>Command</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>CREATE DATABASE</td>
+<td>Creates a new database.</td>
+</tr>
+
+<tr>
+<td>SHOW DATABASES</td>
+<td>Displays available databases.</td>
+</tr>
+
+<tr>
+<td>USE</td>
+<td>Selects a database.</td>
+</tr>
+
+<tr>
+<td>CREATE TABLE</td>
+<td>Creates a new table.</td>
+</tr>
+
+<tr>
+<td>SHOW TABLES</td>
+<td>Displays tables.</td>
+</tr>
+
+<tr>
+<td>DESCRIBE</td>
+<td>Displays table structure.</td>
+</tr>
+
+<tr>
+<td>INSERT INTO</td>
+<td>Adds records.</td>
+</tr>
+
+<tr>
+<td>SELECT</td>
+<td>Retrieves records.</td>
+</tr>
+
+<tr>
+<td>UPDATE</td>
+<td>Modifies records.</td>
+</tr>
+
+<tr>
+<td>DELETE</td>
+<td>Removes records.</td>
+</tr>
+
+</table>
+
+
+<h2>40. Important Points to Remember</h2>
+
+<ol>
+
+<li>SQL stands for Structured Query Language.</li>
+
+<li>SQL is used to communicate with relational databases.</li>
+
+<li>A database is an organized collection of data.</li>
+
+<li>A table contains rows and columns.</li>
+
+<li>A row represents a record.</li>
+
+<li>A column represents a particular type of data.</li>
+
+<li>MySQL and MariaDB are database management systems that support SQL.</li>
+
+<li><code>CREATE DATABASE</code> creates a database.</li>
+
+<li><code>USE</code> selects a database.</li>
+
+<li><code>CREATE TABLE</code> creates a table.</li>
+
+<li><code>INSERT INTO</code> adds data.</li>
+
+<li><code>SELECT</code> retrieves data.</li>
+
+<li><code>UPDATE</code> modifies existing data.</li>
+
+<li><code>DELETE</code> removes data.</li>
+
+<li><code>WHERE</code> filters records.</li>
+
+<li><code>ORDER BY</code> sorts records.</li>
+
+<li>SQL data types define the type of information a column can store.</li>
+
+<li>SQL is case-insensitive for keywords in common SQL implementations, although consistent capitalization improves readability.</li>
+
+<li>Always use conditions carefully with UPDATE and DELETE.</li>
+
+<li>SQL is essential for connecting your Online Tech Learning Academy website with a database.</li>
+
+</ol>
+
+
+<div class="lesson-summary">
+
+<h2>Lesson Summary</h2>
+
+<p>In this lesson, you learned the fundamentals of SQL and relational databases.</p>
+
+<p>You learned what SQL, databases, DBMS, MySQL, tables, rows and columns are.</p>
+
+<p>You also learned how to create a database and table, insert data, retrieve data, update data and delete data.</p>
+
+<p>You learned important SQL clauses and operators such as WHERE, ORDER BY, AND, OR and NOT.</p>
+
+<p>These are the basic SQL concepts required before working with student registration, login systems, courses and enrollment data in your Online Tech Learning Academy.</p>
+
+<p><b>Next Lesson:</b> SQL Data Manipulation - INSERT, SELECT, UPDATE, DELETE and Advanced Queries</p>
+
+</div>
+
+</div>
+
+
+<script>
+
+function toggleStudentMenu(){
+
+const menu=document.getElementById("studentMenu");
+
+menu.classList.toggle("show");
+
+}
+
+</script>
+
+</body>
+</html>

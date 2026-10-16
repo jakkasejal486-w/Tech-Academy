@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+<title>HTML Lesson 5 - Forms and Input Elements</title>
+<style>
+*{
+box-sizing:border-box;
+}
+body{
+background-color:black;
+color:white;
+ 
+margin:0;
+padding:100px 30px 40px;
+}
+nav{
+position:fixed;
+top:0;
+left:0;
+right:0;
+width:100%;
+height:70px;
+background-color:#1e3a5f;
+padding:10px 20px;
+display:flex;
+align-items:center;
+gap:10px;
+z-index:1000;
+}
+nav a{
+color:#40E0D0;
+text-decoration:none;
+font-size:15px;
+font-weight:bold;
+white-space:nowrap;
+}
+nav a:hover{
+color:white;
+}
+nav p{
+color:white;
+font-size:20px;
+margin:0;
+padding:0;
+white-space:nowrap;
+}
+.student-dashboard{
+margin-left:auto;
+position:relative;
+flex-shrink:0;
+}
+.student-logo{
+width:55px;
+height:55px;
+border-radius:50%;
+border:3px solid #40E0D0;
+background-color:#1e3a5f;
+color:white;
+font-size:27px;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:0;
+transition:0.2s;
+}
+.student-logo:hover{
+background-color:#40E0D0;
+color:#1e3a5f;
+}
+.student-menu{
+display:none;
+position:absolute;
+top:65px;
+right:0;
+width:200px;
+background-color:#1e3a5f;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 5px 20px rgba(0,0,0,0.5);
+z-index:2000;
+}
+.student-menu.show{
+display:flex;
+flex-direction:column;
+}
+.student-menu a{
+color:#40E0D0;
+text-decoration:none;
+padding:15px 18px;
+font-size:16px;
+font-weight:bold;
+border-bottom:1px solid rgba(64,224,208,0.2);
+white-space:nowrap;
+}
+.student-menu a:hover{
+background-color:#40E0D0;
+color:#1e3a5f;
+}
+.course-notes{
+max-width:1100px;
+margin:auto;
+}
+.course-notes h1{
+color:#40E0D0;
+text-align:center;
+font-size:36px;
+margin-bottom:40px;
+}
+.course-notes h2{
+color:#40E0D0;
+font-size:27px;
+margin-top:40px;
+border-bottom:1px solid #1e3a5f;
+padding-bottom:10px;
+}
+.course-notes h3{
+color:#40E0D0;
+font-size:21px;
+margin-top:25px;
+}
+.course-notes p{
+color:white;
+font-size:17px;
+line-height:1.8;
+}
+.course-notes ul,
+.course-notes ol{
+color:white;
+font-size:17px;
+line-height:2;
+}
+.course-notes li{
+margin-bottom:5px;
+}
+.course-notes code{
+color:#40E0D0;
+font-family:Consolas,monospace;
+}
+.course-notes pre{
+background-color:#111;
+border:1px solid #1e3a5f;
+border-left:5px solid #40E0D0;
+padding:20px;
+overflow-x:auto;
+border-radius:8px;
+line-height:1.6;
+}
+.course-notes pre code{
+color:#40E0D0;
+font-size:15px;
+}
+.course-notes table{
+width:100%;
+border-collapse:collapse;
+margin:20px 0 30px;
+}
+.course-notes th{
+background-color:#1e3a5f;
+color:#40E0D0;
+font-size:17px;
+padding:14px;
+border:1px solid #40E0D0;
+}
+.course-notes td{
+color:white;
+padding:14px;
+border:1px solid #40E0D0;
+font-size:16px;
+}
+.course-notes tr:nth-child(even){
+background-color:#111;
+}
+.course-notes tr:hover{
+background-color:#1e3a5f;
+}
+.lesson-summary{
+background-color:#111;
+border:2px solid #40E0D0;
+border-radius:10px;
+padding:25px;
+margin-top:50px;
+}
+.lesson-summary h2{
+margin-top:0;
+border-bottom:none;
+}
+</style>
+</head>
+<body>
+
+<nav>
+
+<p>|</p>
+<a href="index.html">HOME</a>
+
+<p>|</p>
+<a href="information.html">INFO</a>
+
+<p>|</p>
+<a href="courses.html">COURSES</a>
+
+<p>|</p>
+<a href="login.html">LOGIN</a>
+
+<p>|</p>
+<a href="forms.html">REGISTRATION</a>
+
+<p>|</p>
+<a href="contact.html">📞 CONTACT US</a>
+
+<div class="student-dashboard">
+
+<button class="student-logo" onclick="toggleStudentMenu()" title="Student Dashboard">🎓</button>
+
+<div class="student-menu" id="studentMenu">
+  
+<a href="student-dashboard.php">
+🏠 Dashboard</a>  
+<a href="logout.php">🏠Logout</a> 
+
+
+</div>
+
+</div>
+
+</nav>
+
+
+<div class="course-notes">
+
+<h1>HTML Lesson 5: Forms and Input Elements</h1>
+
+
+<h2>1. Introduction to HTML Forms</h2>
+
+<p>HTML forms are used to collect information from users and send that information to a server for processing.</p>
+
+<p>Forms are commonly used for registration, login, contact forms, search boxes, feedback forms, surveys and online applications.</p>
+
+<p>In your Online Tech Learning Academy project, the registration and login pages can use HTML forms to collect student information.</p>
+
+
+<h2>2. The Form Element</h2>
+
+<p>The <code>&lt;form&gt;</code> element is used to create an HTML form.</p>
+
+<h3>Basic Syntax</h3>
+
+<pre><code>&lt;form&gt;
+
+Form elements go here.
+
+&lt;/form&gt;</code></pre>
+
+
+<h3>Example</h3>
+
+<pre><code>&lt;form&gt;
+
+&lt;label&gt;Name:&lt;/label&gt;
+
+&lt;input type="text"&gt;
+
+&lt;/form&gt;</code></pre>
+
+
+<h2>3. Form Attributes</h2>
+
+<p>The <code>&lt;form&gt;</code> element can use different attributes to control how form data is submitted.</p>
+
+<table>
+
+<tr>
+<th>Attribute</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>action</td>
+<td>Specifies where the form data should be sent.</td>
+</tr>
+
+<tr>
+<td>method</td>
+<td>Specifies how the form data should be sent.</td>
+</tr>
+
+<tr>
+<td>autocomplete</td>
+<td>Controls whether the browser can automatically complete form values.</td>
+</tr>
+
+<tr>
+<td>target</td>
+<td>Specifies where the response should be displayed.</td>
+</tr>
+
+<tr>
+<td>enctype</td>
+<td>Specifies how form data should be encoded when submitted.</td>
+</tr>
+
+</table>
+
+
+<h2>4. The Action Attribute</h2>
+
+<p>The <code>action</code> attribute specifies the location where the form data will be submitted.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;form action="register.php"&gt;
+
+&lt;label&gt;Name:&lt;/label&gt;
+
+&lt;input type="text" name="name"&gt;
+
+&lt;input type="submit" value="Register"&gt;
+
+&lt;/form&gt;</code></pre>
+
+<p>In this example, the form data is sent to <code>register.php</code>.</p>
+
+
+<h2>5. The Method Attribute</h2>
+
+<p>The <code>method</code> attribute specifies the HTTP method used to send form data.</p>
+
+<p>The two commonly used methods are <b>GET</b> and <b>POST</b>.</p>
+
+<table>
+
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+
+<tr>
+<td>GET</td>
+<td>Sends form data as part of the URL.</td>
+</tr>
+
+<tr>
+<td>POST</td>
+<td>Sends form data in the request body.</td>
+</tr>
+
+</table>
+
+
+<h2>6. GET Method</h2>
+
+<p>The GET method sends form data through the URL.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;form action="search.php" method="get"&gt;
+
+&lt;label&gt;Search:&lt;/label&gt;
+
+&lt;input type="text" name="search"&gt;
+
+&lt;input type="submit" value="Search"&gt;
+
+&lt;/form&gt;</code></pre>
+
+<p>GET is commonly used for search forms and requests where the submitted values can safely appear in the URL.</p>
+
+
+<h2>7. POST Method</h2>
+
+<p>The POST method sends form data in the body of the HTTP request instead of placing the values in the URL.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;form action="register.php" method="post"&gt;
+
+&lt;label&gt;Name:&lt;/label&gt;
+
+&lt;input type="text" name="name"&gt;
+
+&lt;input type="submit" value="Register"&gt;
+
+&lt;/form&gt;</code></pre>
+
+<p>POST is commonly used when submitting registration, login or other data that should not be placed in the URL.</p>
+
+
+<h2>8. The Label Element</h2>
+
+<p>The <code>&lt;label&gt;</code> element provides a description for a form control.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;label for="name"&gt;Full Name:&lt;/label&gt;
+
+&lt;input type="text" id="name" name="name"&gt;</code></pre>
+
+<p>The <code>for</code> attribute of the label should match the <code>id</code> of the related input.</p>
+
+
+<h2>9. Text Input</h2>
+
+<p>The <code>input</code> element with <code>type="text"</code> creates a single-line text input.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;label for="name"&gt;Full Name:&lt;/label&gt;
+
+&lt;input type="text" id="name" name="name"&gt;</code></pre>
+
+
+<h2>10. The Name Attribute</h2>
+
+<p>The <code>name</code> attribute identifies a form control when its value is submitted.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;input type="text" name="username"&gt;</code></pre>
+
+<p>The server can use the name <code>username</code> to access the submitted value.</p>
+
+
+<h2>11. The ID Attribute</h2>
+
+<p>The <code>id</code> attribute uniquely identifies an HTML element.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;label for="email"&gt;Email:&lt;/label&gt;
+
+&lt;input type="email" id="email" name="email"&gt;</code></pre>
+
+
+<h2>12. Password Input</h2>
+
+<p>The <code>password</code> input type is used to create a field where characters are hidden while the user types.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;label for="password"&gt;Password:&lt;/label&gt;
+
+&lt;input type="password" id="password" name="password"&gt;</code></pre>
+
+
+<h2>13. Email Input</h2>
+
+<p>The <code>email</code> input type is used for entering an email address.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;label for="email"&gt;Email:&lt;/label&gt;
+
+&lt;input type="email" id="email" name="email"&gt;</code></pre>
+
+<p>Browsers can perform basic validation for email input.</p>
+
+
+<h2>14. Number Input</h2>
+
+<p>The <code>number</code> input type is used for numerical values.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;label for="age"&gt;Age:&lt;/label&gt;
+
+&lt;input type="number" id="age" name="age"&gt;</code></pre>
+
+
+<h2>15. Date Input</h2>
+
+<p>The <code>date</code> input type allows the user to select a date.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;label for="dob"&gt;Date of Birth:&lt;/label&gt;
+
+&lt;input type="date" id="dob" name="dob"&gt;</code></pre>
+
+
+<h2>16. Radio Buttons</h2>
+
+<p>Radio buttons allow the user to select one option from a group of related options.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;p&gt;Select Gender:&lt;/p&gt;
+
+&lt;input type="radio" id="male" name="gender" value="male"&gt;
+&lt;label for="male"&gt;Male&lt;/label&gt;
+
+&lt;input type="radio" id="female" name="gender" value="female"&gt;
+&lt;label for="female"&gt;Female&lt;/label&gt;</code></pre>
+
+<p>Radio buttons should have the same <code>name</code> when only one option should be selected.</p>
+
+
+<h2>17. Checkboxes</h2>
+
+<p>Checkboxes allow users to select one or more options.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;p&gt;Select Skills:&lt;/p&gt;
+
+&lt;input type="checkbox" id="html" name="skills" value="html"&gt;
+&lt;label for="html"&gt;HTML&lt;/label&gt;
+
+&lt;input type="checkbox" id="css" name="skills" value="css"&gt;
+&lt;label for="css"&gt;CSS&lt;/label&gt;
+
+&lt;input type="checkbox" id="javascript" name="skills" value="javascript"&gt;
+&lt;label for="javascript"&gt;JavaScript&lt;/label&gt;</code></pre>
+
+
+<h2>18. Submit Button</h2>
+
+<p>The submit button is used to submit the form.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;input type="submit" value="Register"&gt;</code></pre>
+
+
+<h2>19. Reset Button</h2>
+
+<p>The reset button resets the form controls to their initial values.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;input type="reset" value="Reset"&gt;</code></pre>
+
+
+<h2>20. Button Element</h2>
+
+<p>The <code>&lt;button&gt;</code> element creates a clickable button.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;button type="submit"&gt;Register&lt;/button&gt;</code></pre>
+
+
+<h2>21. Placeholder Attribute</h2>
+
+<p>The <code>placeholder</code> attribute provides a short hint about the expected value.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;input
+type="text"
+name="username"
+placeholder="Enter your username"&gt;</code></pre>
+
+
+<h2>22. Required Attribute</h2>
+
+<p>The <code>required</code> attribute specifies that a form field must be completed before the form can be submitted.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;input
+type="text"
+name="name"
+required&gt;</code></pre>
+
+
+<h2>23. Minlength and Maxlength</h2>
+
+<p>The <code>minlength</code> attribute specifies the minimum number of characters allowed.</p>
+
+<p>The <code>maxlength</code> attribute specifies the maximum number of characters allowed.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;input
+type="text"
+name="username"
+minlength="5"
+maxlength="20"&gt;</code></pre>
+
+
+<h2>24. Min and Max</h2>
+
+<p>The <code>min</code> and <code>max</code> attributes specify the minimum and maximum allowed values for suitable input types.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;input
+type="number"
+name="age"
+min="18"
+max="60"&gt;</code></pre>
+
+
+<h2>25. Select Element</h2>
+
+<p>The <code>&lt;select&gt;</code> element creates a drop-down list.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;label for="course"&gt;Select Course:&lt;/label&gt;
+
+&lt;select id="course" name="course"&gt;
+
+&lt;option value="html"&gt;HTML&lt;/option&gt;
+
+&lt;option value="css"&gt;CSS&lt;/option&gt;
+
+&lt;option value="javascript"&gt;JavaScript&lt;/option&gt;
+
+&lt;option value="python"&gt;Python&lt;/option&gt;
+
+&lt;/select&gt;</code></pre>
+
+
+<h2>26. Textarea Element</h2>
+
+<p>The <code>&lt;textarea&gt;</code> element is used to create a multi-line text input field.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;label for="message"&gt;Message:&lt;/label&gt;
+
+&lt;textarea
+id="message"
+name="message"
+rows="5"
+cols="40"&gt;
+&lt;/textarea&gt;</code></pre>
+
+
+<h2>27. File Upload</h2>
+
+<p>The <code>file</code> input type allows the user to select a file from their device.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;label for="resume"&gt;Upload Resume:&lt;/label&gt;
+
+&lt;input
+type="file"
+id="resume"
+name="resume"&gt;</code></pre>
+
+
+<h2>28. Color Input</h2>
+
+<p>The <code>color</code> input type allows the user to select a color.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;label for="color"&gt;Choose Color:&lt;/label&gt;
+
+&lt;input
+type="color"
+id="color"
+name="color"&gt;</code></pre>
+
+
+<h2>29. Range Input</h2>
+
+<p>The <code>range</code> input type creates a slider for selecting a numerical value within a specified range.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;label for="rating"&gt;Rating:&lt;/label&gt;
+
+&lt;input
+type="range"
+id="rating"
+name="rating"
+min="1"
+max="10"&gt;</code></pre>
+
+
+<h2>30. Search Input</h2>
+
+<p>The <code>search</code> input type is designed for entering search terms.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;input
+type="search"
+name="search"
+placeholder="Search courses"&gt;</code></pre>
+
+
+<h2>31. URL Input</h2>
+
+<p>The <code>url</code> input type is used for entering a web address.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;label for="website"&gt;Website:&lt;/label&gt;
+
+&lt;input
+type="url"
+id="website"
+name="website"
+placeholder="https://example.com"&gt;</code></pre>
+
+
+<h2>32. Telephone Input</h2>
+
+<p>The <code>tel</code> input type is used for entering telephone numbers.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;label for="phone"&gt;Phone Number:&lt;/label&gt;
+
+&lt;input
+type="tel"
+id="phone"
+name="phone"
+placeholder="Enter phone number"&gt;</code></pre>
+
+
+<h2>33. Hidden Input</h2>
+
+<p>The <code>hidden</code> input type stores a value in the form without displaying the field to the user.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;input
+type="hidden"
+name="course"
+value="HTML"&gt;</code></pre>
+
+
+<h2>34. Disabled Input</h2>
+
+<p>The <code>disabled</code> attribute makes a form control unavailable for interaction.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;input
+type="text"
+value="Not Available"
+disabled&gt;</code></pre>
+
+
+<h2>35. Readonly Input</h2>
+
+<p>The <code>readonly</code> attribute prevents the user from editing the value of an input field.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;input
+type="text"
+value="HTML Course"
+readonly&gt;</code></pre>
+
+
+<h2>36. Fieldset Element</h2>
+
+<p>The <code>&lt;fieldset&gt;</code> element groups related form controls together.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;fieldset&gt;
+
+&lt;legend&gt;Student Information&lt;/legend&gt;
+
+&lt;label&gt;Name:&lt;/label&gt;
+
+&lt;input type="text" name="name"&gt;
+
+&lt;label&gt;Email:&lt;/label&gt;
+
+&lt;input type="email" name="email"&gt;
+
+&lt;/fieldset&gt;</code></pre>
+
+
+<h2>37. Legend Element</h2>
+
+<p>The <code>&lt;legend&gt;</code> element defines a caption for a <code>&lt;fieldset&gt;</code>.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;fieldset&gt;
+
+&lt;legend&gt;Login Details&lt;/legend&gt;
+
+&lt;input type="email" name="email"&gt;
+
+&lt;input type="password" name="password"&gt;
+
+&lt;/fieldset&gt;</code></pre>
+
+
+<h2>38. Complete Student Registration Form</h2>
+
+<p>The following example combines many HTML form elements into a student registration form.</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+
+&lt;html&gt;
+
+&lt;head&gt;
+
+&lt;title&gt;Student Registration&lt;/title&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;h1&gt;Student Registration Form&lt;/h1&gt;
+
+&lt;form action="register.php" method="post"&gt;
+
+&lt;label for="name"&gt;Full Name:&lt;/label&gt;
+
+&lt;input
+type="text"
+id="name"
+name="name"
+placeholder="Enter your full name"
+required&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;label for="email"&gt;Email:&lt;/label&gt;
+
+&lt;input
+type="email"
+id="email"
+name="email"
+placeholder="Enter your email"
+required&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;label for="password"&gt;Password:&lt;/label&gt;
+
+&lt;input
+type="password"
+id="password"
+name="password"
+required&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;label for="dob"&gt;Date of Birth:&lt;/label&gt;
+
+&lt;input
+type="date"
+id="dob"
+name="dob"&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;label&gt;Gender:&lt;/label&gt;
+
+&lt;input
+type="radio"
+id="male"
+name="gender"
+value="male"&gt;
+
+&lt;label for="male"&gt;Male&lt;/label&gt;
+
+&lt;input
+type="radio"
+id="female"
+name="gender"
+value="female"&gt;
+
+&lt;label for="female"&gt;Female&lt;/label&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;label for="course"&gt;Select Course:&lt;/label&gt;
+
+&lt;select id="course" name="course"&gt;
+
+&lt;option value="html"&gt;HTML&lt;/option&gt;
+
+&lt;option value="css"&gt;CSS&lt;/option&gt;
+
+&lt;option value="javascript"&gt;JavaScript&lt;/option&gt;
+
+&lt;option value="python"&gt;Python&lt;/option&gt;
+
+&lt;/select&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;label for="message"&gt;Message:&lt;/label&gt;
+
+&lt;br&gt;
+
+&lt;textarea
+id="message"
+name="message"
+rows="5"
+cols="40"
+placeholder="Enter your message"&gt;
+&lt;/textarea&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;input
+type="checkbox"
+id="terms"
+name="terms"
+required&gt;
+
+&lt;label for="terms"&gt;
+I agree to the terms and conditions
+&lt;/label&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;button type="submit"&gt;Register&lt;/button&gt;
+
+&lt;button type="reset"&gt;Reset&lt;/button&gt;
+
+&lt;/form&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+
+
+<h2>39. HTML Form Input Types</h2>
+
+<table>
+
+<tr>
+<th>Input Type</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>text</td>
+<td>Single-line text</td>
+</tr>
+
+<tr>
+<td>password</td>
+<td>Password input</td>
+</tr>
+
+<tr>
+<td>email</td>
+<td>Email address</td>
+</tr>
+
+<tr>
+<td>number</td>
+<td>Numerical value</td>
+</tr>
+
+<tr>
+<td>date</td>
+<td>Date selection</td>
+</tr>
+
+<tr>
+<td>radio</td>
+<td>Select one option</td>
+</tr>
+
+<tr>
+<td>checkbox</td>
+<td>Select one or more options</td>
+</tr>
+
+<tr>
+<td>file</td>
+<td>Upload/select a file</td>
+</tr>
+
+<tr>
+<td>color</td>
+<td>Select a color</td>
+</tr>
+
+<tr>
+<td>range</td>
+<td>Select a value using a slider</td>
+</tr>
+
+<tr>
+<td>search</td>
+<td>Search input</td>
+</tr>
+
+<tr>
+<td>url</td>
+<td>Web address</td>
+</tr>
+
+<tr>
+<td>tel</td>
+<td>Telephone number</td>
+</tr>
+
+<tr>
+<td>hidden</td>
+<td>Hidden form value</td>
+</tr>
+
+<tr>
+<td>submit</td>
+<td>Submit the form</td>
+</tr>
+
+<tr>
+<td>reset</td>
+<td>Reset form values</td>
+</tr>
+
+</table>
+
+
+<h2>40. Important Form Attributes</h2>
+
+<table>
+
+<tr>
+<th>Attribute</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>action</td>
+<td>Specifies where form data is submitted.</td>
+</tr>
+
+<tr>
+<td>method</td>
+<td>Specifies GET or POST submission.</td>
+</tr>
+
+<tr>
+<td>name</td>
+<td>Identifies submitted form data.</td>
+</tr>
+
+<tr>
+<td>id</td>
+<td>Uniquely identifies an element.</td>
+</tr>
+
+<tr>
+<td>placeholder</td>
+<td>Displays a hint inside an input.</td>
+</tr>
+
+<tr>
+<td>required</td>
+<td>Makes a field compulsory.</td>
+</tr>
+
+<tr>
+<td>readonly</td>
+<td>Prevents editing of a field.</td>
+</tr>
+
+<tr>
+<td>disabled</td>
+<td>Disables a form control.</td>
+</tr>
+
+<tr>
+<td>min</td>
+<td>Specifies minimum value.</td>
+</tr>
+
+<tr>
+<td>max</td>
+<td>Specifies maximum value.</td>
+</tr>
+
+<tr>
+<td>minlength</td>
+<td>Specifies minimum text length.</td>
+</tr>
+
+<tr>
+<td>maxlength</td>
+<td>Specifies maximum text length.</td>
+</tr>
+
+</table>
+
+
+<h2>41. Client-Side Form Validation</h2>
+
+<p>HTML provides basic validation features that can help prevent incomplete or incorrectly formatted data from being submitted.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;form&gt;
+
+&lt;label&gt;Email:&lt;/label&gt;
+
+&lt;input
+type="email"
+name="email"
+required&gt;
+
+&lt;label&gt;Password:&lt;/label&gt;
+
+&lt;input
+type="password"
+name="password"
+minlength="8"
+required&gt;
+
+&lt;button type="submit"&gt;
+Login
+&lt;/button&gt;
+
+&lt;/form&gt;</code></pre>
+
+<p>The browser can check the required fields and basic email format before submitting the form.</p>
+
+
+<h2>42. Form and Backend</h2>
+
+<p>HTML is responsible for creating the form interface. A backend language such as PHP can process the submitted form data.</p>
+
+<p>For example, a registration form can send its data to a PHP file.</p>
+
+<h3>HTML</h3>
+
+<pre><code>&lt;form action="register.php" method="post"&gt;
+
+&lt;input type="text" name="name"&gt;
+
+&lt;input type="email" name="email"&gt;
+
+&lt;button type="submit"&gt;
+Register
+&lt;/button&gt;
+
+&lt;/form&gt;</code></pre>
+
+<h3>PHP Example</h3>
+
+<pre><code>&lt;?php
+
+$name=$_POST["name"];
+
+$email=$_POST["email"];
+
+echo "Name: ".$name;
+
+echo "Email: ".$email;
+
+?&gt;</code></pre>
+
+<p>This demonstrates the basic connection between an HTML form and a PHP backend.</p>
+
+
+<h2>43. Form and Database</h2>
+
+<p>In a complete web application, form data can be processed by the backend and stored in a database.</p>
+
+<p>For example, a student registration form can collect the student's name, email and course and send the data to PHP. PHP can then validate the data and store it in a database such as MySQL.</p>
+
+<h3>Basic Flow</h3>
+
+<ol>
+
+<li>User opens the registration form.</li>
+
+<li>User enters their information.</li>
+
+<li>User clicks the Register button.</li>
+
+<li>HTML sends the form data to the backend.</li>
+
+<li>PHP receives and validates the data.</li>
+
+<li>PHP communicates with the database.</li>
+
+<li>The database stores the information.</li>
+
+<li>The user receives a success or error message.</li>
+
+</ol>
+
+
+<h2>44. Example Related to Your Project</h2>
+
+<p>Your Online Tech Learning Academy project can use a registration form like this:</p>
+
+<pre><code>&lt;form action="register.php" method="post"&gt;
+
+&lt;h2&gt;Student Registration&lt;/h2&gt;
+
+&lt;label for="name"&gt;Student Name:&lt;/label&gt;
+
+&lt;input
+type="text"
+id="name"
+name="name"
+required&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;label for="email"&gt;Email:&lt;/label&gt;
+
+&lt;input
+type="email"
+id="email"
+name="email"
+required&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;label for="course"&gt;Course:&lt;/label&gt;
+
+&lt;select id="course" name="course"&gt;
+
+&lt;option value="html"&gt;HTML&lt;/option&gt;
+
+&lt;option value="css"&gt;CSS&lt;/option&gt;
+
+&lt;option value="javascript"&gt;JavaScript&lt;/option&gt;
+
+&lt;/select&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;button type="submit"&gt;
+Register
+&lt;/button&gt;
+
+&lt;/form&gt;</code></pre>
+
+
+<h2>45. Important Points to Remember</h2>
+
+<ol>
+
+<li>The <code>&lt;form&gt;</code> element is used to create an HTML form.</li>
+
+<li>The <code>action</code> attribute specifies where form data is sent.</li>
+
+<li>The <code>method</code> attribute specifies how form data is submitted.</li>
+
+<li>GET sends data as part of the URL.</li>
+
+<li>POST sends data in the request body.</li>
+
+<li>The <code>&lt;label&gt;</code> element describes a form control.</li>
+
+<li>The <code>name</code> attribute identifies submitted form data.</li>
+
+<li>The <code>id</code> attribute uniquely identifies an element.</li>
+
+<li>The <code>required</code> attribute makes a field compulsory.</li>
+
+<li>The <code>placeholder</code> attribute displays a hint.</li>
+
+<li>Radio buttons are generally used to select one option from a group.</li>
+
+<li>Checkboxes allow one or more options to be selected.</li>
+
+<li>The <code>&lt;select&gt;</code> element creates a drop-down list.</li>
+
+<li>The <code>&lt;textarea&gt;</code> element creates a multi-line text field.</li>
+
+<li>The <code>&lt;fieldset&gt;</code> element groups related form controls.</li>
+
+<li>The <code>&lt;legend&gt;</code> element gives a caption to a fieldset.</li>
+
+<li>The submit button submits the form.</li>
+
+<li>The reset button restores the form to its initial state.</li>
+
+<li>HTML provides basic client-side form validation.</li>
+
+<li>Backend technologies such as PHP can process submitted form data.</li>
+
+<li>Form data can eventually be stored in a database using backend code.</li>
+
+</ol>
+
+
+<div class="lesson-summary">
+
+<h2>Lesson Summary</h2>
+
+<p>In this lesson, you learned how to create HTML forms and collect information from users.</p>
+
+<p>You learned about the <code>&lt;form&gt;</code>, <code>&lt;input&gt;</code>, <code>&lt;label&gt;</code>, <code>&lt;select&gt;</code>, <code>&lt;textarea&gt;</code>, <code>&lt;button&gt;</code>, <code>&lt;fieldset&gt;</code> and <code>&lt;legend&gt;</code> elements.</p>
+
+<p>You also learned about different input types such as text, password, email, number, date, radio, checkbox, file, color, range, search, URL and telephone.</p>
+
+<p>Finally, you learned how HTML forms can connect with PHP and databases in a complete web application.</p>
+
+<p><b>Next Lesson:</b> HTML Tables, Lists and Advanced Page Structure</p>
+
+</div>
+
+</div>
+
+
+<script>
+
+function toggleStudentMenu(){
+
+const menu=document.getElementById("studentMenu");
+
+menu.classList.toggle("show");
+
+}
+
+</script>
+
+</body>
+</html>

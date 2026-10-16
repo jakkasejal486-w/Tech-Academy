@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+<title>SQL Lesson 4 - Functions and Grouping</title>
+<style>
+*{
+box-sizing:border-box;
+}
+body{
+background-color:black;
+color:white; 
+margin:0;
+padding:100px 30px 40px;
+}
+nav{
+position:fixed;
+top:0;
+left:0;
+right:0;
+width:100%;
+height:70px;
+background-color:#1e3a5f;
+padding:10px 20px;
+display:flex;
+align-items:center;
+gap:10px;
+z-index:1000;
+}
+nav a{
+color:#40E0D0;
+text-decoration:none;
+font-size:15px;
+font-weight:bold;
+white-space:nowrap;
+}
+nav a:hover{
+color:white;
+}
+nav p{
+color:white;
+font-size:20px;
+margin:0;
+padding:0;
+white-space:nowrap;
+}
+.student-dashboard{
+margin-left:auto;
+position:relative;
+flex-shrink:0;
+}
+.student-logo{
+width:55px;
+height:55px;
+border-radius:50%;
+border:3px solid #40E0D0;
+background-color:#1e3a5f;
+color:white;
+font-size:27px;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:0;
+transition:0.2s;
+}
+.student-logo:hover{
+background-color:#40E0D0;
+color:#1e3a5f;
+}
+.student-menu{
+display:none;
+position:absolute;
+top:65px;
+right:0;
+width:200px;
+background-color:#1e3a5f;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 5px 20px rgba(0,0,0,0.5);
+z-index:2000;
+}
+.student-menu.show{
+display:flex;
+flex-direction:column;
+}
+.student-menu a{
+color:#40E0D0;
+text-decoration:none;
+padding:15px 18px;
+font-size:16px;
+font-weight:bold;
+border-bottom:1px solid rgba(64,224,208,0.2);
+white-space:nowrap;
+}
+.student-menu a:hover{
+background-color:#40E0D0;
+color:#1e3a5f;
+}
+.course-notes{
+max-width:1100px;
+margin:auto;
+}
+.course-notes h1{
+color:#40E0D0;
+text-align:center;
+font-size:36px;
+margin-bottom:40px;
+}
+.course-notes h2{
+color:#40E0D0;
+font-size:27px;
+margin-top:40px;
+border-bottom:1px solid #1e3a5f;
+padding-bottom:10px;
+}
+.course-notes h3{
+color:#40E0D0;
+font-size:21px;
+margin-top:25px;
+}
+.course-notes p{
+color:white;
+font-size:17px;
+line-height:1.8;
+}
+.course-notes ul,
+.course-notes ol{
+color:white;
+font-size:17px;
+line-height:2;
+}
+.course-notes li{
+margin-bottom:5px;
+}
+.course-notes code{
+color:#40E0D0;
+font-family:Consolas,monospace;
+}
+.course-notes pre{
+background-color:#111;
+border:1px solid #1e3a5f;
+border-left:5px solid #40E0D0;
+padding:20px;
+overflow-x:auto;
+border-radius:8px;
+line-height:1.6;
+}
+.course-notes pre code{
+color:#40E0D0;
+font-size:15px;
+}
+.course-notes table{
+width:100%;
+border-collapse:collapse;
+margin:20px 0 30px;
+}
+.course-notes th{
+background-color:#1e3a5f;
+color:#40E0D0;
+font-size:17px;
+padding:14px;
+border:1px solid #40E0D0;
+}
+.course-notes td{
+color:white;
+padding:14px;
+border:1px solid #40E0D0;
+font-size:16px;
+}
+.course-notes tr:nth-child(even){
+background-color:#111;
+}
+.course-notes tr:hover{
+background-color:#1e3a5f;
+}
+.example-box{
+background-color:#111;
+border:2px solid #1e3a5f;
+border-radius:10px;
+padding:20px;
+margin:20px 0;
+}
+.lesson-summary{
+background-color:#111;
+border:2px solid #40E0D0;
+border-radius:10px;
+padding:25px;
+margin-top:50px;
+}
+.lesson-summary h2{
+margin-top:0;
+border-bottom:none;
+}
+@media(max-width:900px){
+nav{
+gap:6px;
+padding:10px;
+}
+nav a{
+font-size:12px;
+}
+nav p{
+font-size:16px;
+}
+}
+@media(max-width:600px){
+body{
+padding:90px 15px 30px;
+}
+nav{
+height:60px;
+overflow-x:auto;
+}
+nav a{
+font-size:11px;
+}
+nav p{
+font-size:14px;
+}
+.student-logo{
+width:45px;
+height:45px;
+font-size:22px;
+}
+.student-menu{
+top:55px;
+}
+.course-notes h1{
+font-size:27px;
+}
+.course-notes h2{
+font-size:23px;
+}
+.course-notes h3{
+font-size:19px;
+}
+.course-notes p,
+.course-notes ul,
+.course-notes ol{
+font-size:15px;
+}
+.course-notes th,
+.course-notes td{
+padding:9px;
+font-size:14px;
+}
+}
+</style>
+</head>
+<body>
+
+<nav>
+
+<p>|</p>
+<a href="index.html">HOME</a>
+
+<p>|</p>
+<a href="information.html">INFO</a>
+
+<p>|</p>
+<a href="courses.html">COURSES</a>
+
+<p>|</p>
+<a href="login.html">LOGIN</a>
+
+<p>|</p>
+<a href="forms.html">REGISTRATION</a>
+
+<p>|</p>
+<a href="contact.html">📞 CONTACT US</a>
+
+<div class="student-dashboard">
+
+<button class="student-logo" onclick="toggleStudentMenu()" title="Student Dashboard">🎓</button>
+
+<div class="student-menu" id="studentMenu">
+  
+<a href="student-dashboard.php">
+🏠 Dashboard</a>  
+<a href="logout.php">🏠Logout</a> 
+
+
+</div>
+
+</div>
+
+</nav>
+
+<div class="course-notes">
+
+<h1>SQL Lesson 4: Functions, GROUP BY and HAVING</h1>
+
+
+<h2>1. Introduction to SQL Functions</h2>
+
+<p>SQL functions are built-in operations that perform calculations or process data and return a result.</p>
+
+<p>Functions are useful when we need to calculate totals, averages, counts and other information from database records.</p>
+
+<p>For example, an online learning academy can use SQL functions to find the number of students enrolled in each course or calculate the average marks of students.</p>
+
+
+<h2>2. Types of SQL Functions</h2>
+
+<p>SQL functions can be broadly divided into two categories:</p>
+
+<ul>
+<li>Aggregate Functions</li>
+<li>Scalar Functions</li>
+</ul>
+
+<p>Aggregate functions work with multiple rows and return one result.</p>
+
+<p>Scalar functions generally work with individual values and return a value for each row.</p>
+
+
+<h2>3. Aggregate Functions</h2>
+
+<p>Aggregate functions perform calculations on a group of rows.</p>
+
+<table>
+
+<tr>
+<th>Function</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>COUNT()</td>
+<td>Counts records.</td>
+</tr>
+
+<tr>
+<td>SUM()</td>
+<td>Calculates the total.</td>
+</tr>
+
+<tr>
+<td>AVG()</td>
+<td>Calculates the average.</td>
+</tr>
+
+<tr>
+<td>MIN()</td>
+<td>Finds the smallest value.</td>
+</tr>
+
+<tr>
+<td>MAX()</td>
+<td>Finds the largest value.</td>
+</tr>
+
+</table>
+
+
+<h2>4. COUNT() Function</h2>
+
+<p>The <code>COUNT()</code> function is used to count records.</p>
+
+<h3>Example</h3>
+
+<pre><code>SELECT COUNT(*)
+FROM students;</code></pre>
+
+<p>This returns the total number of student records.</p>
+
+
+<h2>5. COUNT() with a Column</h2>
+
+<p>COUNT can also be used with a specific column.</p>
+
+<pre><code>SELECT COUNT(email)
+FROM students;</code></pre>
+
+<p>This counts non-NULL values in the email column.</p>
+
+
+<h2>6. COUNT() with WHERE</h2>
+
+<p>We can count records that satisfy a particular condition.</p>
+
+<pre><code>SELECT COUNT(*)
+FROM students
+WHERE course='HTML';</code></pre>
+
+<p>This counts the students enrolled in HTML.</p>
+
+
+<h2>7. SUM() Function</h2>
+
+<p>The <code>SUM()</code> function calculates the total of numeric values.</p>
+
+<h3>Example</h3>
+
+<p>Suppose a results table contains marks.</p>
+
+<pre><code>SELECT SUM(marks)
+FROM results;</code></pre>
+
+<p>This calculates the total marks.</p>
+
+
+<h2>8. SUM() with WHERE</h2>
+
+<pre><code>SELECT SUM(marks)
+FROM results
+WHERE course_id=1;</code></pre>
+
+<p>This calculates the total marks for the specified course.</p>
+
+
+<h2>9. AVG() Function</h2>
+
+<p>The <code>AVG()</code> function calculates the average of numeric values.</p>
+
+<h3>Example</h3>
+
+<pre><code>SELECT AVG(marks)
+FROM results;</code></pre>
+
+<p>This calculates the average marks.</p>
+
+
+<h2>10. AVG() with WHERE</h2>
+
+<pre><code>SELECT AVG(marks)
+FROM results
+WHERE course_id=1;</code></pre>
+
+<p>This calculates the average marks for the specified course.</p>
+
+
+<h2>11. MIN() Function</h2>
+
+<p>The <code>MIN()</code> function returns the smallest value.</p>
+
+<h3>Example</h3>
+
+<pre><code>SELECT MIN(marks)
+FROM results;</code></pre>
+
+<p>This finds the lowest marks.</p>
+
+
+<h2>12. MAX() Function</h2>
+
+<p>The <code>MAX()</code> function returns the largest value.</p>
+
+<h3>Example</h3>
+
+<pre><code>SELECT MAX(marks)
+FROM results;</code></pre>
+
+<p>This finds the highest marks.</p>
+
+
+<h2>13. Using Multiple Aggregate Functions</h2>
+
+<p>Multiple functions can be used in the same query.</p>
+
+<pre><code>SELECT
+COUNT(*) AS total_students,
+AVG(marks) AS average_marks,
+MIN(marks) AS lowest_marks,
+MAX(marks) AS highest_marks
+FROM results;</code></pre>
+
+
+<h2>14. AS Keyword</h2>
+
+<p>The <code>AS</code> keyword is used to create an alias for a column or calculated result.</p>
+
+<h3>Example</h3>
+
+<pre><code>SELECT COUNT(*) AS total_students
+FROM students;</code></pre>
+
+<p>Instead of displaying the calculation using its original expression, the result is displayed with the name <code>total_students</code>.</p>
+
+
+<h2>15. Creating a Results Table</h2>
+
+<p>For practice, we can create a results table for the academy.</p>
+
+<pre><code>CREATE TABLE results(
+result_id INT PRIMARY KEY AUTO_INCREMENT,
+student_id INT,
+course_id INT,
+marks INT
+);</code></pre>
+
+
+<h2>16. Adding Result Data</h2>
+
+<pre><code>INSERT INTO results(student_id,course_id,marks)
+VALUES
+(1,1,85),
+(2,1,75),
+(3,1,90),
+(1,2,88),
+(2,2,80),
+(3,2,95);</code></pre>
+
+
+<h2>17. Finding Total Number of Results</h2>
+
+<pre><code>SELECT COUNT(*) AS total_results
+FROM results;</code></pre>
+
+
+<h2>18. Finding Total Marks</h2>
+
+<pre><code>SELECT SUM(marks) AS total_marks
+FROM results;</code></pre>
+
+
+<h2>19. Finding Average Marks</h2>
+
+<pre><code>SELECT AVG(marks) AS average_marks
+FROM results;</code></pre>
+
+
+<h2>20. Finding Lowest Marks</h2>
+
+<pre><code>SELECT MIN(marks) AS lowest_marks
+FROM results;</code></pre>
+
+
+<h2>21. Finding Highest Marks</h2>
+
+<pre><code>SELECT MAX(marks) AS highest_marks
+FROM results;</code></pre>
+
+
+<h2>22. GROUP BY</h2>
+
+<p>The <code>GROUP BY</code> clause is used to group rows that have the same values in specified columns.</p>
+
+<p>It is commonly used with aggregate functions.</p>
+
+<h3>Example</h3>
+
+<pre><code>SELECT course_id,COUNT(*) AS total_students
+FROM enrollments
+GROUP BY course_id;</code></pre>
+
+<p>This groups enrollment records according to course ID and counts the records in each group.</p>
+
+
+<h2>23. GROUP BY with AVG()</h2>
+
+<p>We can calculate the average marks for each course.</p>
+
+<pre><code>SELECT course_id,AVG(marks) AS average_marks
+FROM results
+GROUP BY course_id;</code></pre>
+
+
+<h2>24. GROUP BY with SUM()</h2>
+
+<pre><code>SELECT course_id,SUM(marks) AS total_marks
+FROM results
+GROUP BY course_id;</code></pre>
+
+
+<h2>25. GROUP BY with MIN()</h2>
+
+<pre><code>SELECT course_id,MIN(marks) AS lowest_marks
+FROM results
+GROUP BY course_id;</code></pre>
+
+
+<h2>26. GROUP BY with MAX()</h2>
+
+<pre><code>SELECT course_id,MAX(marks) AS highest_marks
+FROM results
+GROUP BY course_id;</code></pre>
+
+
+<h2>27. GROUP BY Example</h2>
+
+<table>
+
+<tr>
+<th>course_id</th>
+<th>marks</th>
+</tr>
+
+<tr>
+<td>1</td>
+<td>85</td>
+</tr>
+
+<tr>
+<td>1</td>
+<td>75</td>
+</tr>
+
+<tr>
+<td>1</td>
+<td>90</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>88</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>80</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>95</td>
+</tr>
+
+</table>
+
+<p>Using GROUP BY course_id allows the results to be divided into separate groups for course 1 and course 2.</p>
+
+
+<h2>28. HAVING Clause</h2>
+
+<p>The <code>HAVING</code> clause is used to filter grouped results.</p>
+
+<p>It is commonly used with GROUP BY and aggregate functions.</p>
+
+<h3>Example</h3>
+
+<pre><code>SELECT course_id,COUNT(*) AS total_students
+FROM enrollments
+GROUP BY course_id
+HAVING COUNT(*)&gt;2;</code></pre>
+
+<p>This returns only courses having more than two enrollment records.</p>
+
+
+<h2>29. WHERE vs HAVING</h2>
+
+<table>
+
+<tr>
+<th>WHERE</th>
+<th>HAVING</th>
+</tr>
+
+<tr>
+<td>Filters individual rows.</td>
+<td>Filters groups.</td>
+</tr>
+
+<tr>
+<td>Usually used before GROUP BY.</td>
+<td>Usually used after GROUP BY.</td>
+</tr>
+
+<tr>
+<td>Can filter normal column values.</td>
+<td>Commonly filters aggregate results.</td>
+</tr>
+
+</table>
+
+
+<h2>30. WHERE with GROUP BY</h2>
+
+<p>WHERE can be used before GROUP BY to filter records before grouping.</p>
+
+<pre><code>SELECT course_id,AVG(marks) AS average_marks
+FROM results
+WHERE marks&gt;50
+GROUP BY course_id;</code></pre>
+
+
+<h2>31. HAVING with GROUP BY</h2>
+
+<p>HAVING filters the groups after they have been created.</p>
+
+<pre><code>SELECT course_id,AVG(marks) AS average_marks
+FROM results
+GROUP BY course_id
+HAVING AVG(marks)&gt;80;</code></pre>
+
+<p>This displays courses whose average marks are greater than 80.</p>
+
+
+<h2>32. GROUP BY with ORDER BY</h2>
+
+<p>GROUP BY and ORDER BY can be used together.</p>
+
+<pre><code>SELECT course_id,AVG(marks) AS average_marks
+FROM results
+GROUP BY course_id
+ORDER BY average_marks DESC;</code></pre>
+
+<p>This displays courses from the highest average marks to the lowest.</p>
+
+
+<h2>33. Complete Query Example</h2>
+
+<pre><code>SELECT course_id,
+COUNT(*) AS total_results,
+AVG(marks) AS average_marks,
+MIN(marks) AS lowest_marks,
+MAX(marks) AS highest_marks
+FROM results
+GROUP BY course_id
+HAVING AVG(marks)&gt;70
+ORDER BY average_marks DESC;</code></pre>
+
+
+<h2>34. SQL String Functions</h2>
+
+<p>SQL also provides functions for working with text.</p>
+
+<table>
+
+<tr>
+<th>Function</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>UPPER()</td>
+<td>Converts text to uppercase.</td>
+</tr>
+
+<tr>
+<td>LOWER()</td>
+<td>Converts text to lowercase.</td>
+</tr>
+
+<tr>
+<td>LENGTH()</td>
+<td>Returns the length of text.</td>
+</tr>
+
+</table>
+
+
+<h2>35. UPPER() Function</h2>
+
+<p>The <code>UPPER()</code> function converts text to uppercase.</p>
+
+<pre><code>SELECT UPPER(name)
+FROM students;</code></pre>
+
+
+<h2>36. LOWER() Function</h2>
+
+<p>The <code>LOWER()</code> function converts text to lowercase.</p>
+
+<pre><code>SELECT LOWER(name)
+FROM students;</code></pre>
+
+
+<h2>37. LENGTH() Function</h2>
+
+<p>The <code>LENGTH()</code> function returns the number of characters in a string.</p>
+
+<pre><code>SELECT name,LENGTH(name) AS name_length
+FROM students;</code></pre>
+
+
+<h2>38. Numeric Functions</h2>
+
+<p>SQL also provides functions for working with numbers.</p>
+
+<table>
+
+<tr>
+<th>Function</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>ROUND()</td>
+<td>Rounds a number.</td>
+</tr>
+
+<tr>
+<td>CEIL()</td>
+<td>Rounds a number upward.</td>
+</tr>
+
+<tr>
+<td>FLOOR()</td>
+<td>Rounds a number downward.</td>
+</tr>
+
+</table>
+
+
+<h2>39. ROUND() Function</h2>
+
+<p>The <code>ROUND()</code> function rounds a number to a specified number of decimal places.</p>
+
+<pre><code>SELECT ROUND(AVG(marks),2)
+FROM results;</code></pre>
+
+
+<h2>40. Complete Academy Example</h2>
+
+<p>Suppose your academy wants to display statistics about student results.</p>
+
+<pre><code>SELECT
+course_id,
+COUNT(*) AS number_of_students,
+AVG(marks) AS average_marks,
+MIN(marks) AS minimum_marks,
+MAX(marks) AS maximum_marks
+FROM results
+GROUP BY course_id
+ORDER BY average_marks DESC;</code></pre>
+
+
+<h2>41. Important Aggregate Functions</h2>
+
+<table>
+
+<tr>
+<th>Function</th>
+<th>Example</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>COUNT()</td>
+<td>COUNT(*)</td>
+<td>Counts records.</td>
+</tr>
+
+<tr>
+<td>SUM()</td>
+<td>SUM(marks)</td>
+<td>Calculates total.</td>
+</tr>
+
+<tr>
+<td>AVG()</td>
+<td>AVG(marks)</td>
+<td>Calculates average.</td>
+</tr>
+
+<tr>
+<td>MIN()</td>
+<td>MIN(marks)</td>
+<td>Finds minimum value.</td>
+</tr>
+
+<tr>
+<td>MAX()</td>
+<td>MAX(marks)</td>
+<td>Finds maximum value.</td>
+</tr>
+
+</table>
+
+
+<h2>42. Important SQL Clauses</h2>
+
+<table>
+
+<tr>
+<th>Clause</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>WHERE</td>
+<td>Filters rows.</td>
+</tr>
+
+<tr>
+<td>GROUP BY</td>
+<td>Groups similar rows.</td>
+</tr>
+
+<tr>
+<td>HAVING</td>
+<td>Filters groups.</td>
+</tr>
+
+<tr>
+<td>ORDER BY</td>
+<td>Sorts results.</td>
+</tr>
+
+</table>
+
+
+<h2>43. Important Points to Remember</h2>
+
+<ol>
+
+<li>SQL functions perform calculations or process data.</li>
+
+<li>Aggregate functions work with multiple rows.</li>
+
+<li>COUNT() counts records.</li>
+
+<li>SUM() calculates a total.</li>
+
+<li>AVG() calculates an average.</li>
+
+<li>MIN() finds the smallest value.</li>
+
+<li>MAX() finds the largest value.</li>
+
+<li>GROUP BY groups records with similar values.</li>
+
+<li>GROUP BY is commonly used with aggregate functions.</li>
+
+<li>HAVING filters grouped results.</li>
+
+<li>WHERE filters individual rows.</li>
+
+<li>AS creates an alias for a column or result.</li>
+
+<li>ORDER BY can be used to sort grouped results.</li>
+
+<li>Aggregate functions are useful for reports and statistics.</li>
+
+<li>These concepts can be used to display student results and course statistics in your academy project.</li>
+
+</ol>
+
+
+<h2>44. Lesson 4 Quick Revision</h2>
+
+<table>
+
+<tr>
+<th>Topic</th>
+<th>Meaning</th>
+</tr>
+
+<tr>
+<td>COUNT()</td>
+<td>Counts records.</td>
+</tr>
+
+<tr>
+<td>SUM()</td>
+<td>Calculates total.</td>
+</tr>
+
+<tr>
+<td>AVG()</td>
+<td>Calculates average.</td>
+</tr>
+
+<tr>
+<td>MIN()</td>
+<td>Finds minimum.</td>
+</tr>
+
+<tr>
+<td>MAX()</td>
+<td>Finds maximum.</td>
+</tr>
+
+<tr>
+<td>GROUP BY</td>
+<td>Groups records.</td>
+</tr>
+
+<tr>
+<td>HAVING</td>
+<td>Filters groups.</td>
+</tr>
+
+<tr>
+<td>AS</td>
+<td>Creates an alias.</td>
+</tr>
+
+</table>
+
+
+<div class="lesson-summary">
+
+<h2>Lesson Summary</h2>
+
+<p>In this lesson, you learned how SQL functions can be used to calculate and analyze database information.</p>
+
+<p>You learned COUNT(), SUM(), AVG(), MIN() and MAX() aggregate functions.</p>
+
+<p>You also learned GROUP BY for grouping records and HAVING for filtering grouped results.</p>
+
+<p>Finally, you learned some useful text and numeric functions such as UPPER(), LOWER(), LENGTH() and ROUND().</p>
+
+<p>These concepts will be useful in your Online Tech Learning Academy when displaying student counts, marks, course statistics and result summaries.</p>
+
+<p><b>Next Lesson:</b> SQL JOINs and Combining Data from Multiple Tables</p>
+
+</div>
+
+</div>
+
+
+<script>
+
+function toggleStudentMenu(){
+
+const menu=document.getElementById("studentMenu");
+
+menu.classList.toggle("show");
+
+}
+
+</script>
+
+</body>
+</html>

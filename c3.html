@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+<title>CSS Lesson 3 - Box Model</title>
+<style>
+*{
+box-sizing:border-box;
+}
+body{
+background-color:black;
+color:white;
+ 
+margin:0;
+padding:100px 30px 40px;
+}
+nav{
+position:fixed;
+top:0;
+left:0;
+right:0;
+width:100%;
+height:70px;
+background-color:#1e3a5f;
+padding:10px 20px;
+display:flex;
+align-items:center;
+gap:10px;
+z-index:1000;
+}
+nav a{
+color:#40E0D0;
+text-decoration:none;
+font-size:15px;
+font-weight:bold;
+white-space:nowrap;
+}
+nav a:hover{
+color:white;
+}
+nav p{
+color:white;
+font-size:20px;
+margin:0;
+padding:0;
+white-space:nowrap;
+}
+.student-dashboard{
+margin-left:auto;
+position:relative;
+flex-shrink:0;
+}
+.student-logo{
+width:55px;
+height:55px;
+border-radius:50%;
+border:3px solid #40E0D0;
+background-color:#1e3a5f;
+color:white;
+font-size:27px;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:0;
+transition:0.2s;
+}
+.student-logo:hover{
+background-color:#40E0D0;
+color:#1e3a5f;
+}
+.student-menu{
+display:none;
+position:absolute;
+top:65px;
+right:0;
+width:200px;
+background-color:#1e3a5f;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 5px 20px rgba(0,0,0,0.5);
+z-index:2000;
+}
+.student-menu.show{
+display:flex;
+flex-direction:column;
+}
+.student-menu a{
+color:#40E0D0;
+text-decoration:none;
+padding:15px 18px;
+font-size:16px;
+font-weight:bold;
+border-bottom:1px solid rgba(64,224,208,0.2);
+white-space:nowrap;
+}
+.student-menu a:hover{
+background-color:#40E0D0;
+color:#1e3a5f;
+}
+.course-notes{
+max-width:1100px;
+margin:auto;
+}
+.course-notes h1{
+color:#40E0D0;
+text-align:center;
+font-size:36px;
+margin-bottom:40px;
+}
+.course-notes h2{
+color:#40E0D0;
+font-size:27px;
+margin-top:40px;
+border-bottom:1px solid #1e3a5f;
+padding-bottom:10px;
+}
+.course-notes h3{
+color:#40E0D0;
+font-size:21px;
+margin-top:25px;
+}
+.course-notes p{
+color:white;
+font-size:17px;
+line-height:1.8;
+}
+.course-notes ul,
+.course-notes ol{
+color:white;
+font-size:17px;
+line-height:2;
+}
+.course-notes li{
+margin-bottom:5px;
+}
+.course-notes code{
+color:#40E0D0;
+font-family:Consolas,monospace;
+}
+.course-notes pre{
+background-color:#111;
+border:1px solid #1e3a5f;
+border-left:5px solid #40E0D0;
+padding:20px;
+overflow-x:auto;
+border-radius:8px;
+line-height:1.6;
+}
+.course-notes pre code{
+color:#40E0D0;
+font-size:15px;
+}
+.course-notes table{
+width:100%;
+border-collapse:collapse;
+margin:20px 0 30px;
+}
+.course-notes th{
+background-color:#1e3a5f;
+color:#40E0D0;
+font-size:17px;
+padding:14px;
+border:1px solid #40E0D0;
+}
+.course-notes td{
+color:white;
+padding:14px;
+border:1px solid #40E0D0;
+font-size:16px;
+}
+.course-notes tr:nth-child(even){
+background-color:#111;
+}
+.course-notes tr:hover{
+background-color:#1e3a5f;
+}
+.lesson-summary{
+background-color:#111;
+border:2px solid #40E0D0;
+border-radius:10px;
+padding:25px;
+margin-top:50px;
+}
+.lesson-summary h2{
+margin-top:0;
+border-bottom:none;
+}
+</style>
+</head>
+<body>
+
+<nav>
+
+<p>|</p>
+<a href="index.html">HOME</a>
+
+<p>|</p>
+<a href="information.html">INFO</a>
+
+<p>|</p>
+<a href="courses.html">COURSES</a>
+
+<p>|</p>
+<a href="login.html">LOGIN</a>
+
+<p>|</p>
+<a href="forms.html">REGISTRATION</a>
+
+<p>|</p>
+<a href="contact.html">📞 CONTACT US</a>
+
+<div class="student-dashboard">
+
+<button class="student-logo" onclick="toggleStudentMenu()" title="Student Dashboard">🎓</button>
+
+<div class="student-menu" id="studentMenu">
+  
+<a href="student-dashboard.php">
+🏠 Dashboard</a>  
+<a href="logout.php">🏠Logout</a> 
+</div>
+
+</div>
+
+</nav>
+
+
+<div class="course-notes">
+
+<h1>CSS Lesson 3: CSS Box Model</h1>
+
+
+<h2>1. Introduction to CSS Box Model</h2>
+
+<p>The CSS Box Model describes how every HTML element is represented as a rectangular box on a webpage.</p>
+
+<p>Every element consists of different areas that control its size and spacing.</p>
+
+<p>The four main parts of the CSS Box Model are:</p>
+
+<ol>
+
+<li>Content</li>
+
+<li>Padding</li>
+
+<li>Border</li>
+
+<li>Margin</li>
+
+</ol>
+
+<p>The Box Model is one of the most important concepts in CSS because it helps us control the size, spacing and position of elements.</p>
+
+
+<h2>2. Structure of the Box Model</h2>
+
+<p>The CSS Box Model can be represented as:</p>
+
+<pre><code>+---------------------------------------+
+|                Margin                 |
+|   +-------------------------------+   |
+|   |            Border             |   |
+|   |   +-----------------------+   |   |
+|   |   |       Padding         |   |   |
+|   |   |   +---------------+   |   |   |
+|   |   |   |    Content    |   |   |   |
+|   |   |   +---------------+   |   |   |
+|   |   +-----------------------+   |   |
+|   +-------------------------------+   |
++---------------------------------------+</code></pre>
+
+
+<h2>3. Four Parts of Box Model</h2>
+
+<table>
+
+<tr>
+<th>Part</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>Content</td>
+<td>The actual text, image or other content inside the element.</td>
+</tr>
+
+<tr>
+<td>Padding</td>
+<td>Space between the content and the border.</td>
+</tr>
+
+<tr>
+<td>Border</td>
+<td>Line surrounding the padding and content.</td>
+</tr>
+
+<tr>
+<td>Margin</td>
+<td>Space outside the border.</td>
+</tr>
+
+</table>
+
+
+<h2>4. Content</h2>
+
+<p>The content area contains the actual content of an HTML element.</p>
+
+<p>This can include text, images, videos, forms or other HTML elements.</p>
+
+<h3>Example</h3>
+
+<pre><code>div{
+width:300px;
+height:150px;
+}</code></pre>
+
+<p>Here, the content area has a width of 300px and a height of 150px.</p>
+
+
+<h2>5. Width Property</h2>
+
+<p>The <code>width</code> property specifies the width of an element.</p>
+
+<h3>Example</h3>
+
+<pre><code>div{
+width:300px;
+}</code></pre>
+
+
+<h2>6. Height Property</h2>
+
+<p>The <code>height</code> property specifies the height of an element.</p>
+
+<h3>Example</h3>
+
+<pre><code>div{
+height:200px;
+}</code></pre>
+
+
+<h2>7. Padding</h2>
+
+<p>Padding is the space between the content of an element and its border.</p>
+
+<p>Padding is inside the border.</p>
+
+<h3>Example</h3>
+
+<pre><code>div{
+padding:20px;
+}</code></pre>
+
+<p>This adds 20px of padding on all four sides.</p>
+
+
+<h2>8. Padding on Individual Sides</h2>
+
+<p>Padding can be specified separately for the top, right, bottom and left sides.</p>
+
+<h3>Example</h3>
+
+<pre><code>div{
+padding-top:10px;
+padding-right:20px;
+padding-bottom:30px;
+padding-left:40px;
+}</code></pre>
+
+
+<h2>9. Padding Shorthand</h2>
+
+<p>The <code>padding</code> shorthand property can be used to specify padding for multiple sides.</p>
+
+<h3>One Value</h3>
+
+<pre><code>div{
+padding:20px;
+}</code></pre>
+
+<p>All four sides receive 20px padding.</p>
+
+
+<h3>Two Values</h3>
+
+<pre><code>div{
+padding:10px 20px;
+}</code></pre>
+
+<p>The first value applies to top and bottom.</p>
+
+<p>The second value applies to left and right.</p>
+
+
+<h3>Four Values</h3>
+
+<pre><code>div{
+padding:10px 20px 30px 40px;
+}</code></pre>
+
+<p>The values are applied in this order:</p>
+
+<pre><code>top
+right
+bottom
+left</code></pre>
+
+
+<h2>10. Border</h2>
+
+<p>A border is a line surrounding the content and padding of an element.</p>
+
+<h3>Example</h3>
+
+<pre><code>div{
+border:2px solid #40E0D0;
+}</code></pre>
+
+
+<h2>11. Border Width</h2>
+
+<p>The <code>border-width</code> property controls the thickness of the border.</p>
+
+<h3>Example</h3>
+
+<pre><code>div{
+border-width:3px;
+}</code></pre>
+
+
+<h2>12. Border Style</h2>
+
+<p>The <code>border-style</code> property specifies the style of the border.</p>
+
+<h3>Common Border Styles</h3>
+
+<table>
+
+<tr>
+<th>Style</th>
+<th>Description</th>
+</tr>
+
+<tr>
+<td>solid</td>
+<td>Creates a solid line.</td>
+</tr>
+
+<tr>
+<td>dashed</td>
+<td>Creates a dashed line.</td>
+</tr>
+
+<tr>
+<td>dotted</td>
+<td>Creates a dotted line.</td>
+</tr>
+
+<tr>
+<td>double</td>
+<td>Creates a double line.</td>
+</tr>
+
+<tr>
+<td>none</td>
+<td>Removes the border.</td>
+</tr>
+
+</table>
+
+
+<h3>Example</h3>
+
+<pre><code>div{
+border-style:solid;
+}</code></pre>
+
+
+<h2>13. Border Color</h2>
+
+<p>The <code>border-color</code> property specifies the color of the border.</p>
+
+<h3>Example</h3>
+
+<pre><code>div{
+border-color:#40E0D0;
+}</code></pre>
+
+
+<h2>14. Border Shorthand</h2>
+
+<p>The border shorthand allows width, style and color to be specified in one declaration.</p>
+
+<h3>Example</h3>
+
+<pre><code>div{
+border:2px solid #40E0D0;
+}</code></pre>
+
+
+<h2>15. Individual Borders</h2>
+
+<p>Different borders can be applied to individual sides.</p>
+
+<h3>Example</h3>
+
+<pre><code>div{
+border-top:2px solid #40E0D0;
+border-right:2px solid white;
+border-bottom:2px solid #40E0D0;
+border-left:2px solid white;
+}</code></pre>
+
+
+<h2>16. Border Radius</h2>
+
+<p>The <code>border-radius</code> property is used to create rounded corners.</p>
+
+<h3>Example</h3>
+
+<pre><code>div{
+border:2px solid #40E0D0;
+border-radius:10px;
+}</code></pre>
+
+
+<h2>17. Circular Elements</h2>
+
+<p>A border radius of 50% can be used to create a circular element when the element has equal width and height.</p>
+
+<h3>Example</h3>
+
+<pre><code>.circle{
+width:100px;
+height:100px;
+border-radius:50%;
+}</code></pre>
+
+
+<h2>18. Margin</h2>
+
+<p>Margin is the space outside the border of an element.</p>
+
+<p>Margin is used to create space between different HTML elements.</p>
+
+<h3>Example</h3>
+
+<pre><code>div{
+margin:20px;
+}</code></pre>
+
+
+<h2>19. Individual Margins</h2>
+
+<p>Margins can be specified individually for each side.</p>
+
+<h3>Example</h3>
+
+<pre><code>div{
+margin-top:10px;
+margin-right:20px;
+margin-bottom:30px;
+margin-left:40px;
+}</code></pre>
+
+
+<h2>20. Margin Shorthand</h2>
+
+<h3>One Value</h3>
+
+<pre><code>div{
+margin:20px;
+}</code></pre>
+
+<p>All four sides receive 20px margin.</p>
+
+
+<h3>Two Values</h3>
+
+<pre><code>div{
+margin:10px 20px;
+}</code></pre>
+
+<p>Top and bottom receive 10px.</p>
+
+<p>Left and right receive 20px.</p>
+
+
+<h3>Four Values</h3>
+
+<pre><code>div{
+margin:10px 20px 30px 40px;
+}</code></pre>
+
+<p>The order is top, right, bottom and left.</p>
+
+
+<h2>21. Auto Margin</h2>
+
+<p>The <code>auto</code> value can be used to automatically calculate available margin space.</p>
+
+<p>It is commonly used to center a block element horizontally when it has a defined width.</p>
+
+<h3>Example</h3>
+
+<pre><code>div{
+width:500px;
+margin:auto;
+}</code></pre>
+
+
+<h2>22. Difference Between Padding and Margin</h2>
+
+<table>
+
+<tr>
+<th>Padding</th>
+<th>Margin</th>
+</tr>
+
+<tr>
+<td>Space inside the border.</td>
+<td>Space outside the border.</td>
+</tr>
+
+<tr>
+<td>Creates space around the content.</td>
+<td>Creates space between elements.</td>
+</tr>
+
+<tr>
+<td>Background can extend into the padding area.</td>
+<td>Margin is outside the element's border.</td>
+</tr>
+
+</table>
+
+
+<h2>23. Box Sizing</h2>
+
+<p>The <code>box-sizing</code> property controls how the width and height of an element are calculated.</p>
+
+<p>The two important values are:</p>
+
+<ul>
+
+<li>content-box</li>
+
+<li>border-box</li>
+
+</ul>
+
+
+<h2>24. Content-Box</h2>
+
+<p><code>content-box</code> is the default box-sizing behavior.</p>
+
+<p>With content-box, the specified width and height apply only to the content area.</p>
+
+<h3>Example</h3>
+
+<pre><code>div{
+box-sizing:content-box;
+width:300px;
+padding:20px;
+border:5px solid #40E0D0;
+}</code></pre>
+
+<p>The padding and border are added outside the specified content width.</p>
+
+
+<h2>25. Border-Box</h2>
+
+<p>With <code>border-box</code>, the specified width and height include the content, padding and border.</p>
+
+<h3>Example</h3>
+
+<pre><code>div{
+box-sizing:border-box;
+width:300px;
+padding:20px;
+border:5px solid #40E0D0;
+}</code></pre>
+
+<p>This makes it easier to control the total size of an element.</p>
+
+
+<h2>26. Universal Box Sizing</h2>
+
+<p>A common CSS practice is to apply <code>box-sizing:border-box</code> to all elements.</p>
+
+<h3>Example</h3>
+
+<pre><code>*{
+box-sizing:border-box;
+}</code></pre>
+
+<p>This is also used in your project CSS.</p>
+
+
+<h2>27. Total Width of an Element</h2>
+
+<p>When using the default <code>content-box</code>, the total width can be calculated using:</p>
+
+<pre><code>Total Width =
+Content Width
++ Left Padding
++ Right Padding
++ Left Border
++ Right Border
++ Left Margin
++ Right Margin</code></pre>
+
+
+<h2>28. Total Height of an Element</h2>
+
+<p>The total height can similarly be calculated using:</p>
+
+<pre><code>Total Height =
+Content Height
++ Top Padding
++ Bottom Padding
++ Top Border
++ Bottom Border
++ Top Margin
++ Bottom Margin</code></pre>
+
+
+<h2>29. Width and Height with Border-Box</h2>
+
+<p>When <code>box-sizing:border-box</code> is used, the specified width includes the content and padding and border.</p>
+
+<h3>Example</h3>
+
+<pre><code>div{
+width:300px;
+height:200px;
+padding:20px;
+border:5px solid #40E0D0;
+box-sizing:border-box;
+}</code></pre>
+
+<p>The total width remains 300px and the total height remains 200px, excluding margins.</p>
+
+
+<h2>30. Outline</h2>
+
+<p>An outline is a line drawn around an element, outside its border.</p>
+
+<h3>Example</h3>
+
+<pre><code>div{
+border:2px solid #40E0D0;
+outline:2px solid white;
+}</code></pre>
+
+
+<h2>31. Outline Width</h2>
+
+<pre><code>div{
+outline-width:3px;
+}</code></pre>
+
+
+<h2>32. Outline Style</h2>
+
+<pre><code>div{
+outline-style:solid;
+}</code></pre>
+
+
+<h2>33. Outline Color</h2>
+
+<pre><code>div{
+outline-color:#40E0D0;
+}</code></pre>
+
+
+<h2>34. Outline Offset</h2>
+
+<p>The <code>outline-offset</code> property controls the space between the border and outline.</p>
+
+<h3>Example</h3>
+
+<pre><code>div{
+outline:2px solid #40E0D0;
+outline-offset:5px;
+}</code></pre>
+
+
+<h2>35. Overflow</h2>
+
+<p>The <code>overflow</code> property controls what happens when content is larger than the element's specified dimensions.</p>
+
+<h3>Common Values</h3>
+
+<table>
+
+<tr>
+<th>Value</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>visible</td>
+<td>Content remains visible outside the box.</td>
+</tr>
+
+<tr>
+<td>hidden</td>
+<td>Extra content is hidden.</td>
+</tr>
+
+<tr>
+<td>scroll</td>
+<td>Scrollbars are displayed.</td>
+</tr>
+
+<tr>
+<td>auto</td>
+<td>Scrollbars appear when necessary.</td>
+</tr>
+
+</table>
+
+
+<h3>Example</h3>
+
+<pre><code>div{
+width:300px;
+height:100px;
+overflow:auto;
+}</code></pre>
+
+
+<h2>36. Box Shadow</h2>
+
+<p>The <code>box-shadow</code> property adds a shadow around an element.</p>
+
+<h3>Syntax</h3>
+
+<pre><code>box-shadow:
+horizontal
+vertical
+blur
+color;</code></pre>
+
+<h3>Example</h3>
+
+<pre><code>div{
+box-shadow:0 5px 20px rgba(0,0,0,0.5);
+}</code></pre>
+
+
+<h2>37. Complete Box Model Example</h2>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+
+&lt;html&gt;
+
+&lt;head&gt;
+
+&lt;title&gt;CSS Box Model&lt;/title&gt;
+
+&lt;style&gt;
+
+*{
+box-sizing:border-box;
+}
+
+body{
+background-color:black;
+font-family:Arial,sans-serif;
+}
+
+.box{
+width:500px;
+height:250px;
+background-color:#1e3a5f;
+color:white;
+padding:30px;
+border:3px solid #40E0D0;
+margin:50px auto;
+border-radius:10px;
+box-shadow:0 5px 20px rgba(0,0,0,0.5);
+}
+
+&lt;/style&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;div class="box"&gt;
+
+&lt;h2&gt;
+CSS Box Model
+&lt;/h2&gt;
+
+&lt;p&gt;
+This element demonstrates
+content, padding, border
+and margin.
+&lt;/p&gt;
+
+&lt;/div&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+
+
+<h2>38. Box Model Properties</h2>
+
+<table>
+
+<tr>
+<th>Property</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>width</td>
+<td>Controls element width.</td>
+</tr>
+
+<tr>
+<td>height</td>
+<td>Controls element height.</td>
+</tr>
+
+<tr>
+<td>padding</td>
+<td>Creates space inside the border.</td>
+</tr>
+
+<tr>
+<td>margin</td>
+<td>Creates space outside the border.</td>
+</tr>
+
+<tr>
+<td>border</td>
+<td>Creates a border around the element.</td>
+</tr>
+
+<tr>
+<td>border-radius</td>
+<td>Creates rounded corners.</td>
+</tr>
+
+<tr>
+<td>box-sizing</td>
+<td>Controls how width and height are calculated.</td>
+</tr>
+
+<tr>
+<td>outline</td>
+<td>Creates a line outside the border.</td>
+</tr>
+
+<tr>
+<td>outline-offset</td>
+<td>Controls space between border and outline.</td>
+</tr>
+
+<tr>
+<td>overflow</td>
+<td>Controls content that exceeds the element's box.</td>
+</tr>
+
+<tr>
+<td>box-shadow</td>
+<td>Adds a shadow around the element.</td>
+</tr>
+
+</table>
+
+
+<h2>39. Practical Example for Your Project</h2>
+
+<p>The CSS Box Model is useful for designing course cards, registration forms, buttons, navigation menus and sections in your Online Tech Learning Academy.</p>
+
+<h3>Course Card Example</h3>
+
+<pre><code>.course-card{
+width:350px;
+background-color:#1e3a5f;
+color:white;
+padding:25px;
+border:2px solid #40E0D0;
+margin:20px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,0.5);
+}</code></pre>
+
+
+<h3>Button Example</h3>
+
+<pre><code>button{
+padding:12px 25px;
+margin:10px;
+border:2px solid #40E0D0;
+border-radius:8px;
+background-color:#1e3a5f;
+color:#40E0D0;
+}</code></pre>
+
+
+<h3>Form Example</h3>
+
+<pre><code>form{
+width:500px;
+padding:30px;
+margin:30px auto;
+border:2px solid #40E0D0;
+border-radius:10px;
+}</code></pre>
+
+
+<h2>40. Important Points to Remember</h2>
+
+<ol>
+
+<li>The CSS Box Model describes the rectangular box surrounding every HTML element.</li>
+
+<li>The four main parts are content, padding, border and margin.</li>
+
+<li>Content contains the actual text, image or other content.</li>
+
+<li>Padding creates space between content and border.</li>
+
+<li>Border surrounds the content and padding.</li>
+
+<li>Margin creates space outside the border.</li>
+
+<li>The <code>width</code> property controls the width of an element.</li>
+
+<li>The <code>height</code> property controls the height of an element.</li>
+
+<li>The <code>padding</code> property creates internal spacing.</li>
+
+<li>The <code>margin</code> property creates external spacing.</li>
+
+<li>The <code>border</code> property creates a border around an element.</li>
+
+<li>The <code>border-radius</code> property creates rounded corners.</li>
+
+<li>The <code>box-sizing</code> property controls how element dimensions are calculated.</li>
+
+<li><code>border-box</code> includes padding and border within the specified width and height.</li>
+
+<li>The <code>outline</code> property creates an outline outside the border.</li>
+
+<li>The <code>overflow</code> property controls content that exceeds the box.</li>
+
+<li>The <code>box-shadow</code> property adds a shadow around an element.</li>
+
+<li>The Box Model is very important for creating proper webpage layouts.</li>
+
+</ol>
+
+
+<div class="lesson-summary">
+
+<h2>Lesson Summary</h2>
+
+<p>In this lesson, you learned the CSS Box Model and how it controls the size and spacing of HTML elements.</p>
+
+<p>You learned about content, padding, border and margin.</p>
+
+<p>You also learned how to control individual sides using top, right, bottom and left properties.</p>
+
+<p>The lesson also covered border styles, border radius, box sizing, outlines, overflow and box shadows.</p>
+
+<p>The <code>box-sizing:border-box</code> property is especially useful when creating organized and responsive webpage layouts.</p>
+
+<p>These concepts will help you design course cards, forms, buttons, navigation bars and other sections of your Online Tech Learning Academy.</p>
+
+<p><b>Next Lesson:</b> CSS Layout, Flexbox and Positioning</p>
+
+</div>
+
+</div>
+
+
+<script>
+
+function toggleStudentMenu(){
+
+const menu=document.getElementById("studentMenu");
+
+menu.classList.toggle("show");
+
+}
+
+</script>
+
+</body>
+</html>

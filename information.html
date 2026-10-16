@@ -1,0 +1,226 @@
+    <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+<title>Information</title>
+<style>
+*{
+box-sizing:border-box;
+}
+body{
+background-color:black;
+margin:0;
+}
+nav{
+position:fixed;
+top:0;
+left:0;
+right:0;
+width:100%;
+height:70px;
+background-color:#1e3a5f;
+padding:10px 20px;
+display:flex;
+align-items:center;
+gap:10px;
+z-index:1000;
+}
+nav a{
+color:#40E0D0;
+text-decoration:none;
+font-size:15px;
+font-weight:bold;
+white-space:nowrap;
+}
+nav a:hover{
+color:white;
+}
+nav p{
+color:white;
+font-size:20px;
+margin:0;
+padding:0;
+white-space:nowrap;
+}
+.student-dashboard{
+margin-left:auto;
+position:relative;
+flex-shrink:0;
+}
+.student-logo{
+width:55px;
+height:55px;
+border-radius:50%;
+border:3px solid #40E0D0;
+background-color:#1e3a5f;
+color:white;
+font-size:27px;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:0;
+transition:0.2s;
+}
+.student-logo:hover{
+background-color:#40E0D0;
+color:#1e3a5f;
+}
+.student-menu{
+display:none;
+position:absolute;
+top:65px;
+right:0;
+width:200px;
+background-color:#1e3a5f;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 5px 20px rgba(0,0,0,0.5);
+z-index:2000;
+}
+.student-menu.show{
+display:flex;
+flex-direction:column;
+}
+.student-menu a{
+color:#40E0D0;
+text-decoration:none;
+padding:15px 18px;
+font-size:16px;
+font-weight:bold;
+border-bottom:1px solid rgba(64,224,208,0.2);
+white-space:nowrap;
+}
+.student-menu a:hover{
+background-color:#40E0D0;
+color:#1e3a5f;
+}
+h1{
+color:#40E0D0;
+padding-top:90px;
+}
+h2{
+padding:80px;
+text-align:center;
+text-decoration:none;
+color:#40E0D0;
+}
+h3{
+color:#40E0D0;
+}
+h4{
+margin:10px 30px 20px 90px;
+color:#40E0D0;
+}
+dl{
+color:white;
+}
+dt{
+color:#40E0D0;
+}
+p{
+color:white;
+}
+.enroll-btn{
+position:absolute;
+top:1110px;
+left:740px;
+padding:20px 30px;
+color:#40E0D0;
+background-color:black;
+font-size:18px;
+}
+.logo{
+width:90px;
+height:70px;
+border-radius:50%;
+vertical-align:middle;
+margin-right:15px;
+}
+</style>
+</head>
+<body>
+<nav> 
+<p>|</p>
+<a href="index.html">HOME</a>
+<p>|</p>
+<a href="information.html">INFO</a>
+<p>|</p>
+<a href="courses.html">COURSES</a>
+<p>|</p>
+<a href="login.html">LOGIN</a>
+<p>|</p>
+<a href="forms.html">REGISTRATION</a>
+<p>|</p>
+<a href="contact.html">📞 CONTACT US</a>
+
+<div class="student-dashboard">
+<button class="student-logo" onclick="toggleStudentMenu()" title="Student Dashboard">🎓</button>
+<div class="student-menu" id="studentMenu"> 
+
+
+<a href="student-dashboard.php">
+🏠 Dashboard</a>  
+<a href="logout.php">🏠Logout</a>
+</div>
+</div>
+</nav>
+
+ 
+
+ 
+<h2>🚀 Learn. Build. Grow.</h2>
+
+<h3>
+Tech Learning Academy is an online learning platform designed to help students and beginners build practical technology skills through structured learning resources, courses, projects, and hands-on practice.
+</h3>
+
+<h3>
+Our goal is to make technical education simple, accessible, and practical for learners who want to start or improve their journey in technology.
+</h3>
+
+<h3>🎯 What We Offer</h3>
+
+<h4>📚 Structured Courses – Learn topics such as HTML, CSS, JavaScript, SQL, Python, and more.</h4>
+<h4>📝 Learning Notes – Easy-to-understand notes and study materials.</h4>
+<h4>🧪 Quiz – Test your knowledge with quizzes and exercises.</h4>
+<h4>👤 Student Registration – Create your learner profile and keep track of your learning journey.</h4>
+
+<h3>🌱 Our Mission</h3>
+
+<h3>
+Our mission is to create a beginner-friendly digital learning environment where students can learn technology step-by-step, practice their skills, and become confident in building their own projects.
+</h3>
+
+<h3>💜 Why Choose Tech Learning Academy?</h3>
+
+<h2>Simple Learning • Practical Skills • Beginner Friendly •</h2>
+
+<h3>💻 How it works?</h3>
+
+<h3>
+1) Register &nbsp;→&nbsp;
+2) Enroll Course &nbsp;→&nbsp;
+3) Learn &nbsp;→&nbsp;
+4) Test Quiz &nbsp;→&nbsp;
+5) Certificate
+</h3>
+
+<h4>
+"Build Your Future With Technology
+Learn coding and technology through courses, practical projects and guided resources."
+</h4>
+
+<a href="courses.html">
+<button class="enroll-btn">Enroll courses</button>
+</a>
+
+<script>
+function toggleStudentMenu(){
+const menu=document.getElementById("studentMenu");
+menu.classList.toggle("show");
+}
+</script>
+
+</body>
+</html>

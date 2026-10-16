@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+<title>SQL Lesson 5 - JOINs</title>
+<style>
+*{
+box-sizing:border-box;
+}
+body{
+background-color:black;
+color:white; 
+margin:0;
+padding:100px 30px 40px;
+}
+nav{
+position:fixed;
+top:0;
+left:0;
+right:0;
+width:100%;
+height:70px;
+background-color:#1e3a5f;
+padding:10px 20px;
+display:flex;
+align-items:center;
+gap:10px;
+z-index:1000;
+}
+nav a{
+color:#40E0D0;
+text-decoration:none;
+font-size:15px;
+font-weight:bold;
+white-space:nowrap;
+}
+nav a:hover{
+color:white;
+}
+nav p{
+color:white;
+font-size:20px;
+margin:0;
+padding:0;
+white-space:nowrap;
+}
+.student-dashboard{
+margin-left:auto;
+position:relative;
+flex-shrink:0;
+}
+.student-logo{
+width:55px;
+height:55px;
+border-radius:50%;
+border:3px solid #40E0D0;
+background-color:#1e3a5f;
+color:white;
+font-size:27px;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:0;
+transition:0.2s;
+}
+.student-logo:hover{
+background-color:#40E0D0;
+color:#1e3a5f;
+}
+.student-menu{
+display:none;
+position:absolute;
+top:65px;
+right:0;
+width:200px;
+background-color:#1e3a5f;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 5px 20px rgba(0,0,0,0.5);
+z-index:2000;
+}
+.student-menu.show{
+display:flex;
+flex-direction:column;
+}
+.student-menu a{
+color:#40E0D0;
+text-decoration:none;
+padding:15px 18px;
+font-size:16px;
+font-weight:bold;
+border-bottom:1px solid rgba(64,224,208,0.2);
+white-space:nowrap;
+}
+.student-menu a:hover{
+background-color:#40E0D0;
+color:#1e3a5f;
+}
+.course-notes{
+max-width:1100px;
+margin:auto;
+}
+.course-notes h1{
+color:#40E0D0;
+text-align:center;
+font-size:36px;
+margin-bottom:40px;
+}
+.course-notes h2{
+color:#40E0D0;
+font-size:27px;
+margin-top:40px;
+border-bottom:1px solid #1e3a5f;
+padding-bottom:10px;
+}
+.course-notes h3{
+color:#40E0D0;
+font-size:21px;
+margin-top:25px;
+}
+.course-notes p{
+color:white;
+font-size:17px;
+line-height:1.8;
+}
+.course-notes ul,
+.course-notes ol{
+color:white;
+font-size:17px;
+line-height:2;
+}
+.course-notes li{
+margin-bottom:5px;
+}
+.course-notes code{
+color:#40E0D0;
+font-family:Consolas,monospace;
+}
+.course-notes pre{
+background-color:#111;
+border:1px solid #1e3a5f;
+border-left:5px solid #40E0D0;
+padding:20px;
+overflow-x:auto;
+border-radius:8px;
+line-height:1.6;
+}
+.course-notes pre code{
+color:#40E0D0;
+font-size:15px;
+}
+.course-notes table{
+width:100%;
+border-collapse:collapse;
+margin:20px 0 30px;
+}
+.course-notes th{
+background-color:#1e3a5f;
+color:#40E0D0;
+font-size:17px;
+padding:14px;
+border:1px solid #40E0D0;
+}
+.course-notes td{
+color:white;
+padding:14px;
+border:1px solid #40E0D0;
+font-size:16px;
+}
+.course-notes tr:nth-child(even){
+background-color:#111;
+}
+.course-notes tr:hover{
+background-color:#1e3a5f;
+}
+.example-box{
+background-color:#111;
+border:2px solid #1e3a5f;
+border-radius:10px;
+padding:20px;
+margin:20px 0;
+}
+.lesson-summary{
+background-color:#111;
+border:2px solid #40E0D0;
+border-radius:10px;
+padding:25px;
+margin-top:50px;
+}
+.lesson-summary h2{
+margin-top:0;
+border-bottom:none;
+}
+</style>
+</head>
+<body>
+
+<nav>
+
+<p>|</p>
+<a href="index.html">HOME</a>
+
+<p>|</p>
+<a href="information.html">INFO</a>
+
+<p>|</p>
+<a href="courses.html">COURSES</a>
+
+<p>|</p>
+<a href="login.html">LOGIN</a>
+
+<p>|</p>
+<a href="forms.html">REGISTRATION</a>
+
+<p>|</p>
+<a href="contact.html">📞 CONTACT US</a>
+
+<div class="student-dashboard">
+
+<button class="student-logo" onclick="toggleStudentMenu()" title="Student Dashboard">🎓</button>
+
+<div class="student-menu" id="studentMenu">
+  
+<a href="student-dashboard.php">
+🏠 Dashboard</a>  
+<a href="logout.php">🏠Logout</a> 
+
+</div>
+
+</div>
+
+</nav>
+
+
+<div class="course-notes">
+
+<h1>SQL Lesson 5: JOINs</h1>
+
+
+<h2>1. Introduction to SQL JOINs</h2>
+
+<p>SQL JOINs are used to combine data from two or more tables based on a related column.</p>
+
+<p>In a database, information is usually stored in separate tables. JOINs allow us to retrieve related information from these tables together.</p>
+
+<p>For example, in your Online Tech Learning Academy, student information can be stored in one table and course information can be stored in another table.</p>
+
+
+<h2>2. Why Do We Need JOINs?</h2>
+
+<p>Suppose we have two tables:</p>
+
+<ul>
+<li>students table</li>
+<li>courses table</li>
+</ul>
+
+<p>The students table contains student information, while the courses table contains course information.</p>
+
+<p>To display the student's name together with the course name, we need to combine the tables.</p>
+
+<p>SQL JOINs are used for this purpose.</p>
+
+
+<h2>3. Types of SQL JOINs</h2>
+
+<table>
+
+<tr>
+<th>JOIN</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>INNER JOIN</td>
+<td>Returns matching records from both tables.</td>
+</tr>
+
+<tr>
+<td>LEFT JOIN</td>
+<td>Returns all records from the left table and matching records from the right table.</td>
+</tr>
+
+<tr>
+<td>RIGHT JOIN</td>
+<td>Returns all records from the right table and matching records from the left table.</td>
+</tr>
+
+<tr>
+<td>FULL OUTER JOIN</td>
+<td>Returns all records from both tables.</td>
+</tr>
+
+<tr>
+<td>CROSS JOIN</td>
+<td>Returns every possible combination of rows.</td>
+</tr>
+
+<tr>
+<td>SELF JOIN</td>
+<td>Joins a table with itself.</td>
+</tr>
+
+</table>
+
+
+<h2>4. Example Tables</h2>
+
+<h3>Students Table</h3>
+
+<table>
+
+<tr>
+<th>student_id</th>
+<th>name</th>
+<th>course_id</th>
+</tr>
+
+<tr>
+<td>1</td>
+<td>Sejal</td>
+<td>101</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>Rahul</td>
+<td>102</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>Priya</td>
+<td>103</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>Amit</td>
+<td>101</td>
+</tr>
+
+</table>
+
+
+<h3>Courses Table</h3>
+
+<table>
+
+<tr>
+<th>course_id</th>
+<th>course_name</th>
+</tr>
+
+<tr>
+<td>101</td>
+<td>HTML</td>
+</tr>
+
+<tr>
+<td>102</td>
+<td>CSS</td>
+</tr>
+
+<tr>
+<td>103</td>
+<td>SQL</td>
+</tr>
+
+</table>
+
+
+<h2>5. INNER JOIN</h2>
+
+<p>INNER JOIN returns only the records that have matching values in both tables.</p>
+
+<p>It is one of the most commonly used JOINs.</p>
+
+<h3>Syntax</h3>
+
+<pre><code>SELECT column1,column2
+FROM table1
+INNER JOIN table2
+ON table1.column=table2.column;</code></pre>
+
+
+<h2>6. INNER JOIN Example</h2>
+
+<pre><code>SELECT students.name,courses.course_name
+FROM students
+INNER JOIN courses
+ON students.course_id=courses.course_id;</code></pre>
+
+<p>The result will contain the student name and the corresponding course name.</p>
+
+
+<h2>7. INNER JOIN Result</h2>
+
+<table>
+
+<tr>
+<th>name</th>
+<th>course_name</th>
+</tr>
+
+<tr>
+<td>Sejal</td>
+<td>HTML</td>
+</tr>
+
+<tr>
+<td>Rahul</td>
+<td>CSS</td>
+</tr>
+
+<tr>
+<td>Priya</td>
+<td>SQL</td>
+</tr>
+
+<tr>
+<td>Amit</td>
+<td>HTML</td>
+</tr>
+
+</table>
+
+
+<h2>8. INNER JOIN with WHERE</h2>
+
+<p>JOIN can be combined with WHERE to filter the result.</p>
+
+<pre><code>SELECT students.name,courses.course_name
+FROM students
+INNER JOIN courses
+ON students.course_id=courses.course_id
+WHERE courses.course_name='HTML';</code></pre>
+
+<p>This displays students who are enrolled in the HTML course.</p>
+
+
+<h2>9. LEFT JOIN</h2>
+
+<p>LEFT JOIN returns all records from the left table and the matching records from the right table.</p>
+
+<p>If there is no matching record in the right table, NULL values are returned.</p>
+
+<h3>Syntax</h3>
+
+<pre><code>SELECT column1,column2
+FROM table1
+LEFT JOIN table2
+ON table1.column=table2.column;</code></pre>
+
+
+<h2>10. LEFT JOIN Example</h2>
+
+<pre><code>SELECT students.name,courses.course_name
+FROM students
+LEFT JOIN courses
+ON students.course_id=courses.course_id;</code></pre>
+
+<p>This displays all students, including students whose course does not have a matching record.</p>
+
+
+<h2>11. Why LEFT JOIN is Useful</h2>
+
+<ul>
+<li>It keeps every record from the first table.</li>
+<li>It is useful when some records may not have related data.</li>
+<li>Missing matching values appear as NULL.</li>
+<li>It is useful for finding students who are not enrolled in a course.</li>
+</ul>
+
+
+<h2>12. Finding Students Without a Course</h2>
+
+<p>LEFT JOIN can be combined with IS NULL.</p>
+
+<pre><code>SELECT students.name
+FROM students
+LEFT JOIN courses
+ON students.course_id=courses.course_id
+WHERE courses.course_id IS NULL;</code></pre>
+
+<p>This can be used to find students whose course does not have a matching course record.</p>
+
+
+<h2>13. RIGHT JOIN</h2>
+
+<p>RIGHT JOIN returns all records from the right table and matching records from the left table.</p>
+
+<h3>Syntax</h3>
+
+<pre><code>SELECT column1,column2
+FROM table1
+RIGHT JOIN table2
+ON table1.column=table2.column;</code></pre>
+
+
+<h2>14. RIGHT JOIN Example</h2>
+
+<pre><code>SELECT students.name,courses.course_name
+FROM students
+RIGHT JOIN courses
+ON students.course_id=courses.course_id;</code></pre>
+
+<p>This returns all courses and matching students.</p>
+
+
+<h2>15. FULL OUTER JOIN</h2>
+
+<p>FULL OUTER JOIN returns all records from both tables.</p>
+
+<p>If a record does not have a matching record in the other table, NULL values are returned.</p>
+
+<h3>Syntax</h3>
+
+<pre><code>SELECT column1,column2
+FROM table1
+FULL OUTER JOIN table2
+ON table1.column=table2.column;</code></pre>
+
+<p>Note: MySQL does not provide a direct FULL OUTER JOIN syntax. In MySQL, similar results can commonly be produced using LEFT JOIN and RIGHT JOIN with UNION.</p>
+
+
+<h2>16. FULL OUTER JOIN in MySQL</h2>
+
+<pre><code>SELECT students.name,courses.course_name
+FROM students
+LEFT JOIN courses
+ON students.course_id=courses.course_id
+
+UNION
+
+SELECT students.name,courses.course_name
+FROM students
+RIGHT JOIN courses
+ON students.course_id=courses.course_id;</code></pre>
+
+
+<h2>17. CROSS JOIN</h2>
+
+<p>CROSS JOIN returns every possible combination of rows from two tables.</p>
+
+<p>If the first table contains 3 rows and the second table contains 4 rows, the result can contain 12 combinations.</p>
+
+<h3>Syntax</h3>
+
+<pre><code>SELECT students.name,courses.course_name
+FROM students
+CROSS JOIN courses;</code></pre>
+
+
+<h2>18. SELF JOIN</h2>
+
+<p>A SELF JOIN is a JOIN where a table is joined with itself.</p>
+
+<p>It is useful when records within the same table are related to each other.</p>
+
+<h3>Example</h3>
+
+<pre><code>SELECT A.name AS student1,
+B.name AS student2
+FROM students A
+JOIN students B
+ON A.course_id=B.course_id
+WHERE A.student_id&lt;B.student_id;</code></pre>
+
+<p>This can display pairs of students who are enrolled in the same course.</p>
+
+
+<h2>19. JOIN with Three Tables</h2>
+
+<p>SQL allows us to join more than two tables.</p>
+
+<p>For your academy project, we can have:</p>
+
+<ul>
+<li>students</li>
+<li>courses</li>
+<li>enrollments</li>
+</ul>
+
+<h3>Example</h3>
+
+<pre><code>SELECT students.name,courses.course_name
+FROM students
+INNER JOIN enrollments
+ON students.student_id=enrollments.student_id
+INNER JOIN courses
+ON enrollments.course_id=courses.course_id;</code></pre>
+
+
+<h2>20. JOIN with Three Tables Explained</h2>
+
+<p>The first JOIN connects students with enrollments.</p>
+
+<p>The second JOIN connects enrollments with courses.</p>
+
+<p>The final result can show which courses each student has enrolled in.</p>
+
+
+<h2>21. JOIN with Student and Course Information</h2>
+
+<pre><code>SELECT
+students.student_id,
+students.name,
+courses.course_name
+FROM students
+INNER JOIN enrollments
+ON students.student_id=enrollments.student_id
+INNER JOIN courses
+ON enrollments.course_id=courses.course_id;</code></pre>
+
+
+<h2>22. JOIN with WHERE</h2>
+
+<p>We can display students enrolled in a specific course.</p>
+
+<pre><code>SELECT
+students.name,
+courses.course_name
+FROM students
+INNER JOIN enrollments
+ON students.student_id=enrollments.student_id
+INNER JOIN courses
+ON enrollments.course_id=courses.course_id
+WHERE courses.course_name='SQL';</code></pre>
+
+
+<h2>23. JOIN with ORDER BY</h2>
+
+<p>JOIN results can be sorted using ORDER BY.</p>
+
+<pre><code>SELECT
+students.name,
+courses.course_name
+FROM students
+INNER JOIN enrollments
+ON students.student_id=enrollments.student_id
+INNER JOIN courses
+ON enrollments.course_id=courses.course_id
+ORDER BY students.name ASC;</code></pre>
+
+
+<h2>24. JOIN with GROUP BY</h2>
+
+<p>JOIN can also be combined with GROUP BY to calculate statistics.</p>
+
+<p>For example, we can find the number of students in each course.</p>
+
+<pre><code>SELECT
+courses.course_name,
+COUNT(enrollments.student_id) AS total_students
+FROM courses
+LEFT JOIN enrollments
+ON courses.course_id=enrollments.course_id
+GROUP BY courses.course_id,courses.course_name;</code></pre>
+
+
+<h2>25. JOIN with GROUP BY and HAVING</h2>
+
+<p>We can use HAVING to display courses with a particular number of students.</p>
+
+<pre><code>SELECT
+courses.course_name,
+COUNT(enrollments.student_id) AS total_students
+FROM courses
+LEFT JOIN enrollments
+ON courses.course_id=enrollments.course_id
+GROUP BY courses.course_id,courses.course_name
+HAVING COUNT(enrollments.student_id)&gt;1;</code></pre>
+
+
+<h2>26. JOIN Conditions</h2>
+
+<p>The ON clause specifies how two tables are related.</p>
+
+<pre><code>ON students.course_id=courses.course_id</code></pre>
+
+<p>Here, the course_id column in the students table is matched with the course_id column in the courses table.</p>
+
+
+<h2>27. ON vs WHERE</h2>
+
+<table>
+
+<tr>
+<th>ON</th>
+<th>WHERE</th>
+</tr>
+
+<tr>
+<td>Defines how tables are joined.</td>
+<td>Filters the final result.</td>
+</tr>
+
+<tr>
+<td>Used with JOIN.</td>
+<td>Used to apply conditions.</td>
+</tr>
+
+<tr>
+<td>Specifies matching columns.</td>
+<td>Specifies filtering conditions.</td>
+</tr>
+
+</table>
+
+
+<h2>28. Table Aliases</h2>
+
+<p>Aliases can make JOIN queries shorter and easier to read.</p>
+
+<h3>Example</h3>
+
+<pre><code>SELECT s.name,c.course_name
+FROM students AS s
+INNER JOIN courses AS c
+ON s.course_id=c.course_id;</code></pre>
+
+
+<h2>29. JOIN Types Comparison</h2>
+
+<table>
+
+<tr>
+<th>JOIN Type</th>
+<th>Returns</th>
+</tr>
+
+<tr>
+<td>INNER JOIN</td>
+<td>Matching records from both tables.</td>
+</tr>
+
+<tr>
+<td>LEFT JOIN</td>
+<td>All left records and matching right records.</td>
+</tr>
+
+<tr>
+<td>RIGHT JOIN</td>
+<td>All right records and matching left records.</td>
+</tr>
+
+<tr>
+<td>FULL OUTER JOIN</td>
+<td>All records from both tables.</td>
+</tr>
+
+<tr>
+<td>CROSS JOIN</td>
+<td>All possible combinations.</td>
+</tr>
+
+<tr>
+<td>SELF JOIN</td>
+<td>A table joined with itself.</td>
+</tr>
+
+</table>
+
+
+<h2>30. Complete Academy Database Example</h2>
+
+<h3>Students Table</h3>
+
+<pre><code>CREATE TABLE students(
+student_id INT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(100) NOT NULL,
+email VARCHAR(100) UNIQUE NOT NULL
+);</code></pre>
+
+<h3>Courses Table</h3>
+
+<pre><code>CREATE TABLE courses(
+course_id INT PRIMARY KEY AUTO_INCREMENT,
+course_name VARCHAR(100) NOT NULL,
+duration VARCHAR(50)
+);</code></pre>
+
+<h3>Enrollments Table</h3>
+
+<pre><code>CREATE TABLE enrollments(
+enrollment_id INT PRIMARY KEY AUTO_INCREMENT,
+student_id INT,
+course_id INT,
+enrollment_date DATE,
+FOREIGN KEY(student_id)
+REFERENCES students(student_id),
+FOREIGN KEY(course_id)
+REFERENCES courses(course_id)
+);</code></pre>
+
+
+<h2>31. Complete JOIN Query for Your Project</h2>
+
+<pre><code>SELECT
+students.student_id,
+students.name,
+students.email,
+courses.course_name,
+courses.duration,
+enrollments.enrollment_date
+FROM students
+INNER JOIN enrollments
+ON students.student_id=enrollments.student_id
+INNER JOIN courses
+ON enrollments.course_id=courses.course_id;</code></pre>
+
+
+<h2>32. Example Result</h2>
+
+<table>
+
+<tr>
+<th>student_id</th>
+<th>name</th>
+<th>email</th>
+<th>course_name</th>
+<th>duration</th>
+</tr>
+
+<tr>
+<td>1</td>
+<td>Sejal</td>
+<td>sejal@example.com</td>
+<td>HTML</td>
+<td>4 Weeks</td>
+</tr>
+
+<tr>
+<td>1</td>
+<td>Sejal</td>
+<td>sejal@example.com</td>
+<td>SQL</td>
+<td>6 Weeks</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>Rahul</td>
+<td>rahul@example.com</td>
+<td>CSS</td>
+<td>4 Weeks</td>
+</tr>
+
+</table>
+
+
+<h2>33. Finding All Courses and Their Students</h2>
+
+<pre><code>SELECT
+courses.course_name,
+students.name
+FROM courses
+LEFT JOIN enrollments
+ON courses.course_id=enrollments.course_id
+LEFT JOIN students
+ON enrollments.student_id=students.student_id;</code></pre>
+
+
+<h2>34. Finding All Courses with Student Count</h2>
+
+<pre><code>SELECT
+courses.course_name,
+COUNT(enrollments.student_id) AS student_count
+FROM courses
+LEFT JOIN enrollments
+ON courses.course_id=enrollments.course_id
+GROUP BY courses.course_id,courses.course_name;</code></pre>
+
+
+<h2>35. Finding a Student's Courses</h2>
+
+<pre><code>SELECT
+students.name,
+courses.course_name
+FROM students
+INNER JOIN enrollments
+ON students.student_id=enrollments.student_id
+INNER JOIN courses
+ON enrollments.course_id=courses.course_id
+WHERE students.name='Sejal';</code></pre>
+
+
+<h2>36. Finding Students in a Course</h2>
+
+<pre><code>SELECT
+courses.course_name,
+students.name
+FROM courses
+INNER JOIN enrollments
+ON courses.course_id=enrollments.course_id
+INNER JOIN students
+ON enrollments.student_id=students.student_id
+WHERE courses.course_name='HTML';</code></pre>
+
+
+<h2>37. JOINs in Your Online Tech Learning Academy</h2>
+
+<p>JOINs will be very useful when you connect your website with your database.</p>
+
+<ul>
+
+<li>The students table stores student details.</li>
+
+<li>The courses table stores course details.</li>
+
+<li>The enrollments table stores which student enrolled in which course.</li>
+
+<li>The results table stores student marks.</li>
+
+<li>JOINs allow information from these tables to be displayed together.</li>
+
+</ul>
+
+
+<h2>38. Example of Student Dashboard Query</h2>
+
+<p>When a logged-in student opens the My Courses page, a JOIN can retrieve the courses that belong to that student.</p>
+
+<pre><code>SELECT
+courses.course_id,
+courses.course_name,
+courses.duration
+FROM enrollments
+INNER JOIN courses
+ON enrollments.course_id=courses.course_id
+WHERE enrollments.student_id=1;</code></pre>
+
+
+<h2>39. Example of Student Results Query</h2>
+
+<p>A JOIN can also display the student's course name along with marks.</p>
+
+<pre><code>SELECT
+students.name,
+courses.course_name,
+results.marks
+FROM results
+INNER JOIN students
+ON results.student_id=students.student_id
+INNER JOIN courses
+ON results.course_id=courses.course_id
+WHERE students.student_id=1;</code></pre>
+
+
+<h2>40. Important Points to Remember</h2>
+
+<ol>
+
+<li>JOINs combine data from multiple tables.</li>
+
+<li>INNER JOIN returns matching records.</li>
+
+<li>LEFT JOIN returns all records from the left table.</li>
+
+<li>RIGHT JOIN returns all records from the right table.</li>
+
+<li>FULL OUTER JOIN returns records from both tables, where supported.</li>
+
+<li>MySQL can simulate FULL OUTER JOIN using UNION.</li>
+
+<li>CROSS JOIN creates all possible combinations.</li>
+
+<li>SELF JOIN joins a table with itself.</li>
+
+<li>The ON clause specifies the relationship between tables.</li>
+
+<li>WHERE filters the result.</li>
+
+<li>Aliases make long JOIN queries easier to understand.</li>
+
+<li>Multiple tables can be joined in one query.</li>
+
+<li>JOIN can be combined with WHERE, GROUP BY, HAVING and ORDER BY.</li>
+
+<li>JOINs are essential when working with relational databases.</li>
+
+<li>JOINs will be important for your student, course, enrollment and result tables.</li>
+
+</ol>
+
+
+<h2>41. Lesson 5 Quick Revision</h2>
+
+<table>
+
+<tr>
+<th>Topic</th>
+<th>Meaning</th>
+</tr>
+
+<tr>
+<td>INNER JOIN</td>
+<td>Returns matching records.</td>
+</tr>
+
+<tr>
+<td>LEFT JOIN</td>
+<td>Returns all left records and matching right records.</td>
+</tr>
+
+<tr>
+<td>RIGHT JOIN</td>
+<td>Returns all right records and matching left records.</td>
+</tr>
+
+<tr>
+<td>FULL OUTER JOIN</td>
+<td>Returns all records from both tables.</td>
+</tr>
+
+<tr>
+<td>CROSS JOIN</td>
+<td>Returns every possible combination.</td>
+</tr>
+
+<tr>
+<td>SELF JOIN</td>
+<td>Joins a table with itself.</td>
+</tr>
+
+<tr>
+<td>ON</td>
+<td>Defines the JOIN condition.</td>
+</tr>
+
+<tr>
+<td>ALIAS</td>
+<td>Provides a temporary shorter name for a table or column.</td>
+</tr>
+
+</table>
+
+
+<div class="lesson-summary">
+
+<h2>Lesson Summary</h2>
+
+<p>In this lesson, you learned how SQL JOINs combine related information stored in different tables.</p>
+
+<p>You learned INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL OUTER JOIN, CROSS JOIN and SELF JOIN.</p>
+
+<p>You also learned how JOINs can be combined with WHERE, GROUP BY, HAVING and ORDER BY.</p>
+
+<p>For your Online Tech Learning Academy project, JOINs will be especially important for connecting students, courses, enrollments and results.</p>
+
+<p>For example, when a student opens <b>My Courses</b>, your PHP code can use a JOIN query to retrieve the courses that the logged-in student has enrolled in.</p>
+
+<p><b>Next:</b> You can now move from the basic SQL lessons into PHP + MySQL database integration for your project.</p>
+
+</div>
+
+</div>
+
+
+<script>
+
+function toggleStudentMenu(){
+
+const menu=document.getElementById("studentMenu");
+
+menu.classList.toggle("show");
+
+}
+
+</script>
+
+</body>
+</html>

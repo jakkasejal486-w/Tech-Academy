@@ -1,0 +1,1189 @@
+ <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+<title>Information</title>
+<style>
+*{
+box-sizing:border-box;
+}
+body{
+background-color:black;
+margin:0;
+}
+nav{
+position:fixed;
+top:0;
+left:0;
+right:0;
+width:100%;
+height:70px;
+background-color:#1e3a5f;
+padding:10px 20px;
+display:flex;
+align-items:center;
+gap:10px;
+z-index:1000;
+}
+nav a{
+color:#40E0D0;
+text-decoration:none;
+font-size:15px;
+font-weight:bold;
+white-space:nowrap;
+}
+nav a:hover{
+color:white;
+}
+nav p{
+color:white;
+font-size:20px;
+margin:0;
+padding:0;
+white-space:nowrap;
+}
+.student-dashboard{
+margin-left:auto;
+position:relative;
+flex-shrink:0;
+}
+.student-logo{
+width:55px;
+height:55px;
+border-radius:50%;
+border:3px solid #40E0D0;
+background-color:#1e3a5f;
+color:white;
+font-size:27px;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:0;
+transition:0.2s;
+}
+.student-logo:hover{
+background-color:#40E0D0;
+color:#1e3a5f;
+}
+.student-menu{
+display:none;
+position:absolute;
+top:65px;
+right:0;
+width:200px;
+background-color:#1e3a5f;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 5px 20px rgba(0,0,0,0.5);
+z-index:2000;
+}
+.student-menu.show{
+display:flex;
+flex-direction:column;
+}
+.student-menu a{
+color:#40E0D0;
+text-decoration:none;
+padding:15px 18px;
+font-size:16px;
+font-weight:bold;
+border-bottom:1px solid rgba(64,224,208,0.2);
+white-space:nowrap;
+}
+.student-menu a:hover{
+background-color:#40E0D0;
+color:#1e3a5f;
+} 
+.course-notes{
+padding:100px 40px 40px;
+color:white;
+font-family:none;
+line-height:1.7;
+}
+.course-notes h1{
+color:#40E0D0;
+text-align:center;
+font-size:38px;
+margin-bottom:30px;
+}
+.course-notes h2{
+color:#40E0D0;
+font-size:28px;
+margin-top:35px;
+border-bottom:1px solid #40E0D0;
+padding-bottom:8px;
+}
+.course-notes h3{
+color:#40E0D0;
+font-size:22px;
+margin-top:25px;
+}
+.course-notes p{
+font-size:18px;
+margin:12px 0;
+}
+.course-notes ul,.course-notes ol{
+font-size:18px;
+margin-left:25px;
+}
+.course-notes li{
+margin:6px 0;
+}
+.course-notes table{
+width:100%;
+border-collapse:collapse;
+margin:20px 0;
+font-size:17px;
+}
+.course-notes th,.course-notes td{
+border:1px solid #40E0D0;
+padding:12px;
+text-align:left;
+}
+.course-notes th{
+color:#40E0D0;
+}
+.course-notes code{
+color:#40E0D0;
+}
+.course-notes pre{
+background-color:#111;
+border:1px solid #333;
+padding:20px;
+overflow-x:auto;
+border-radius:8px;
+font-size:16px;
+line-height:1.5;
+}
+.lesson-summary{
+border-left:4px solid #40E0D0;
+padding:10px 20px;
+margin:20px 0;
+background-color:#111;
+}
+</style>
+</head>
+<body>
+<nav> 
+<p>|</p>
+<a href="index.html">HOME</a>
+<p>|</p>
+<a href="information.html">INFO</a>
+<p>|</p>
+<a href="courses.html">COURSES</a>
+<p>|</p>
+<a href="login.html">LOGIN</a>
+<p>|</p>
+<a href="forms.html">REGISTRATION</a>
+<p>|</p>
+<a href="contact.html">📞 CONTACT US</a>
+
+<div class="student-dashboard">
+<button class="student-logo" onclick="toggleStudentMenu()" title="Student Dashboard">🎓</button>
+<div class="student-menu" id="studentMenu"> 
+    
+<a href="student-dashboard.php">
+🏠 Dashboard</a>  
+<a href="logout.php">🏠Logout</a> 
+</div>
+</div>
+</nav> 
+<div class="course-notes">
+
+<h1>HTML Lesson 3: Tables and Forms</h1>
+
+<h2>1. Introduction</h2>
+
+<p>In this lesson, we will learn about <b>HTML Tables</b> and <b>HTML Forms</b>.</p>
+
+<p>Tables are used to display information in rows and columns, while forms are used to collect information from users.</p>
+
+<p>Forms are commonly used for registration, login, contact, feedback, search and other user input activities.</p>
+
+
+<h2>2. What is an HTML Table?</h2>
+
+<p>An HTML table is used to display data in the form of <b>rows and columns</b>.</p>
+
+<p>HTML tables are created using the <code>&lt;table&gt;</code> element.</p>
+
+<p>Some important table tags are:</p>
+
+<table>
+
+<tr>
+<th>Tag</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>&lt;table&gt;</td>
+<td>Creates a table</td>
+</tr>
+
+<tr>
+<td>&lt;tr&gt;</td>
+<td>Creates a table row</td>
+</tr>
+
+<tr>
+<td>&lt;th&gt;</td>
+<td>Creates a table heading</td>
+</tr>
+
+<tr>
+<td>&lt;td&gt;</td>
+<td>Creates a table data cell</td>
+</tr>
+
+<tr>
+<td>&lt;caption&gt;</td>
+<td>Adds a title to the table</td>
+</tr>
+
+<tr>
+<td>&lt;thead&gt;</td>
+<td>Groups table header content</td>
+</tr>
+
+<tr>
+<td>&lt;tbody&gt;</td>
+<td>Groups table body content</td>
+</tr>
+
+<tr>
+<td>&lt;tfoot&gt;</td>
+<td>Groups table footer content</td>
+</tr>
+
+</table>
+
+
+<h2>3. Creating a Simple Table</h2>
+
+<p>The <code>&lt;table&gt;</code> tag is used to create a table.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;table&gt;
+&lt;tr&gt;
+&lt;th&gt;Name&lt;/th&gt;
+&lt;th&gt;Course&lt;/th&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Sejal&lt;/td&gt;
+&lt;td&gt;HTML&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Rahul&lt;/td&gt;
+&lt;td&gt;CSS&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+
+
+<h3>Output</h3>
+
+<table>
+
+<tr>
+<th>Name</th>
+<th>Course</th>
+</tr>
+
+<tr>
+<td>Sejal</td>
+<td>HTML</td>
+</tr>
+
+<tr>
+<td>Rahul</td>
+<td>CSS</td>
+</tr>
+
+</table>
+
+
+<h2>4. Table Rows</h2>
+
+<p>The <code>&lt;tr&gt;</code> tag is used to create a table row.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;tr&gt;
+&lt;td&gt;HTML&lt;/td&gt;
+&lt;td&gt;Beginner&lt;/td&gt;
+&lt;/tr&gt;</code></pre>
+
+<p>Each <code>&lt;tr&gt;</code> represents one row in the table.</p>
+
+
+<h2>5. Table Headings</h2>
+
+<p>The <code>&lt;th&gt;</code> tag is used to create a heading cell in a table.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;tr&gt;
+&lt;th&gt;Student Name&lt;/th&gt;
+&lt;th&gt;Course&lt;/th&gt;
+&lt;th&gt;Marks&lt;/th&gt;
+&lt;/tr&gt;</code></pre>
+
+<p>Table headings are normally displayed in bold text by browsers.</p>
+
+
+<h2>6. Table Data</h2>
+
+<p>The <code>&lt;td&gt;</code> tag is used to create a normal data cell.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;tr&gt;
+&lt;td&gt;Sejal&lt;/td&gt;
+&lt;td&gt;HTML&lt;/td&gt;
+&lt;td&gt;90&lt;/td&gt;
+&lt;/tr&gt;</code></pre>
+
+
+<h2>7. Complete Table Example</h2>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Student Details&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;h1&gt;Student Details&lt;/h1&gt;
+
+&lt;table&gt;
+
+&lt;tr&gt;
+&lt;th&gt;Name&lt;/th&gt;
+&lt;th&gt;Course&lt;/th&gt;
+&lt;th&gt;Marks&lt;/th&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Sejal&lt;/td&gt;
+&lt;td&gt;HTML&lt;/td&gt;
+&lt;td&gt;90&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Rahul&lt;/td&gt;
+&lt;td&gt;CSS&lt;/td&gt;
+&lt;td&gt;85&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Priya&lt;/td&gt;
+&lt;td&gt;JavaScript&lt;/td&gt;
+&lt;td&gt;92&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;/table&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+
+<h2>8. Table Caption</h2>
+
+<p>The <code>&lt;caption&gt;</code> tag is used to give a title or description to a table.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;table&gt;
+
+&lt;caption&gt;Student Information&lt;/caption&gt;
+
+&lt;tr&gt;
+&lt;th&gt;Name&lt;/th&gt;
+&lt;th&gt;Course&lt;/th&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Sejal&lt;/td&gt;
+&lt;td&gt;HTML&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;/table&gt;</code></pre>
+
+
+<h2>9. Colspan Attribute</h2>
+
+<p>The <code>colspan</code> attribute is used to make one cell occupy multiple columns.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;table&gt;
+
+&lt;tr&gt;
+&lt;th colspan="2"&gt;Student Details&lt;/th&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Name&lt;/td&gt;
+&lt;td&gt;Sejal&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;/table&gt;</code></pre>
+
+
+<h2>10. Rowspan Attribute</h2>
+
+<p>The <code>rowspan</code> attribute is used to make one cell occupy multiple rows.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;table&gt;
+
+&lt;tr&gt;
+&lt;th rowspan="2"&gt;HTML&lt;/th&gt;
+&lt;td&gt;Basic&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Advanced&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;/table&gt;</code></pre>
+
+
+<h2>11. Table Head, Body and Footer</h2>
+
+<p>HTML provides <code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code> and <code>&lt;tfoot&gt;</code> to organize table content.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;table&gt;
+
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Course&lt;/th&gt;
+&lt;th&gt;Students&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;HTML&lt;/td&gt;
+&lt;td&gt;50&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;CSS&lt;/td&gt;
+&lt;td&gt;40&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+
+&lt;tfoot&gt;
+&lt;tr&gt;
+&lt;td&gt;Total&lt;/td&gt;
+&lt;td&gt;90&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tfoot&gt;
+
+&lt;/table&gt;</code></pre>
+
+
+<h2>12. What is an HTML Form?</h2>
+
+<p>An HTML form is used to <b>collect information from users</b>.</p>
+
+<p>Forms are commonly used for:</p>
+
+<ul>
+<li>Registration</li>
+<li>Login</li>
+<li>Contact forms</li>
+<li>Feedback</li>
+<li>Search</li>
+<li>Course enrollment</li>
+<li>Online applications</li>
+<li>Surveys</li>
+</ul>
+
+
+<h2>13. The Form Element</h2>
+
+<p>The <code>&lt;form&gt;</code> element is used to create an HTML form.</p>
+
+<h3>Syntax</h3>
+
+<pre><code>&lt;form&gt;
+
+Form elements
+
+&lt;/form&gt;</code></pre>
+
+
+<h2>14. Basic Form Example</h2>
+
+<pre><code>&lt;form&gt;
+
+&lt;label&gt;Name:&lt;/label&gt;
+
+&lt;input type="text"&gt;
+
+&lt;br&gt;
+
+&lt;label&gt;Email:&lt;/label&gt;
+
+&lt;input type="email"&gt;
+
+&lt;br&gt;
+
+&lt;input type="submit" value="Submit"&gt;
+
+&lt;/form&gt;</code></pre>
+
+
+<h2>15. The Label Element</h2>
+
+<p>The <code>&lt;label&gt;</code> element provides a description for an input field.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;label&gt;Student Name:&lt;/label&gt;
+
+&lt;input type="text"&gt;</code></pre>
+
+<p>Labels make forms easier to understand and improve accessibility.</p>
+
+
+<h2>16. The Input Element</h2>
+
+<p>The <code>&lt;input&gt;</code> element is one of the most commonly used form elements.</p>
+
+<p>It allows users to enter or select information.</p>
+
+<h3>Basic Syntax</h3>
+
+<pre><code>&lt;input type="text"&gt;</code></pre>
+
+
+<h2>17. Text Input</h2>
+
+<p>The <code>type="text"</code> input is used to enter normal text.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;label&gt;Name:&lt;/label&gt;
+&lt;input type="text"&gt;</code></pre>
+
+
+<h2>18. Email Input</h2>
+
+<p>The <code>type="email"</code> input is used to enter an email address.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;label&gt;Email:&lt;/label&gt;
+&lt;input type="email"&gt;</code></pre>
+
+<p>Browsers can perform basic validation for email input.</p>
+
+
+<h2>19. Password Input</h2>
+
+<p>The <code>type="password"</code> input hides the characters entered by the user.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;label&gt;Password:&lt;/label&gt;
+&lt;input type="password"&gt;</code></pre>
+
+
+<h2>20. Number Input</h2>
+
+<p>The <code>type="number"</code> input is used to enter numeric values.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;label&gt;Age:&lt;/label&gt;
+&lt;input type="number"&gt;</code></pre>
+
+
+<h2>21. Date Input</h2>
+
+<p>The <code>type="date"</code> input allows the user to select a date.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;label&gt;Date of Birth:&lt;/label&gt;
+&lt;input type="date"&gt;</code></pre>
+
+
+<h2>22. Radio Buttons</h2>
+
+<p>Radio buttons allow the user to select <b>one option</b> from a group of options.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;input type="radio" name="gender" value="male"&gt;
+&lt;label&gt;Male&lt;/label&gt;
+
+&lt;input type="radio" name="gender" value="female"&gt;
+&lt;label&gt;Female&lt;/label&gt;</code></pre>
+
+<p>The same <code>name</code> value groups the radio buttons together.</p>
+
+
+<h2>23. Checkboxes</h2>
+
+<p>Checkboxes allow users to select <b>one or more options</b>.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;input type="checkbox" name="course" value="html"&gt;
+&lt;label&gt;HTML&lt;/label&gt;
+
+&lt;input type="checkbox" name="course" value="css"&gt;
+&lt;label&gt;CSS&lt;/label&gt;
+
+&lt;input type="checkbox" name="course" value="javascript"&gt;
+&lt;label&gt;JavaScript&lt;/label&gt;</code></pre>
+
+
+<h2>24. Submit Button</h2>
+
+<p>The <code>type="submit"</code> input creates a button used to submit the form.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;input type="submit" value="Register"&gt;</code></pre>
+
+
+<h2>25. Reset Button</h2>
+
+<p>The <code>type="reset"</code> input clears the form fields and restores their initial values.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;input type="reset" value="Reset"&gt;</code></pre>
+
+
+<h2>26. Button Element</h2>
+
+<p>The <code>&lt;button&gt;</code> element is used to create a clickable button.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;button&gt;Submit&lt;/button&gt;</code></pre>
+
+
+<h2>27. Textarea</h2>
+
+<p>The <code>&lt;textarea&gt;</code> element is used when the user needs to enter multiple lines of text.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;label&gt;Address:&lt;/label&gt;
+
+&lt;textarea rows="5" cols="30"&gt;&lt;/textarea&gt;</code></pre>
+
+
+<h2>28. Select Dropdown</h2>
+
+<p>The <code>&lt;select&gt;</code> element creates a dropdown list.</p>
+
+<p>The <code>&lt;option&gt;</code> element defines each option.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;label&gt;Select Course:&lt;/label&gt;
+
+&lt;select&gt;
+
+&lt;option&gt;HTML&lt;/option&gt;
+&lt;option&gt;CSS&lt;/option&gt;
+&lt;option&gt;JavaScript&lt;/option&gt;
+&lt;option&gt;PHP&lt;/option&gt;
+
+&lt;/select&gt;</code></pre>
+
+
+<h2>29. The Name Attribute</h2>
+
+<p>The <code>name</code> attribute gives a name to form data.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;input type="text" name="username"&gt;</code></pre>
+
+<p>The <code>name</code> attribute is especially important when form data is sent to a server.</p>
+
+
+<h2>30. The Value Attribute</h2>
+
+<p>The <code>value</code> attribute specifies the value associated with an input element.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;input type="text" value="Sejal"&gt;</code></pre>
+
+
+<h2>31. Placeholder Attribute</h2>
+
+<p>The <code>placeholder</code> attribute displays a temporary hint inside an input field.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;input type="text" placeholder="Enter your name"&gt;</code></pre>
+
+
+<h2>32. Required Attribute</h2>
+
+<p>The <code>required</code> attribute makes a form field mandatory.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;input type="email" required&gt;</code></pre>
+
+<p>The user cannot submit the form normally without entering the required information.</p>
+
+
+<h2>33. Min and Max Attributes</h2>
+
+<p>The <code>min</code> and <code>max</code> attributes can be used with appropriate input types such as number.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;input type="number" min="1" max="100"&gt;</code></pre>
+
+
+<h2>34. The Action Attribute</h2>
+
+<p>The <code>action</code> attribute specifies where the form data should be sent after submission.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;form action="register.php"&gt;
+
+&lt;input type="text" name="username"&gt;
+
+&lt;input type="submit" value="Register"&gt;
+
+&lt;/form&gt;</code></pre>
+
+<p>In this example, the form data is sent to <b>register.php</b>.</p>
+
+
+<h2>35. The Method Attribute</h2>
+
+<p>The <code>method</code> attribute specifies how the form data is sent.</p>
+
+<p>The two commonly used methods are:</p>
+
+<ul>
+<li>GET</li>
+<li>POST</li>
+</ul>
+
+
+<h2>36. GET Method</h2>
+
+<p>The GET method sends form data through the URL.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;form action="search.php" method="get"&gt;
+
+&lt;input type="text" name="search"&gt;
+
+&lt;input type="submit" value="Search"&gt;
+
+&lt;/form&gt;</code></pre>
+
+<p>GET is commonly used for searches and requests where the data can appear in the URL.</p>
+
+
+<h2>37. POST Method</h2>
+
+<p>The POST method sends form data in the HTTP request body rather than putting the submitted values in the URL.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;form action="register.php" method="post"&gt;
+
+&lt;input type="text" name="username"&gt;
+
+&lt;input type="email" name="email"&gt;
+
+&lt;input type="submit" value="Register"&gt;
+
+&lt;/form&gt;</code></pre>
+
+<p>POST is commonly used for submitting registration and other data to a server.</p>
+
+
+<h2>38. GET vs POST</h2>
+
+<table>
+
+<tr>
+<th>GET</th>
+<th>POST</th>
+</tr>
+
+<tr>
+<td>Data is included in the URL.</td>
+<td>Data is sent in the request body.</td>
+</tr>
+
+<tr>
+<td>Useful for searches and retrieving data.</td>
+<td>Commonly used for submitting data.</td>
+</tr>
+
+<tr>
+<td>Not suitable for sensitive information.</td>
+<td>Better suited for sensitive form submissions, though HTTPS and server-side security are still required.</td>
+</tr>
+
+</table>
+
+
+<h2>39. Complete Registration Form</h2>
+
+<p>The following is an example of a student registration form for an online academy.</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+&lt;title&gt;Student Registration&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;h1&gt;Student Registration Form&lt;/h1&gt;
+
+&lt;form action="register.php" method="post"&gt;
+
+&lt;label&gt;Full Name:&lt;/label&gt;
+&lt;input type="text" name="fullname" placeholder="Enter your full name" required&gt;
+
+&lt;br&gt;
+&lt;br&gt;
+
+&lt;label&gt;Email:&lt;/label&gt;
+&lt;input type="email" name="email" placeholder="Enter your email" required&gt;
+
+&lt;br&gt;
+&lt;br&gt;
+
+&lt;label&gt;Password:&lt;/label&gt;
+&lt;input type="password" name="password" required&gt;
+
+&lt;br&gt;
+&lt;br&gt;
+
+&lt;label&gt;Date of Birth:&lt;/label&gt;
+&lt;input type="date" name="dob"&gt;
+
+&lt;br&gt;
+&lt;br&gt;
+
+&lt;label&gt;Gender:&lt;/label&gt;
+
+&lt;input type="radio" name="gender" value="male"&gt;
+&lt;label&gt;Male&lt;/label&gt;
+
+&lt;input type="radio" name="gender" value="female"&gt;
+&lt;label&gt;Female&lt;/label&gt;
+
+&lt;br&gt;
+&lt;br&gt;
+
+&lt;label&gt;Select Course:&lt;/label&gt;
+
+&lt;select name="course"&gt;
+
+&lt;option&gt;HTML&lt;/option&gt;
+&lt;option&gt;CSS&lt;/option&gt;
+&lt;option&gt;JavaScript&lt;/option&gt;
+&lt;option&gt;PHP&lt;/option&gt;
+
+&lt;/select&gt;
+
+&lt;br&gt;
+&lt;br&gt;
+
+&lt;label&gt;Address:&lt;/label&gt;
+
+&lt;br&gt;
+
+&lt;textarea name="address" rows="5" cols="30"&gt;&lt;/textarea&gt;
+
+&lt;br&gt;
+&lt;br&gt;
+
+&lt;input type="checkbox" name="terms" required&gt;
+
+&lt;label&gt;I agree to the terms and conditions.&lt;/label&gt;
+
+&lt;br&gt;
+&lt;br&gt;
+
+&lt;input type="submit" value="Register">
+
+&lt;input type="reset" value="Reset">
+
+&lt;/form&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+
+
+<h2>40. Form Input Types</h2>
+
+<table>
+
+<tr>
+<th>Input Type</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>text</td>
+<td>Normal text input</td>
+</tr>
+
+<tr>
+<td>email</td>
+<td>Email address</td>
+</tr>
+
+<tr>
+<td>password</td>
+<td>Password input</td>
+</tr>
+
+<tr>
+<td>number</td>
+<td>Numeric input</td>
+</tr>
+
+<tr>
+<td>date</td>
+<td>Date selection</td>
+</tr>
+
+<tr>
+<td>radio</td>
+<td>Select one option from a group</td>
+</tr>
+
+<tr>
+<td>checkbox</td>
+<td>Select one or more options</td>
+</tr>
+
+<tr>
+<td>submit</td>
+<td>Submit the form</td>
+</tr>
+
+<tr>
+<td>reset</td>
+<td>Reset the form</td>
+</tr>
+
+<tr>
+<td>file</td>
+<td>Select a file</td>
+</tr>
+
+<tr>
+<td>hidden</td>
+<td>Stores data that is not displayed to the user</td>
+</tr>
+
+</table>
+
+
+<h2>41. Important Form Attributes</h2>
+
+<table>
+
+<tr>
+<th>Attribute</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>action</td>
+<td>Specifies where form data is sent</td>
+</tr>
+
+<tr>
+<td>method</td>
+<td>Specifies how form data is sent</td>
+</tr>
+
+<tr>
+<td>name</td>
+<td>Identifies form data</td>
+</tr>
+
+<tr>
+<td>value</td>
+<td>Specifies the value of an input</td>
+</tr>
+
+<tr>
+<td>placeholder</td>
+<td>Displays a hint inside an input</td>
+</tr>
+
+<tr>
+<td>required</td>
+<td>Makes an input mandatory</td>
+</tr>
+
+<tr>
+<td>min</td>
+<td>Specifies minimum value</td>
+</tr>
+
+<tr>
+<td>max</td>
+<td>Specifies maximum value</td>
+</tr>
+
+<tr>
+<td>type</td>
+<td>Specifies the type of input</td>
+</tr>
+
+</table>
+
+
+<h2>42. Important HTML Table Tags</h2>
+
+<table>
+
+<tr>
+<th>Tag</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>&lt;table&gt;</td>
+<td>Creates a table</td>
+</tr>
+
+<tr>
+<td>&lt;tr&gt;</td>
+<td>Creates a row</td>
+</tr>
+
+<tr>
+<td>&lt;th&gt;</td>
+<td>Creates a heading cell</td>
+</tr>
+
+<tr>
+<td>&lt;td&gt;</td>
+<td>Creates a data cell</td>
+</tr>
+
+<tr>
+<td>&lt;caption&gt;</td>
+<td>Creates a table title</td>
+</tr>
+
+<tr>
+<td>&lt;thead&gt;</td>
+<td>Groups table header rows</td>
+</tr>
+
+<tr>
+<td>&lt;tbody&gt;</td>
+<td>Groups table body rows</td>
+</tr>
+
+<tr>
+<td>&lt;tfoot&gt;</td>
+<td>Groups table footer rows</td>
+</tr>
+
+</table>
+
+
+<h2>43. Important Points to Remember</h2>
+
+<ol>
+
+<li>The <code>&lt;table&gt;</code> tag creates an HTML table.</li>
+
+<li>The <code>&lt;tr&gt;</code> tag creates a table row.</li>
+
+<li>The <code>&lt;th&gt;</code> tag creates a table heading.</li>
+
+<li>The <code>&lt;td&gt;</code> tag creates a table data cell.</li>
+
+<li>The <code>colspan</code> attribute combines columns.</li>
+
+<li>The <code>rowspan</code> attribute combines rows.</li>
+
+<li>The <code>&lt;form&gt;</code> tag creates an HTML form.</li>
+
+<li>The <code>&lt;label&gt;</code> tag describes form controls.</li>
+
+<li>The <code>&lt;input&gt;</code> tag creates input fields.</li>
+
+<li>The <code>&lt;textarea&gt;</code> tag creates a multi-line input area.</li>
+
+<li>The <code>&lt;select&gt;</code> tag creates a dropdown list.</li>
+
+<li>The <code>&lt;option&gt;</code> tag creates options inside a dropdown.</li>
+
+<li>The <code>required</code> attribute makes a field mandatory.</li>
+
+<li>The <code>placeholder</code> attribute displays a hint inside an input.</li>
+
+<li>The <code>action</code> attribute specifies where form data is sent.</li>
+
+<li>The <code>method</code> attribute specifies how form data is submitted.</li>
+
+<li>GET places submitted values in the URL.</li>
+
+<li>POST sends submitted values in the request body.</li>
+
+<li>HTML forms are commonly used for registration, login and contact pages.</li>
+
+</ol>
+
+
+<div class="lesson-summary">
+
+<h2>Lesson Summary</h2>
+
+<p>In this lesson, you learned how to create HTML tables using rows, headings and data cells. You also learned how to create HTML forms using text fields, email fields, password fields, radio buttons, checkboxes, dropdowns, textareas and buttons.</p>
+
+<p>You also learned important form attributes such as <code>action</code>, <code>method</code>, <code>name</code>, <code>value</code>, <code>placeholder</code> and <code>required</code>.</p>
+
+<p><b>Next Lesson:</b> HTML Semantic Elements and HTML5</p>
+
+</div>
+
+</div>
+ 
+<script>
+function toggleStudentMenu(){
+const menu=document.getElementById("studentMenu");
+menu.classList.toggle("show");
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,162 @@
+    <!DOCTYPE html>
+<html>
+<head>
+ <meta charset="UTF-8">
+<title>Tech Learning Academy</title>
+<style>
+* {
+box-sizing: border-box;
+}
+body {
+ background-color:black;
+}
+nav {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+width: 100%;
+height: 70px;
+background-color: #1e3a5f;
+padding: 10px 20px;
+display: flex;
+align-items: center;
+gap: 10px;
+z-index: 1000;
+}
+nav a {
+color: #40E0D0;
+text-decoration: none;
+font-size: 15px;
+font-weight: bold;
+white-space: nowrap;
+}
+nav a:hover {
+color: white;
+}
+nav p {
+color: white;
+font-size: 20px;
+margin: 0;
+padding: 0;
+white-space: nowrap;
+}
+.student-dashboard {
+margin-left: auto;
+position: relative;
+flex-shrink: 0;
+}
+.student-logo {
+width: 55px;
+height: 55px;
+border-radius: 50%;
+border: 3px solid #40E0D0;
+background-color: #1e3a5f;
+color: white;
+font-size: 27px;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 0;
+transition: 0.2s;
+}
+.student-logo:hover {
+background-color: #40E0D0;
+color: #1e3a5f;
+}
+.student-menu {
+display: none;
+position: absolute;
+top: 65px;
+right: 0;
+width: 200px;
+background-color: #1e3a5f;
+border-radius: 10px;
+overflow: hidden;
+box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+z-index: 2000;
+}
+.student-menu.show {
+display: flex;
+flex-direction: column;
+}
+.student-menu a {
+color: #40E0D0;
+text-decoration: none;
+padding: 15px 18px;
+font-size: 16px;
+font-weight: bold;
+border-bottom: 1px solid rgba(64, 224, 208, 0.2);
+white-space: nowrap;
+}
+.student-menu a:hover {
+background-color: #40E0D0;
+color: #1e3a5f;
+}
+h1 {
+color: #40E0D0;
+text-align: center;
+padding-top: 120px;
+margin-top: 0;
+}
+.logo {
+width: 90px;
+height: 70px;
+border-radius: 50%;
+vertical-align: middle;
+margin-right: 15px;
+} 
+ .start-button {
+position: absolute;
+top: 500px;
+left: 760px;
+padding: 10px 50px;
+color: #40E0D0;
+background-color: black;
+font-size: 18px;
+}
+</style>
+</head>
+<body>
+<nav> 
+
+<p>|</p>
+<a href="index.html">HOME</a>
+<p>|</p>
+<a href="information.html">INFO</a>
+<p>|</p>
+<a href="courses.html">COURSES</a>
+<p>|</p>
+<a href="login.html">LOGIN</a>
+<p>|</p>
+<a href="forms.html">REGISTRATION</a>
+<p>|</p>
+<a href="contact.html">📞 CONTACT US</a>
+
+<div class="student-dashboard">
+<button class="student-logo" onclick="toggleStudentMenu()" title="Student Dashboard">🎓</button>
+<div class="student-menu" id="studentMenu"> 
+  
+<a href="student-dashboard.php">
+🏠 Dashboard</a>  
+<a href="logout.php">🏠Logout</a> 
+</div>
+</div>
+</nav>
+<h1>
+<img src="https://cdn.vectorstock.com/i/500p/39/49/blue-ta-monogram-logo-modern-lettering-vector-63213949.jpg" class="logo" alt="Tech Learning Academy Logo">
+Tech Learning Academy
+</h1>
+<br>
+<a href="information.html">
+<button class="start-button">Start</button>
+</a>
+<script>
+function toggleStudentMenu() {
+const menu = document.getElementById("studentMenu");
+menu.classList.toggle("show");
+}
+</script>
+</body>
+</html>

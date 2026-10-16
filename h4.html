@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+<title>HTML Lesson 4 - Semantic Elements and HTML5</title>
+<style>
+*{
+box-sizing:border-box;
+}
+body{
+background-color:black;
+color:white; 
+margin:0;
+padding:100px 30px 40px;
+}
+nav{
+position:fixed;
+top:0;
+left:0;
+right:0;
+width:100%;
+height:70px;
+background-color:#1e3a5f;
+padding:10px 20px;
+display:flex;
+align-items:center;
+gap:10px;
+z-index:1000;
+}
+nav a{
+color:#40E0D0;
+text-decoration:none;
+font-size:15px;
+font-weight:bold;
+white-space:nowrap;
+}
+nav a:hover{
+color:white;
+}
+nav p{
+color:white;
+font-size:20px;
+margin:0;
+padding:0;
+white-space:nowrap;
+}
+.student-dashboard{
+margin-left:auto;
+position:relative;
+flex-shrink:0;
+}
+.student-logo{
+width:55px;
+height:55px;
+border-radius:50%;
+border:3px solid #40E0D0;
+background-color:#1e3a5f;
+color:white;
+font-size:27px;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:0;
+transition:0.2s;
+}
+.student-logo:hover{
+background-color:#40E0D0;
+color:#1e3a5f;
+}
+.student-menu{
+display:none;
+position:absolute;
+top:65px;
+right:0;
+width:200px;
+background-color:#1e3a5f;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 5px 20px rgba(0,0,0,0.5);
+z-index:2000;
+}
+.student-menu.show{
+display:flex;
+flex-direction:column;
+}
+.student-menu a{
+color:#40E0D0;
+text-decoration:none;
+padding:15px 18px;
+font-size:16px;
+font-weight:bold;
+border-bottom:1px solid rgba(64,224,208,0.2);
+white-space:nowrap;
+}
+.student-menu a:hover{
+background-color:#40E0D0;
+color:#1e3a5f;
+}
+.course-notes{
+max-width:1100px;
+margin:auto;
+}
+.course-notes h1{
+color:#40E0D0;
+text-align:center;
+font-size:36px;
+margin-bottom:40px;
+}
+.course-notes h2{
+color:#40E0D0;
+font-size:27px;
+margin-top:40px;
+border-bottom:1px solid #1e3a5f;
+padding-bottom:10px;
+}
+.course-notes h3{
+color:#40E0D0;
+font-size:21px;
+margin-top:25px;
+}
+.course-notes p{
+color:white;
+font-size:17px;
+line-height:1.8;
+}
+.course-notes ul,
+.course-notes ol{
+color:white;
+font-size:17px;
+line-height:2;
+}
+.course-notes li{
+margin-bottom:5px;
+}
+.course-notes code{
+color:#40E0D0;
+font-family:Consolas,monospace;
+}
+.course-notes pre{
+background-color:#111;
+border:1px solid #1e3a5f;
+border-left:5px solid #40E0D0;
+padding:20px;
+overflow-x:auto;
+border-radius:8px;
+line-height:1.6;
+}
+.course-notes pre code{
+color:#40E0D0;
+font-size:15px;
+}
+.course-notes table{
+width:100%;
+border-collapse:collapse;
+margin:20px 0 30px;
+}
+.course-notes th{
+background-color:#1e3a5f;
+color:#40E0D0;
+font-size:17px;
+padding:14px;
+border:1px solid #40E0D0;
+}
+.course-notes td{
+color:white;
+padding:14px;
+border:1px solid #40E0D0;
+font-size:16px;
+}
+.course-notes tr:nth-child(even){
+background-color:#111;
+}
+.course-notes tr:hover{
+background-color:#1e3a5f;
+}
+.course-notes mark{
+background-color:#40E0D0;
+color:black;
+padding:2px 5px;
+}
+.lesson-summary{
+background-color:#111;
+border:2px solid #40E0D0;
+border-radius:10px;
+padding:25px;
+margin-top:50px;
+}
+.lesson-summary h2{
+margin-top:0;
+border-bottom:none;
+}
+</style>
+</head>
+<body>
+
+<nav>
+
+<p>|</p>
+<a href="index.html">HOME</a>
+
+<p>|</p>
+<a href="information.html">INFO</a>
+
+<p>|</p>
+<a href="courses.html">COURSES</a>
+
+<p>|</p>
+<a href="login.html">LOGIN</a>
+
+<p>|</p>
+<a href="forms.html">REGISTRATION</a>
+
+<p>|</p>
+<a href="contact.html">📞 CONTACT US</a>
+
+<div class="student-dashboard">
+
+<button class="student-logo" onclick="toggleStudentMenu()" title="Student Dashboard">🎓</button>
+
+<div class="student-menu" id="studentMenu">
+ 
+ 
+  
+<a href="student-dashboard.php">
+🏠 Dashboard</a>  
+<a href="logout.php">🏠Logout</a> 
+ 
+</div>
+
+</div>
+
+</nav>
+
+
+<div class="course-notes">
+
+<h1>HTML Lesson 4: Semantic Elements and HTML5</h1>
+
+<h2>1. Introduction</h2>
+
+<p>HTML5 is the modern version of HTML used to create and structure webpages.</p>
+
+<p>HTML5 introduced many new elements that make webpages more meaningful, organized and easier to understand.</p>
+
+<p>In this lesson, we will learn about <b>semantic elements, non-semantic elements, HTML5 elements, audio, video, iframe and other important HTML5 features.</b></p>
+
+
+<h2>2. What are Semantic Elements?</h2>
+
+<p>Semantic elements are HTML elements that clearly describe the meaning and purpose of their content.</p>
+
+<p>For example, <code>&lt;header&gt;</code> represents the header section of a webpage and <code>&lt;footer&gt;</code> represents the footer section.</p>
+
+<p>Semantic elements make the structure of a webpage easier for developers, browsers and search engines to understand.</p>
+
+
+<h2>3. Important Semantic Elements</h2>
+
+<table>
+
+<tr>
+<th>Element</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>&lt;header&gt;</td>
+<td>Defines the header of a webpage or section</td>
+</tr>
+
+<tr>
+<td>&lt;nav&gt;</td>
+<td>Defines navigation links</td>
+</tr>
+
+<tr>
+<td>&lt;main&gt;</td>
+<td>Defines the main content</td>
+</tr>
+
+<tr>
+<td>&lt;section&gt;</td>
+<td>Defines a section of content</td>
+</tr>
+
+<tr>
+<td>&lt;article&gt;</td>
+<td>Defines independent content</td>
+</tr>
+
+<tr>
+<td>&lt;aside&gt;</td>
+<td>Defines related or side content</td>
+</tr>
+
+<tr>
+<td>&lt;footer&gt;</td>
+<td>Defines the footer of a webpage or section</td>
+</tr>
+
+<tr>
+<td>&lt;figure&gt;</td>
+<td>Groups images or illustrations</td>
+</tr>
+
+<tr>
+<td>&lt;figcaption&gt;</td>
+<td>Provides a caption for a figure</td>
+</tr>
+
+</table>
+
+
+<h2>4. The Header Element</h2>
+
+<p>The <code>&lt;header&gt;</code> element represents introductory content or the header of a webpage or section.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;header&gt;
+
+&lt;h1&gt;Online Tech Learning Academy&lt;/h1&gt;
+
+&lt;p&gt;Learn Technology Online&lt;/p&gt;
+
+&lt;/header&gt;</code></pre>
+
+
+<h2>5. The Nav Element</h2>
+
+<p>The <code>&lt;nav&gt;</code> element is used to define a section containing navigation links.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;nav&gt;
+
+&lt;a href="index.html"&gt;Home&lt;/a&gt;
+
+&lt;a href="courses.html"&gt;Courses&lt;/a&gt;
+
+&lt;a href="contact.html"&gt;Contact&lt;/a&gt;
+
+&lt;/nav&gt;</code></pre>
+
+<p>The navigation bar in your Online Tech Learning Academy project is an example of the <code>&lt;nav&gt;</code> element.</p>
+
+
+<h2>6. The Main Element</h2>
+
+<p>The <code>&lt;main&gt;</code> element represents the main content of a webpage.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;main&gt;
+
+&lt;h1&gt;HTML Course&lt;/h1&gt;
+
+&lt;p&gt;Learn HTML from beginner to advanced level.&lt;/p&gt;
+
+&lt;/main&gt;</code></pre>
+
+
+<h2>7. The Section Element</h2>
+
+<p>The <code>&lt;section&gt;</code> element is used to group related content into a section.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;section&gt;
+
+&lt;h2&gt;HTML Course&lt;/h2&gt;
+
+&lt;p&gt;Learn the basics of HTML.&lt;/p&gt;
+
+&lt;/section&gt;</code></pre>
+
+
+<h2>8. The Article Element</h2>
+
+<p>The <code>&lt;article&gt;</code> element represents independent and self-contained content.</p>
+
+<p>It can be used for blog posts, news articles, course information and other independent content.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;article&gt;
+
+&lt;h2&gt;Introduction to HTML&lt;/h2&gt;
+
+&lt;p&gt;HTML is used to create the structure of webpages.&lt;/p&gt;
+
+&lt;/article&gt;</code></pre>
+
+
+<h2>9. The Aside Element</h2>
+
+<p>The <code>&lt;aside&gt;</code> element contains content that is related to the main content but is not part of the main flow.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;aside&gt;
+
+&lt;h3&gt;Related Courses&lt;/h3&gt;
+
+&lt;p&gt;You can also learn CSS and JavaScript.&lt;/p&gt;
+
+&lt;/aside&gt;</code></pre>
+
+
+<h2>10. The Footer Element</h2>
+
+<p>The <code>&lt;footer&gt;</code> element represents the bottom section of a webpage or section.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;footer&gt;
+
+&lt;p&gt;© 2026 Online Tech Learning Academy&lt;/p&gt;
+
+&lt;/footer&gt;</code></pre>
+
+
+<h2>11. The Figure Element</h2>
+
+<p>The <code>&lt;figure&gt;</code> element is used to group an image, diagram, illustration or other content.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;figure&gt;
+
+&lt;img src="html.jpg" alt="HTML Course"&gt;
+
+&lt;/figure&gt;</code></pre>
+
+
+<h2>12. The Figcaption Element</h2>
+
+<p>The <code>&lt;figcaption&gt;</code> element provides a caption for content inside a <code>&lt;figure&gt;</code>.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;figure&gt;
+
+&lt;img src="html.jpg" alt="HTML Course"&gt;
+
+&lt;figcaption&gt;
+HTML Course
+&lt;/figcaption&gt;
+
+&lt;/figure&gt;</code></pre>
+
+
+<h2>13. Complete Semantic HTML Structure</h2>
+
+<p>A webpage can be organized using multiple semantic elements.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+
+&lt;html&gt;
+
+&lt;head&gt;
+
+&lt;title&gt;Online Tech Learning Academy&lt;/title&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;header&gt;
+
+&lt;h1&gt;Online Tech Learning Academy&lt;/h1&gt;
+
+&lt;/header&gt;
+
+&lt;nav&gt;
+
+&lt;a href="index.html"&gt;Home&lt;/a&gt;
+
+&lt;a href="courses.html"&gt;Courses&lt;/a&gt;
+
+&lt;a href="contact.html"&gt;Contact&lt;/a&gt;
+
+&lt;/nav&gt;
+
+&lt;main&gt;
+
+&lt;section&gt;
+
+&lt;h2&gt;HTML Course&lt;/h2&gt;
+
+&lt;p&gt;Learn HTML from basic to advanced concepts.&lt;/p&gt;
+
+&lt;/section&gt;
+
+&lt;article&gt;
+
+&lt;h2&gt;HTML Lesson 1&lt;/h2&gt;
+
+&lt;p&gt;Introduction to HTML and basic HTML elements.&lt;/p&gt;
+
+&lt;/article&gt;
+
+&lt;aside&gt;
+
+&lt;h3&gt;Related Courses&lt;/h3&gt;
+
+&lt;p&gt;CSS and JavaScript&lt;/p&gt;
+
+&lt;/aside&gt;
+
+&lt;/main&gt;
+
+&lt;footer&gt;
+
+&lt;p&gt;© 2026 Online Tech Learning Academy&lt;/p&gt;
+
+&lt;/footer&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+
+
+<h2>14. Semantic vs Non-Semantic Elements</h2>
+
+<p>Semantic elements clearly describe their purpose, while non-semantic elements do not describe what their content means.</p>
+
+<table>
+
+<tr>
+<th>Semantic Element</th>
+<th>Non-Semantic Element</th>
+</tr>
+
+<tr>
+<td>&lt;header&gt;</td>
+<td>&lt;div&gt;</td>
+</tr>
+
+<tr>
+<td>&lt;nav&gt;</td>
+<td>&lt;span&gt;</td>
+</tr>
+
+<tr>
+<td>&lt;main&gt;</td>
+<td>&lt;div&gt;</td>
+</tr>
+
+<tr>
+<td>&lt;section&gt;</td>
+<td>&lt;div&gt;</td>
+</tr>
+
+<tr>
+<td>&lt;article&gt;</td>
+<td>&lt;div&gt;</td>
+</tr>
+
+<tr>
+<td>&lt;footer&gt;</td>
+<td>&lt;div&gt;</td>
+</tr>
+
+</table>
+
+
+<h2>15. The Div Element</h2>
+
+<p>The <code>&lt;div&gt;</code> element is a generic container used to group HTML elements.</p>
+
+<p>It does not describe the meaning of its content.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;div&gt;
+
+&lt;h2&gt;HTML Course&lt;/h2&gt;
+
+&lt;p&gt;Learn HTML.&lt;/p&gt;
+
+&lt;/div&gt;</code></pre>
+
+
+<h2>16. The Span Element</h2>
+
+<p>The <code>&lt;span&gt;</code> element is an inline container commonly used to style or manipulate a small part of text.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;p&gt;
+
+Learn &lt;span&gt;HTML&lt;/span&gt; today.
+
+&lt;/p&gt;</code></pre>
+
+
+<h2>17. HTML5 Audio</h2>
+
+<p>HTML5 provides the <code>&lt;audio&gt;</code> element to add audio to a webpage.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;audio controls&gt;
+
+&lt;source src="audio.mp3" type="audio/mpeg"&gt;
+
+Your browser does not support the audio element.
+
+&lt;/audio&gt;</code></pre>
+
+<p>The <code>controls</code> attribute displays audio controls such as play, pause and volume.</p>
+
+
+<h2>18. Audio Attributes</h2>
+
+<table>
+
+<tr>
+<th>Attribute</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>controls</td>
+<td>Displays audio controls</td>
+</tr>
+
+<tr>
+<td>autoplay</td>
+<td>Attempts to start playback automatically</td>
+</tr>
+
+<tr>
+<td>loop</td>
+<td>Repeats the audio</td>
+</tr>
+
+<tr>
+<td>muted</td>
+<td>Starts the audio muted</td>
+</tr>
+
+<tr>
+<td>preload</td>
+<td>Provides a hint about how the browser should load the audio</td>
+</tr>
+
+</table>
+
+
+<h2>19. HTML5 Video</h2>
+
+<p>The <code>&lt;video&gt;</code> element is used to add videos to webpages.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;video width="500" controls&gt;
+
+&lt;source src="course.mp4" type="video/mp4"&gt;
+
+Your browser does not support the video element.
+
+&lt;/video&gt;</code></pre>
+
+
+<h2>20. Video Attributes</h2>
+
+<table>
+
+<tr>
+<th>Attribute</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>controls</td>
+<td>Displays video controls</td>
+</tr>
+
+<tr>
+<td>width</td>
+<td>Specifies video width</td>
+</tr>
+
+<tr>
+<td>height</td>
+<td>Specifies video height</td>
+</tr>
+
+<tr>
+<td>autoplay</td>
+<td>Attempts to start playback automatically</td>
+</tr>
+
+<tr>
+<td>loop</td>
+<td>Repeats the video</td>
+</tr>
+
+<tr>
+<td>muted</td>
+<td>Starts the video muted</td>
+</tr>
+
+<tr>
+<td>poster</td>
+<td>Specifies an image shown before video playback</td>
+</tr>
+
+</table>
+
+
+<h2>21. Video with Poster Image</h2>
+
+<p>The <code>poster</code> attribute specifies an image displayed before the video starts playing.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;video width="500" controls poster="thumbnail.jpg"&gt;
+
+&lt;source src="html-course.mp4" type="video/mp4"&gt;
+
+&lt;/video&gt;</code></pre>
+
+
+<h2>22. HTML Iframe</h2>
+
+<p>The <code>&lt;iframe&gt;</code> element is used to embed another webpage or supported external content inside the current webpage.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;iframe
+src="https://www.example.com"
+width="600"
+height="400"&gt;
+&lt;/iframe&gt;</code></pre>
+
+
+<h2>23. Embedding a YouTube Video</h2>
+
+<p>An iframe can be used to embed a supported YouTube video on a webpage.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;iframe
+width="560"
+height="315"
+src="https://www.youtube.com/embed/VIDEO_ID"
+title="HTML Tutorial"
+allowfullscreen&gt;
+&lt;/iframe&gt;</code></pre>
+
+
+<h2>24. HTML Comments</h2>
+
+<p>Comments are notes written inside HTML code that are not displayed as webpage content.</p>
+
+<h3>Syntax</h3>
+
+<pre><code>&lt;!-- This is an HTML comment --&gt;</code></pre>
+
+<h3>Example</h3>
+
+<pre><code>&lt;!-- Navigation section --&gt;
+
+&lt;nav&gt;
+
+&lt;a href="index.html"&gt;Home&lt;/a&gt;
+
+&lt;/nav&gt;</code></pre>
+
+<p>Comments are useful for explaining and organizing code.</p>
+
+
+<h2>25. HTML Entities</h2>
+
+<p>HTML entities are special codes used to display reserved characters and special symbols in HTML.</p>
+
+<table>
+
+<tr>
+<th>Entity</th>
+<th>Character</th>
+</tr>
+
+<tr>
+<td>&amp;lt;</td>
+<td>&lt;</td>
+</tr>
+
+<tr>
+<td>&amp;gt;</td>
+<td>&gt;</td>
+</tr>
+
+<tr>
+<td>&amp;amp;</td>
+<td>&amp;</td>
+</tr>
+
+<tr>
+<td>&amp;quot;</td>
+<td>"</td>
+</tr>
+
+<tr>
+<td>&amp;copy;</td>
+<td>©</td>
+</tr>
+
+<tr>
+<td>&amp;reg;</td>
+<td>®</td>
+</tr>
+
+</table>
+
+
+<h2>26. HTML5 Doctype</h2>
+
+<p>The HTML5 doctype declaration is written at the beginning of an HTML document.</p>
+
+<h3>Syntax</h3>
+
+<pre><code>&lt;!DOCTYPE html&gt;</code></pre>
+
+<p>It tells the browser that the document should be interpreted as HTML.</p>
+
+
+<h2>27. HTML5 Character Encoding</h2>
+
+<p>UTF-8 is commonly specified using the <code>&lt;meta charset="UTF-8"&gt;</code> element.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;meta charset="UTF-8"&gt;</code></pre>
+
+<p>It allows webpages to correctly represent a wide range of characters and symbols.</p>
+
+
+<h2>28. Complete HTML5 Page Structure</h2>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+
+&lt;html&gt;
+
+&lt;head&gt;
+
+&lt;meta charset="UTF-8"&gt;
+
+&lt;meta name="viewport"
+content="width=device-width, initial-scale=1.0"&gt;
+
+&lt;title&gt;Online Tech Learning Academy&lt;/title&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;header&gt;
+
+&lt;h1&gt;Online Tech Learning Academy&lt;/h1&gt;
+
+&lt;/header&gt;
+
+&lt;nav&gt;
+
+&lt;a href="index.html"&gt;Home&lt;/a&gt;
+
+&lt;a href="courses.html"&gt;Courses&lt;/a&gt;
+
+&lt;a href="contact.html"&gt;Contact&lt;/a&gt;
+
+&lt;/nav&gt;
+
+&lt;main&gt;
+
+&lt;section&gt;
+
+&lt;h2&gt;HTML Course&lt;/h2&gt;
+
+&lt;p&gt;
+Learn HTML from basic to advanced concepts.
+&lt;/p&gt;
+
+&lt;/section&gt;
+
+&lt;article&gt;
+
+&lt;h2&gt;Lesson 4&lt;/h2&gt;
+
+&lt;p&gt;
+Learn semantic HTML and HTML5 elements.
+&lt;/p&gt;
+
+&lt;/article&gt;
+
+&lt;/main&gt;
+
+&lt;footer&gt;
+
+&lt;p&gt;
+© 2026 Online Tech Learning Academy
+&lt;/p&gt;
+
+&lt;/footer&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+
+
+<h2>29. Advantages of Semantic HTML</h2>
+
+<ul>
+
+<li>Creates a clear webpage structure.</li>
+
+<li>Makes HTML code easier to understand.</li>
+
+<li>Helps search engines understand webpage content.</li>
+
+<li>Improves accessibility for users of assistive technologies.</li>
+
+<li>Makes websites easier to maintain.</li>
+
+<li>Provides meaningful names for different parts of a webpage.</li>
+
+</ul>
+
+
+<h2>30. Important HTML5 Elements</h2>
+
+<table>
+
+<tr>
+<th>Element</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>&lt;header&gt;</td>
+<td>Page or section header</td>
+</tr>
+
+<tr>
+<td>&lt;nav&gt;</td>
+<td>Navigation links</td>
+</tr>
+
+<tr>
+<td>&lt;main&gt;</td>
+<td>Main webpage content</td>
+</tr>
+
+<tr>
+<td>&lt;section&gt;</td>
+<td>Groups related content</td>
+</tr>
+
+<tr>
+<td>&lt;article&gt;</td>
+<td>Independent content</td>
+</tr>
+
+<tr>
+<td>&lt;aside&gt;</td>
+<td>Related side content</td>
+</tr>
+
+<tr>
+<td>&lt;footer&gt;</td>
+<td>Page or section footer</td>
+</tr>
+
+<tr>
+<td>&lt;figure&gt;</td>
+<td>Groups media or illustrations</td>
+</tr>
+
+<tr>
+<td>&lt;figcaption&gt;</td>
+<td>Caption for a figure</td>
+</tr>
+
+<tr>
+<td>&lt;audio&gt;</td>
+<td>Adds audio</td>
+</tr>
+
+<tr>
+<td>&lt;video&gt;</td>
+<td>Adds video</td>
+</tr>
+
+<tr>
+<td>&lt;iframe&gt;</td>
+<td>Embeds supported external content</td>
+</tr>
+
+</table>
+
+
+<h2>31. Important Points to Remember</h2>
+
+<ol>
+
+<li>Semantic elements clearly describe the purpose of their content.</li>
+
+<li>The <code>&lt;header&gt;</code> element represents introductory content.</li>
+
+<li>The <code>&lt;nav&gt;</code> element contains navigation links.</li>
+
+<li>The <code>&lt;main&gt;</code> element contains the main content.</li>
+
+<li>The <code>&lt;section&gt;</code> element groups related content.</li>
+
+<li>The <code>&lt;article&gt;</code> element represents independent content.</li>
+
+<li>The <code>&lt;aside&gt;</code> element contains related side content.</li>
+
+<li>The <code>&lt;footer&gt;</code> element represents footer content.</li>
+
+<li>The <code>&lt;figure&gt;</code> element groups images or illustrations.</li>
+
+<li>The <code>&lt;figcaption&gt;</code> element provides a caption.</li>
+
+<li>The <code>&lt;div&gt;</code> element is a general-purpose container.</li>
+
+<li>The <code>&lt;span&gt;</code> element is an inline container.</li>
+
+<li>The <code>&lt;audio&gt;</code> element adds audio to a webpage.</li>
+
+<li>The <code>&lt;video&gt;</code> element adds video to a webpage.</li>
+
+<li>The <code>&lt;iframe&gt;</code> element can embed another webpage or supported external content.</li>
+
+<li>The <code>&lt;!-- --&gt;</code> syntax creates an HTML comment.</li>
+
+<li>The <code>&lt;!DOCTYPE html&gt;</code> declaration is used at the beginning of an HTML document.</li>
+
+<li>The <code>&lt;meta charset="UTF-8"&gt;</code> element specifies the character encoding.</li>
+
+</ol>
+
+
+<div class="lesson-summary">
+
+<h2>Lesson Summary</h2>
+
+<p>In this lesson, you learned about semantic HTML elements and important HTML5 features.</p>
+
+<p>You learned how to use <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;aside&gt;</code> and <code>&lt;footer&gt;</code> to create a meaningful webpage structure.</p>
+
+<p>You also learned how to add audio and video, embed external content using iframes, write comments and use HTML entities.</p>
+
+<p><b>Next Lesson:</b> HTML Multimedia, Graphics and Advanced HTML Elements</p>
+
+</div>
+
+</div>
+
+
+<script>
+
+function toggleStudentMenu(){
+
+const menu=document.getElementById("studentMenu");
+
+menu.classList.toggle("show");
+
+}
+
+</script>
+
+</body>
+</html>

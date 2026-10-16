@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+<title>SQL Lesson 3 - Constraints and Keys</title>
+<style>
+*{
+box-sizing:border-box;
+}
+body{
+background-color:black;
+color:white; 
+margin:0;
+padding:100px 30px 40px;
+}
+nav{
+position:fixed;
+top:0;
+left:0;
+right:0;
+width:100%;
+height:70px;
+background-color:#1e3a5f;
+padding:10px 20px;
+display:flex;
+align-items:center;
+gap:10px;
+z-index:1000;
+}
+nav a{
+color:#40E0D0;
+text-decoration:none;
+font-size:15px;
+font-weight:bold;
+white-space:nowrap;
+}
+nav a:hover{
+color:white;
+}
+nav p{
+color:white;
+font-size:20px;
+margin:0;
+padding:0;
+white-space:nowrap;
+}
+.student-dashboard{
+margin-left:auto;
+position:relative;
+flex-shrink:0;
+}
+.student-logo{
+width:55px;
+height:55px;
+border-radius:50%;
+border:3px solid #40E0D0;
+background-color:#1e3a5f;
+color:white;
+font-size:27px;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:0;
+transition:0.2s;
+}
+.student-logo:hover{
+background-color:#40E0D0;
+color:#1e3a5f;
+}
+.student-menu{
+display:none;
+position:absolute;
+top:65px;
+right:0;
+width:200px;
+background-color:#1e3a5f;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 5px 20px rgba(0,0,0,0.5);
+z-index:2000;
+}
+.student-menu.show{
+display:flex;
+flex-direction:column;
+}
+.student-menu a{
+color:#40E0D0;
+text-decoration:none;
+padding:15px 18px;
+font-size:16px;
+font-weight:bold;
+border-bottom:1px solid rgba(64,224,208,0.2);
+white-space:nowrap;
+}
+.student-menu a:hover{
+background-color:#40E0D0;
+color:#1e3a5f;
+}
+.course-notes{
+max-width:1100px;
+margin:auto;
+}
+.course-notes h1{
+color:#40E0D0;
+text-align:center;
+font-size:36px;
+margin-bottom:40px;
+}
+.course-notes h2{
+color:#40E0D0;
+font-size:27px;
+margin-top:40px;
+border-bottom:1px solid #1e3a5f;
+padding-bottom:10px;
+}
+.course-notes h3{
+color:#40E0D0;
+font-size:21px;
+margin-top:25px;
+}
+.course-notes p{
+color:white;
+font-size:17px;
+line-height:1.8;
+}
+.course-notes ul,
+.course-notes ol{
+color:white;
+font-size:17px;
+line-height:2;
+}
+.course-notes li{
+margin-bottom:5px;
+}
+.course-notes code{
+color:#40E0D0;
+font-family:Consolas,monospace;
+}
+.course-notes pre{
+background-color:#111;
+border:1px solid #1e3a5f;
+border-left:5px solid #40E0D0;
+padding:20px;
+overflow-x:auto;
+border-radius:8px;
+line-height:1.6;
+}
+.course-notes pre code{
+color:#40E0D0;
+font-size:15px;
+}
+.course-notes table{
+width:100%;
+border-collapse:collapse;
+margin:20px 0 30px;
+}
+.course-notes th{
+background-color:#1e3a5f;
+color:#40E0D0;
+font-size:17px;
+padding:14px;
+border:1px solid #40E0D0;
+}
+.course-notes td{
+color:white;
+padding:14px;
+border:1px solid #40E0D0;
+font-size:16px;
+}
+.course-notes tr:nth-child(even){
+background-color:#111;
+}
+.course-notes tr:hover{
+background-color:#1e3a5f;
+}
+.lesson-summary{
+background-color:#111;
+border:2px solid #40E0D0;
+border-radius:10px;
+padding:25px;
+margin-top:50px;
+}
+.lesson-summary h2{
+margin-top:0;
+border-bottom:none;
+}
+</style>
+</head>
+<body>
+
+<nav>
+
+<p>|</p>
+<a href="index.html">HOME</a>
+
+<p>|</p>
+<a href="information.html">INFO</a>
+
+<p>|</p>
+<a href="courses.html">COURSES</a>
+
+<p>|</p>
+<a href="login.html">LOGIN</a>
+
+<p>|</p>
+<a href="forms.html">REGISTRATION</a>
+
+<p>|</p>
+<a href="contact.html">📞 CONTACT US</a>
+
+<div class="student-dashboard">
+
+<button class="student-logo" onclick="toggleStudentMenu()" title="Student Dashboard">🎓</button>
+
+<div class="student-menu" id="studentMenu">
+  
+<a href="student-dashboard.php">
+🏠 Dashboard</a>  
+<a href="logout.php">🏠Logout</a> 
+
+</div>
+
+</div>
+
+</nav>
+
+
+<div class="course-notes">
+
+<h1>SQL Lesson 3: Constraints, Keys and Relationships</h1>
+
+
+<h2>1. Introduction to SQL Constraints</h2>
+
+<p>SQL constraints are rules applied to columns in a database table.</p>
+
+<p>They are used to control the type of data that can be stored in a table and help maintain accurate and reliable data.</p>
+
+<p>For example, a student ID should be unique, an email should not be empty and a student must belong to an existing course.</p>
+
+
+<h2>2. Types of SQL Constraints</h2>
+
+<table>
+
+<tr>
+<th>Constraint</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>PRIMARY KEY</td>
+<td>Uniquely identifies each record.</td>
+</tr>
+
+<tr>
+<td>FOREIGN KEY</td>
+<td>Connects two tables.</td>
+</tr>
+
+<tr>
+<td>NOT NULL</td>
+<td>Prevents empty NULL values.</td>
+</tr>
+
+<tr>
+<td>UNIQUE</td>
+<td>Ensures values are not duplicated.</td>
+</tr>
+
+<tr>
+<td>DEFAULT</td>
+<td>Provides a default value.</td>
+</tr>
+
+<tr>
+<td>CHECK</td>
+<td>Restricts values according to a condition.</td>
+</tr>
+
+</table>
+
+
+<h2>3. NOT NULL Constraint</h2>
+
+<p>The <code>NOT NULL</code> constraint prevents a column from containing NULL values.</p>
+
+<h3>Example</h3>
+
+<pre><code>CREATE TABLE students(
+id INT,
+name VARCHAR(100) NOT NULL,
+email VARCHAR(100) NOT NULL
+);</code></pre>
+
+<p>In this example, every student must have a name and email.</p>
+
+
+<h2>4. UNIQUE Constraint</h2>
+
+<p>The <code>UNIQUE</code> constraint ensures that all values in a column are different.</p>
+
+<p>This is useful for information such as email addresses.</p>
+
+<h3>Example</h3>
+
+<pre><code>CREATE TABLE students(
+id INT,
+name VARCHAR(100),
+email VARCHAR(100) UNIQUE
+);</code></pre>
+
+<p>Two students cannot have the same email address in this column.</p>
+
+
+<h2>5. DEFAULT Constraint</h2>
+
+<p>The <code>DEFAULT</code> constraint provides a value automatically when no value is supplied.</p>
+
+<h3>Example</h3>
+
+<pre><code>CREATE TABLE students(
+id INT,
+name VARCHAR(100),
+status VARCHAR(20) DEFAULT 'Active'
+);</code></pre>
+
+<p>If status is not provided, the database can use <code>Active</code> as the default value.</p>
+
+
+<h2>6. CHECK Constraint</h2>
+
+<p>The <code>CHECK</code> constraint is used to restrict values according to a condition.</p>
+
+<h3>Example</h3>
+
+<pre><code>CREATE TABLE students(
+id INT,
+name VARCHAR(100),
+age INT CHECK(age&gt;=18)
+);</code></pre>
+
+<p>This example restricts the age according to the specified condition.</p>
+
+
+<h2>7. PRIMARY KEY</h2>
+
+<p>A primary key is a column or combination of columns that uniquely identifies each record in a table.</p>
+
+<p>A primary key must contain unique values and cannot contain NULL values.</p>
+
+<h3>Example</h3>
+
+<pre><code>CREATE TABLE students(
+student_id INT PRIMARY KEY,
+name VARCHAR(100),
+email VARCHAR(100)
+);</code></pre>
+
+
+<h2>8. Why is PRIMARY KEY Important?</h2>
+
+<ul>
+
+<li>It uniquely identifies each record.</li>
+
+<li>It prevents duplicate identification values.</li>
+
+<li>It cannot contain NULL values.</li>
+
+<li>It helps establish relationships between tables.</li>
+
+<li>It makes it easier to identify a particular student or record.</li>
+
+</ul>
+
+
+<h2>9. Example of Primary Key</h2>
+
+<table>
+
+<tr>
+<th>student_id</th>
+<th>name</th>
+<th>email</th>
+</tr>
+
+<tr>
+<td>1</td>
+<td>Sejal</td>
+<td>sejal@example.com</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>Rahul</td>
+<td>rahul@example.com</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>Priya</td>
+<td>priya@example.com</td>
+</tr>
+
+</table>
+
+<p>Here, <code>student_id</code> can uniquely identify every student.</p>
+
+
+<h2>10. AUTO_INCREMENT</h2>
+
+<p><code>AUTO_INCREMENT</code> automatically generates a new numeric value when a new record is inserted.</p>
+
+<h3>Example</h3>
+
+<pre><code>CREATE TABLE students(
+student_id INT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(100),
+email VARCHAR(100)
+);</code></pre>
+
+<p>When a new student is inserted, the student ID can be generated automatically.</p>
+
+
+<h2>11. Inserting Data with AUTO_INCREMENT</h2>
+
+<pre><code>INSERT INTO students(name,email)
+VALUES('Sejal','sejal@example.com');
+
+INSERT INTO students(name,email)
+VALUES('Rahul','rahul@example.com');</code></pre>
+
+<p>The database automatically generates the student IDs.</p>
+
+
+<h2>12. FOREIGN KEY</h2>
+
+<p>A foreign key is a column that creates a relationship between two tables.</p>
+
+<p>It usually refers to the primary key of another table.</p>
+
+<h3>Example</h3>
+
+<pre><code>CREATE TABLE courses(
+course_id INT PRIMARY KEY,
+course_name VARCHAR(100)
+);
+
+CREATE TABLE students(
+student_id INT PRIMARY KEY,
+name VARCHAR(100),
+course_id INT,
+FOREIGN KEY(course_id)
+REFERENCES courses(course_id)
+);</code></pre>
+
+
+<h2>13. Why is FOREIGN KEY Important?</h2>
+
+<ul>
+
+<li>It connects related tables.</li>
+
+<li>It helps maintain data consistency.</li>
+
+<li>It prevents invalid relationships.</li>
+
+<li>It represents relationships between database records.</li>
+
+</ul>
+
+
+<h2>14. Example of Foreign Key</h2>
+
+<p>Suppose the courses table contains:</p>
+
+<table>
+
+<tr>
+<th>course_id</th>
+<th>course_name</th>
+</tr>
+
+<tr>
+<td>1</td>
+<td>HTML</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>CSS</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>SQL</td>
+</tr>
+
+</table>
+
+<p>The students table can store the corresponding course ID.</p>
+
+<table>
+
+<tr>
+<th>student_id</th>
+<th>name</th>
+<th>course_id</th>
+</tr>
+
+<tr>
+<td>101</td>
+<td>Sejal</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>102</td>
+<td>Rahul</td>
+<td>2</td>
+</tr>
+
+<tr>
+<td>103</td>
+<td>Priya</td>
+<td>3</td>
+</tr>
+
+</table>
+
+
+<h2>15. Primary Key vs Foreign Key</h2>
+
+<table>
+
+<tr>
+<th>PRIMARY KEY</th>
+<th>FOREIGN KEY</th>
+</tr>
+
+<tr>
+<td>Uniquely identifies records.</td>
+<td>Connects records between tables.</td>
+</tr>
+
+<tr>
+<td>Cannot contain NULL.</td>
+<td>Can contain NULL unless restricted.</td>
+</tr>
+
+<tr>
+<td>Usually one primary key definition per table.</td>
+<td>A table can have multiple foreign keys.</td>
+</tr>
+
+<tr>
+<td>Identifies the record in its own table.</td>
+<td>References a key in another table.</td>
+</tr>
+
+</table>
+
+
+<h2>16. Composite Primary Key</h2>
+
+<p>A composite primary key consists of two or more columns used together to uniquely identify a record.</p>
+
+<h3>Example</h3>
+
+<pre><code>CREATE TABLE enrollments(
+student_id INT,
+course_id INT,
+enrollment_date DATE,
+PRIMARY KEY(student_id,course_id)
+);</code></pre>
+
+<p>Here, the combination of student_id and course_id identifies an enrollment.</p>
+
+
+<h2>17. Database Relationships</h2>
+
+<p>Relationships describe how tables are connected to each other.</p>
+
+<p>The main types of relationships are:</p>
+
+<ul>
+<li>One-to-One</li>
+<li>One-to-Many</li>
+<li>Many-to-Many</li>
+</ul>
+
+
+<h2>18. One-to-One Relationship</h2>
+
+<p>In a one-to-one relationship, one record in one table is associated with one record in another table.</p>
+
+<h3>Example</h3>
+
+<p>One student can have one student profile.</p>
+
+<pre><code>students
+student_id
+name
+
+student_profiles
+profile_id
+student_id</code></pre>
+
+
+<h2>19. One-to-Many Relationship</h2>
+
+<p>In a one-to-many relationship, one record in one table can be related to many records in another table.</p>
+
+<p>For example, one course can have many students.</p>
+
+<pre><code>courses
+course_id
+course_name
+
+students
+student_id
+name
+course_id</code></pre>
+
+
+<h2>20. Many-to-Many Relationship</h2>
+
+<p>In a many-to-many relationship, many records in one table can be related to many records in another table.</p>
+
+<p>For example, one student can enroll in multiple courses and one course can have multiple students.</p>
+
+<p>A third table called an enrollment or junction table is commonly used.</p>
+
+<pre><code>students
+student_id
+name
+
+courses
+course_id
+course_name
+
+enrollments
+student_id
+course_id</code></pre>
+
+
+<h2>21. Creating Courses Table</h2>
+
+<pre><code>CREATE TABLE courses(
+course_id INT PRIMARY KEY AUTO_INCREMENT,
+course_name VARCHAR(100) NOT NULL,
+duration VARCHAR(50),
+level VARCHAR(50)
+);</code></pre>
+
+
+<h2>22. Creating Students Table</h2>
+
+<pre><code>CREATE TABLE students(
+student_id INT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(100) NOT NULL,
+email VARCHAR(100) UNIQUE NOT NULL
+);</code></pre>
+
+
+<h2>23. Creating Enrollments Table</h2>
+
+<pre><code>CREATE TABLE enrollments(
+enrollment_id INT PRIMARY KEY AUTO_INCREMENT,
+student_id INT,
+course_id INT,
+enrollment_date DATE,
+FOREIGN KEY(student_id)
+REFERENCES students(student_id),
+FOREIGN KEY(course_id)
+REFERENCES courses(course_id)
+);</code></pre>
+
+
+<h2>24. Adding Course Data</h2>
+
+<pre><code>INSERT INTO courses(course_name,duration,level)
+VALUES
+('HTML','4 Weeks','Beginner'),
+('CSS','4 Weeks','Beginner'),
+('SQL','6 Weeks','Intermediate');</code></pre>
+
+
+<h2>25. Adding Student Data</h2>
+
+<pre><code>INSERT INTO students(name,email)
+VALUES
+('Sejal','sejal@example.com'),
+('Rahul','rahul@example.com'),
+('Priya','priya@example.com');</code></pre>
+
+
+<h2>26. Adding Enrollment Data</h2>
+
+<pre><code>INSERT INTO enrollments(student_id,course_id,enrollment_date)
+VALUES
+(1,1,'2026-08-15'),
+(1,3,'2026-08-15'),
+(2,2,'2026-08-15');</code></pre>
+
+
+<h2>27. Complete Database Structure</h2>
+
+<table>
+
+<tr>
+<th>Table</th>
+<th>Important Columns</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>students</td>
+<td>student_id, name, email</td>
+<td>Stores student information.</td>
+</tr>
+
+<tr>
+<td>courses</td>
+<td>course_id, course_name</td>
+<td>Stores course information.</td>
+</tr>
+
+<tr>
+<td>enrollments</td>
+<td>student_id, course_id</td>
+<td>Connects students and courses.</td>
+</tr>
+
+</table>
+
+
+<h2>28. Constraints in Your Academy Project</h2>
+
+<p>Constraints are useful when designing your Online Tech Learning Academy database.</p>
+
+<ul>
+
+<li>Student ID can be a PRIMARY KEY.</li>
+
+<li>Email can be UNIQUE.</li>
+
+<li>Student name can be NOT NULL.</li>
+
+<li>Course ID can be a PRIMARY KEY.</li>
+
+<li>Enrollment student_id can be a FOREIGN KEY.</li>
+
+<li>Enrollment course_id can be a FOREIGN KEY.</li>
+
+<li>Student ID can use AUTO_INCREMENT.</li>
+
+</ul>
+
+
+<h2>29. Complete Example</h2>
+
+<pre><code>CREATE DATABASE tech_learning_academy;
+
+USE tech_learning_academy;
+
+CREATE TABLE courses(
+course_id INT PRIMARY KEY AUTO_INCREMENT,
+course_name VARCHAR(100) NOT NULL,
+duration VARCHAR(50),
+level VARCHAR(50)
+);
+
+CREATE TABLE students(
+student_id INT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(100) NOT NULL,
+email VARCHAR(100) UNIQUE NOT NULL
+);
+
+CREATE TABLE enrollments(
+enrollment_id INT PRIMARY KEY AUTO_INCREMENT,
+student_id INT,
+course_id INT,
+enrollment_date DATE,
+FOREIGN KEY(student_id)
+REFERENCES students(student_id),
+FOREIGN KEY(course_id)
+REFERENCES courses(course_id)
+);</code></pre>
+
+
+<h2>30. Important Points to Remember</h2>
+
+<ol>
+
+<li>Constraints are rules applied to database columns.</li>
+
+<li>PRIMARY KEY uniquely identifies each record.</li>
+
+<li>PRIMARY KEY cannot contain NULL values.</li>
+
+<li>FOREIGN KEY connects two related tables.</li>
+
+<li>NOT NULL prevents NULL values.</li>
+
+<li>UNIQUE prevents duplicate values.</li>
+
+<li>DEFAULT provides a default value.</li>
+
+<li>CHECK restricts values according to a condition.</li>
+
+<li>AUTO_INCREMENT automatically generates numeric IDs.</li>
+
+<li>A table can have a primary key and multiple foreign keys.</li>
+
+<li>One-to-one means one record is related to one record.</li>
+
+<li>One-to-many means one record can be related to many records.</li>
+
+<li>Many-to-many relationships usually require a junction table.</li>
+
+<li>Foreign keys help maintain relationships between tables.</li>
+
+<li>Proper database relationships reduce duplicate and inconsistent data.</li>
+
+</ol>
+
+
+<h2>31. Lesson 3 Quick Revision</h2>
+
+<table>
+
+<tr>
+<th>Topic</th>
+<th>Meaning</th>
+</tr>
+
+<tr>
+<td>NOT NULL</td>
+<td>Value cannot be NULL.</td>
+</tr>
+
+<tr>
+<td>UNIQUE</td>
+<td>Values must be unique.</td>
+</tr>
+
+<tr>
+<td>PRIMARY KEY</td>
+<td>Uniquely identifies a record.</td>
+</tr>
+
+<tr>
+<td>FOREIGN KEY</td>
+<td>Connects two tables.</td>
+</tr>
+
+<tr>
+<td>DEFAULT</td>
+<td>Provides a default value.</td>
+</tr>
+
+<tr>
+<td>CHECK</td>
+<td>Restricts values.</td>
+</tr>
+
+<tr>
+<td>AUTO_INCREMENT</td>
+<td>Automatically generates numbers.</td>
+</tr>
+
+</table>
+
+
+<div class="lesson-summary">
+
+<h2>Lesson Summary</h2>
+
+<p>In this lesson, you learned how SQL constraints protect the accuracy and consistency of database data.</p>
+
+<p>You learned PRIMARY KEY, FOREIGN KEY, NOT NULL, UNIQUE, DEFAULT, CHECK and AUTO_INCREMENT.</p>
+
+<p>You also learned how tables can be connected using one-to-one, one-to-many and many-to-many relationships.</p>
+
+<p>For your Online Tech Learning Academy, these concepts are especially important because students, courses and enrollments need to be connected correctly in your database.</p>
+
+<p><b>Next Lesson:</b> SQL Functions, GROUP BY, HAVING and Aggregate Functions</p>
+
+</div>
+
+</div>
+
+
+<script>
+
+function toggleStudentMenu(){
+
+const menu=document.getElementById("studentMenu");
+
+menu.classList.toggle("show");
+
+}
+
+</script>
+
+</body>
+</html>

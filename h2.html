@@ -1,0 +1,1009 @@
+ <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+<title>Information</title>
+<style>
+*{
+box-sizing:border-box;
+}
+body{
+background-color:black;
+margin:0;
+}
+nav{
+position:fixed;
+top:0;
+left:0;
+right:0;
+width:100%;
+height:70px;
+background-color:#1e3a5f;
+padding:10px 20px;
+display:flex;
+align-items:center;
+gap:10px;
+z-index:1000;
+}
+nav a{
+color:#40E0D0;
+text-decoration:none;
+font-size:15px;
+font-weight:bold;
+white-space:nowrap;
+}
+nav a:hover{
+color:white;
+}
+nav p{
+color:white;
+font-size:20px;
+margin:0;
+padding:0;
+white-space:nowrap;
+}
+.student-dashboard{
+margin-left:auto;
+position:relative;
+flex-shrink:0;
+}
+.student-logo{
+width:55px;
+height:55px;
+border-radius:50%;
+border:3px solid #40E0D0;
+background-color:#1e3a5f;
+color:white;
+font-size:27px;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:0;
+transition:0.2s;
+}
+.student-logo:hover{
+background-color:#40E0D0;
+color:#1e3a5f;
+}
+.student-menu{
+display:none;
+position:absolute;
+top:65px;
+right:0;
+width:200px;
+background-color:#1e3a5f;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 5px 20px rgba(0,0,0,0.5);
+z-index:2000;
+}
+.student-menu.show{
+display:flex;
+flex-direction:column;
+}
+.student-menu a{
+color:#40E0D0;
+text-decoration:none;
+padding:15px 18px;
+font-size:16px;
+font-weight:bold;
+border-bottom:1px solid rgba(64,224,208,0.2);
+white-space:nowrap;
+}
+.student-menu a:hover{
+background-color:#40E0D0;
+color:#1e3a5f;
+} 
+.course-notes{
+padding:100px 40px 40px;
+color:white;
+font-family:none;
+line-height:1.7;
+}
+.course-notes h1{
+color:#40E0D0;
+text-align:center;
+font-size:38px;
+margin-bottom:30px;
+}
+.course-notes h2{
+color:#40E0D0;
+font-size:28px;
+margin-top:35px;
+border-bottom:1px solid #40E0D0;
+padding-bottom:8px;
+}
+.course-notes h3{
+color:#40E0D0;
+font-size:22px;
+margin-top:25px;
+}
+.course-notes p{
+font-size:18px;
+margin:12px 0;
+}
+.course-notes ul,.course-notes ol{
+font-size:18px;
+margin-left:25px;
+}
+.course-notes li{
+margin:6px 0;
+}
+.course-notes table{
+width:100%;
+border-collapse:collapse;
+margin:20px 0;
+font-size:17px;
+}
+.course-notes th,.course-notes td{
+border:1px solid #40E0D0;
+padding:12px;
+text-align:left;
+}
+.course-notes th{
+color:#40E0D0;
+}
+.course-notes code{
+color:#40E0D0;
+}
+.course-notes pre{
+background-color:#111;
+border:1px solid #333;
+padding:20px;
+overflow-x:auto;
+border-radius:8px;
+font-size:16px;
+line-height:1.5;
+}
+.lesson-summary{
+border-left:4px solid #40E0D0;
+padding:10px 20px;
+margin:20px 0;
+background-color:#111;
+}
+</style>
+</head>
+<body>
+<nav> 
+<p>|</p>
+<a href="index.html">HOME</a>
+<p>|</p>
+<a href="information.html">INFO</a>
+<p>|</p>
+<a href="courses.html">COURSES</a>
+<p>|</p>
+<a href="login.html">LOGIN</a>
+<p>|</p>
+<a href="forms.html">REGISTRATION</a>
+<p>|</p>
+<a href="contact.html">📞 CONTACT US</a>
+
+<div class="student-dashboard">
+<button class="student-logo" onclick="toggleStudentMenu()" title="Student Dashboard">🎓</button>
+<div class="student-menu" id="studentMenu"> 
+     
+<a href="student-dashboard.php">
+🏠 Dashboard</a>  
+<a href="logout.php">🏠Logout</a> 
+</div>
+</div>
+</nav> 
+ <div class="course-notes">
+
+<h1>HTML Lesson 2: Text Formatting, Lists, Links and Images</h1>
+
+<h2>1. Introduction</h2>
+
+<p>In this lesson, we will learn how to format text, create different types of lists, create links and add images to an HTML webpage.</p>
+
+<p>These elements are commonly used when designing real websites and are important for creating clear and organized webpage content.</p>
+
+
+<h2>2. HTML Text Formatting</h2>
+
+<p>HTML provides different tags for formatting and giving importance to text.</p>
+
+<p>Some commonly used formatting tags are:</p>
+
+<table>
+<tr>
+<th>Tag</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>&lt;b&gt;</td>
+<td>Makes text bold</td>
+</tr>
+
+<tr>
+<td>&lt;strong&gt;</td>
+<td>Shows important text</td>
+</tr>
+
+<tr>
+<td>&lt;i&gt;</td>
+<td>Makes text italic</td>
+</tr>
+
+<tr>
+<td>&lt;em&gt;</td>
+<td>Emphasizes text</td>
+</tr>
+
+<tr>
+<td>&lt;u&gt;</td>
+<td>Underlines text</td>
+</tr>
+
+<tr>
+<td>&lt;mark&gt;</td>
+<td>Highlights text</td>
+</tr>
+
+<tr>
+<td>&lt;small&gt;</td>
+<td>Displays smaller text</td>
+</tr>
+
+<tr>
+<td>&lt;del&gt;</td>
+<td>Shows deleted text</td>
+</tr>
+
+<tr>
+<td>&lt;ins&gt;</td>
+<td>Shows inserted text</td>
+</tr>
+
+<tr>
+<td>&lt;sub&gt;</td>
+<td>Creates subscript text</td>
+</tr>
+
+<tr>
+<td>&lt;sup&gt;</td>
+<td>Creates superscript text</td>
+</tr>
+
+</table>
+
+
+<h2>3. Bold Text</h2>
+
+<p>The <code>&lt;b&gt;</code> tag is used to make text bold.</p>
+
+<h3>Syntax</h3>
+
+<pre><code>&lt;b&gt;This text is bold&lt;/b&gt;</code></pre>
+
+<h3>Example</h3>
+
+<pre><code>&lt;p&gt;Welcome to &lt;b&gt;Online Tech Learning Academy&lt;/b&gt;.&lt;/p&gt;</code></pre>
+
+<p>Output:</p>
+
+<p>Welcome to <b>Online Tech Learning Academy</b>.</p>
+
+
+<h2>4. Strong Text</h2>
+
+<p>The <code>&lt;strong&gt;</code> tag is used to indicate that the text is important.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;p&gt;&lt;strong&gt;Important Notice&lt;/strong&gt;&lt;/p&gt;</code></pre>
+
+<p>It normally appears bold in the browser.</p>
+
+<p>The <code>&lt;strong&gt;</code> tag gives semantic meaning that the content is important.</p>
+
+
+<h2>5. Italic Text</h2>
+
+<p>The <code>&lt;i&gt;</code> tag is used to display text in italic style.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;p&gt;This is &lt;i&gt;italic text&lt;/i&gt;.&lt;/p&gt;</code></pre>
+
+<p>Output:</p>
+
+<p>This is <i>italic text</i>.</p>
+
+
+<h2>6. Emphasized Text</h2>
+
+<p>The <code>&lt;em&gt;</code> tag is used to emphasize text.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;p&gt;You &lt;em&gt;must&lt;/em&gt; complete this lesson.&lt;/p&gt;</code></pre>
+
+<p>The text normally appears italic.</p>
+
+
+<h2>7. Underlined Text</h2>
+
+<p>The <code>&lt;u&gt;</code> tag is used to underline text.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;p&gt;&lt;u&gt;HTML Course&lt;/u&gt;&lt;/p&gt;</code></pre>
+
+<p>Output:</p>
+
+<p><u>HTML Course</u></p>
+
+
+<h2>8. Highlighted Text</h2>
+
+<p>The <code>&lt;mark&gt;</code> tag is used to highlight text.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;p&gt;Learn &lt;mark&gt;HTML&lt;/mark&gt; first.&lt;/p&gt;</code></pre>
+
+<p>Output:</p>
+
+<p>Learn <mark>HTML</mark> first.</p>
+
+
+<h2>9. Small Text</h2>
+
+<p>The <code>&lt;small&gt;</code> tag displays text smaller than the surrounding text.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;p&gt;This is normal text.&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;This is small text.&lt;/small&gt;&lt;/p&gt;</code></pre>
+
+<p>Output:</p>
+
+<p>This is normal text.</p>
+
+<p><small>This is small text.</small></p>
+
+
+<h2>10. Deleted Text</h2>
+
+<p>The <code>&lt;del&gt;</code> tag represents text that has been deleted.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;p&gt;Price: &lt;del&gt;₹1000&lt;/del&gt; ₹700&lt;/p&gt;</code></pre>
+
+<p>Output:</p>
+
+<p>Price: <del>₹1000</del> ₹700</p>
+
+
+<h2>11. Inserted Text</h2>
+
+<p>The <code>&lt;ins&gt;</code> tag represents text that has been inserted.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;p&gt;New price: &lt;ins&gt;₹700&lt;/ins&gt;&lt;/p&gt;</code></pre>
+
+<p>Output:</p>
+
+<p>New price: <ins>₹700</ins></p>
+
+
+<h2>12. Subscript Text</h2>
+
+<p>The <code>&lt;sub&gt;</code> tag is used to display text below the normal line.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;p&gt;H&lt;sub&gt;2&lt;/sub&gt;O&lt;/p&gt;</code></pre>
+
+<p>Output:</p>
+
+<p>H<sub>2</sub>O</p>
+
+
+<h2>13. Superscript Text</h2>
+
+<p>The <code>&lt;sup&gt;</code> tag is used to display text above the normal line.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;p&gt;X&lt;sup&gt;2&lt;/sup&gt;&lt;/p&gt;</code></pre>
+
+<p>Output:</p>
+
+<p>X<sup>2</sup></p>
+
+
+<h2>14. Combining Text Formatting Tags</h2>
+
+<p>Multiple formatting tags can be used together.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;p&gt;
+&lt;b&gt;&lt;i&gt;Welcome to HTML&lt;/i&gt;&lt;/b&gt;
+&lt;/p&gt;</code></pre>
+
+<p>Different formatting elements can be nested inside each other.</p>
+
+
+<h2>15. HTML Lists</h2>
+
+<p>Lists are used to display related items in an organized way.</p>
+
+<p>HTML mainly provides three types of lists:</p>
+
+<ol>
+<li>Unordered List</li>
+<li>Ordered List</li>
+<li>Description List</li>
+</ol>
+
+
+<h2>16. Unordered List</h2>
+
+<p>An unordered list displays items using bullets.</p>
+
+<p>The unordered list uses the <code>&lt;ul&gt;</code> tag.</p>
+
+<p>Each item is written using the <code>&lt;li&gt;</code> tag.</p>
+
+<h3>Syntax</h3>
+
+<pre><code>&lt;ul&gt;
+&lt;li&gt;HTML&lt;/li&gt;
+&lt;li&gt;CSS&lt;/li&gt;
+&lt;li&gt;JavaScript&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+<h3>Output</h3>
+
+<ul>
+<li>HTML</li>
+<li>CSS</li>
+<li>JavaScript</li>
+</ul>
+
+
+<h2>17. Ordered List</h2>
+
+<p>An ordered list displays items in a particular order using numbers by default.</p>
+
+<p>The ordered list uses the <code>&lt;ol&gt;</code> tag.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;ol&gt;
+&lt;li&gt;HTML&lt;/li&gt;
+&lt;li&gt;CSS&lt;/li&gt;
+&lt;li&gt;JavaScript&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+
+<h3>Output</h3>
+
+<ol>
+<li>HTML</li>
+<li>CSS</li>
+<li>JavaScript</li>
+</ol>
+
+
+<h2>18. Ordered List with Different Numbering</h2>
+
+<p>The <code>type</code> attribute can be used to change the numbering style of an ordered list.</p>
+
+<h3>Uppercase Letters</h3>
+
+<pre><code>&lt;ol type="A"&gt;
+&lt;li&gt;HTML&lt;/li&gt;
+&lt;li&gt;CSS&lt;/li&gt;
+&lt;li&gt;JavaScript&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+
+<h3>Lowercase Letters</h3>
+
+<pre><code>&lt;ol type="a"&gt;
+&lt;li&gt;HTML&lt;/li&gt;
+&lt;li&gt;CSS&lt;/li&gt;
+&lt;li&gt;JavaScript&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+
+<h3>Roman Numbers</h3>
+
+<pre><code>&lt;ol type="I"&gt;
+&lt;li&gt;HTML&lt;/li&gt;
+&lt;li&gt;CSS&lt;/li&gt;
+&lt;li&gt;JavaScript&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+
+
+<h2>19. Description List</h2>
+
+<p>A description list is used to display terms and their descriptions.</p>
+
+<p>It uses:</p>
+
+<ul>
+<li><code>&lt;dl&gt;</code> for the description list.</li>
+<li><code>&lt;dt&gt;</code> for the term.</li>
+<li><code>&lt;dd&gt;</code> for the description.</li>
+</ul>
+
+<h3>Example</h3>
+
+<pre><code>&lt;dl&gt;
+&lt;dt&gt;HTML&lt;/dt&gt;
+&lt;dd&gt;Language used to structure webpages.&lt;/dd&gt;
+
+&lt;dt&gt;CSS&lt;/dt&gt;
+&lt;dd&gt;Language used to style webpages.&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+
+
+<h2>20. Nested Lists</h2>
+
+<p>A list can contain another list inside it. This is called a nested list.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;ul&gt;
+&lt;li&gt;Frontend
+&lt;ul&gt;
+&lt;li&gt;HTML&lt;/li&gt;
+&lt;li&gt;CSS&lt;/li&gt;
+&lt;li&gt;JavaScript&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+
+&lt;li&gt;Backend
+&lt;ul&gt;
+&lt;li&gt;PHP&lt;/li&gt;
+&lt;li&gt;MySQL&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+
+<h2>21. HTML Links</h2>
+
+<p>Links are used to connect one webpage to another webpage or resource.</p>
+
+<p>The <code>&lt;a&gt;</code> tag is used to create a hyperlink.</p>
+
+<h3>Syntax</h3>
+
+<pre><code>&lt;a href="URL"&gt;Link Text&lt;/a&gt;</code></pre>
+
+<h3>Example</h3>
+
+<pre><code>&lt;a href="https://www.google.com"&gt;Visit Google&lt;/a&gt;</code></pre>
+
+
+<h2>22. Linking Another HTML Page</h2>
+
+<p>HTML pages in the same project folder can be connected using their filenames.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;a href="about.html"&gt;About Us&lt;/a&gt;</code></pre>
+
+<p>When the user clicks the link, the browser opens <b>about.html</b>.</p>
+
+
+<h2>23. Opening a Link in a New Tab</h2>
+
+<p>The <code>target="_blank"</code> attribute can be used to open a link in a new browser tab.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;a href="https://www.google.com" target="_blank"&gt;
+Visit Google
+&lt;/a&gt;</code></pre>
+
+
+<h2>24. Email Links</h2>
+
+<p>The <code>mailto:</code> scheme can be used to create a link that opens the user's email application.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;a href="mailto:example@gmail.com"&gt;
+Send Email
+&lt;/a&gt;</code></pre>
+
+
+<h2>25. Telephone Links</h2>
+
+<p>The <code>tel:</code> scheme can be used to create a telephone link.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;a href="tel:+911234567890"&gt;
+Call Us
+&lt;/a&gt;</code></pre>
+
+
+<h2>26. Images in HTML</h2>
+
+<p>Images make webpages more attractive and help users understand information visually.</p>
+
+<p>The <code>&lt;img&gt;</code> tag is used to add an image to a webpage.</p>
+
+<h3>Syntax</h3>
+
+<pre><code>&lt;img src="image.jpg" alt="Description"&gt;</code></pre>
+
+<p>The <code>&lt;img&gt;</code> tag is a void element, so it does not require a closing tag.</p>
+
+
+<h2>27. The src Attribute</h2>
+
+<p>The <code>src</code> attribute specifies the location of the image.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;img src="student.jpg"&gt;</code></pre>
+
+<p>If the image is stored in another folder:</p>
+
+<pre><code>&lt;img src="images/student.jpg"&gt;</code></pre>
+
+
+<h2>28. The alt Attribute</h2>
+
+<p>The <code>alt</code> attribute provides alternative text for an image.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;img src="student.jpg" alt="Student learning HTML"&gt;</code></pre>
+
+<p>The alternative text is useful when an image cannot be displayed and also improves accessibility.</p>
+
+
+<h2>29. Image Width and Height</h2>
+
+<p>The <code>width</code> and <code>height</code> attributes can be used to specify the dimensions of an image.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;img src="student.jpg"
+width="300"
+height="200"
+alt="Student"&gt;</code></pre>
+
+
+<h2>30. Image as a Link</h2>
+
+<p>An image can also be used as a clickable link by placing the <code>&lt;img&gt;</code> element inside an <code>&lt;a&gt;</code> element.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;a href="https://www.google.com"&gt;
+&lt;img src="google.jpg" alt="Google"&gt;
+&lt;/a&gt;</code></pre>
+
+
+<h2>31. Complete Example of Text Formatting</h2>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Text Formatting&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;h1&gt;HTML Text Formatting&lt;/h1&gt;
+
+&lt;p&gt;&lt;b&gt;Bold Text&lt;/b&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;i&gt;Italic Text&lt;/i&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;u&gt;Underlined Text&lt;/u&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;mark&gt;Highlighted Text&lt;/mark&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Important Text&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;H&lt;sub&gt;2&lt;/sub&gt;O&lt;/p&gt;
+
+&lt;p&gt;X&lt;sup&gt;2&lt;/sup&gt;&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+
+<h2>32. Complete Example of Lists</h2>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;HTML Lists&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;h1&gt;My Courses&lt;/h1&gt;
+
+&lt;h2&gt;Unordered List&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;HTML&lt;/li&gt;
+&lt;li&gt;CSS&lt;/li&gt;
+&lt;li&gt;JavaScript&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Ordered List&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;HTML&lt;/li&gt;
+&lt;li&gt;CSS&lt;/li&gt;
+&lt;li&gt;JavaScript&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+
+<h2>33. Complete Example of Links and Images</h2>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Links and Images&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;h1&gt;Online Tech Learning Academy&lt;/h1&gt;
+
+&lt;img src="academy.jpg"
+alt="Online Tech Learning Academy"
+width="400"
+height="250"&gt;
+
+&lt;br&gt;
+&lt;br&gt;
+
+&lt;a href="courses.html"&gt;
+View Courses
+&lt;/a&gt;
+
+&lt;br&gt;
+
+&lt;a href="contact.html"&gt;
+Contact Us
+&lt;/a&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+
+<h2>34. Important Tags in This Lesson</h2>
+
+<table>
+
+<tr>
+<th>Tag</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>&lt;b&gt;</td>
+<td>Bold text</td>
+</tr>
+
+<tr>
+<td>&lt;strong&gt;</td>
+<td>Important text</td>
+</tr>
+
+<tr>
+<td>&lt;i&gt;</td>
+<td>Italic text</td>
+</tr>
+
+<tr>
+<td>&lt;em&gt;</td>
+<td>Emphasized text</td>
+</tr>
+
+<tr>
+<td>&lt;u&gt;</td>
+<td>Underlined text</td>
+</tr>
+
+<tr>
+<td>&lt;mark&gt;</td>
+<td>Highlighted text</td>
+</tr>
+
+<tr>
+<td>&lt;small&gt;</td>
+<td>Small text</td>
+</tr>
+
+<tr>
+<td>&lt;del&gt;</td>
+<td>Deleted text</td>
+</tr>
+
+<tr>
+<td>&lt;ins&gt;</td>
+<td>Inserted text</td>
+</tr>
+
+<tr>
+<td>&lt;sub&gt;</td>
+<td>Subscript</td>
+</tr>
+
+<tr>
+<td>&lt;sup&gt;</td>
+<td>Superscript</td>
+</tr>
+
+<tr>
+<td>&lt;ul&gt;</td>
+<td>Unordered list</td>
+</tr>
+
+<tr>
+<td>&lt;ol&gt;</td>
+<td>Ordered list</td>
+</tr>
+
+<tr>
+<td>&lt;li&gt;</td>
+<td>List item</td>
+</tr>
+
+<tr>
+<td>&lt;dl&gt;</td>
+<td>Description list</td>
+</tr>
+
+<tr>
+<td>&lt;dt&gt;</td>
+<td>Description term</td>
+</tr>
+
+<tr>
+<td>&lt;dd&gt;</td>
+<td>Description</td>
+</tr>
+
+<tr>
+<td>&lt;a&gt;</td>
+<td>Creates a hyperlink</td>
+</tr>
+
+<tr>
+<td>&lt;img&gt;</td>
+<td>Displays an image</td>
+</tr>
+
+</table>
+
+
+<h2>35. Important Attributes in This Lesson</h2>
+
+<table>
+
+<tr>
+<th>Attribute</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>href</td>
+<td>Specifies the destination of a link</td>
+</tr>
+
+<tr>
+<td>target</td>
+<td>Specifies where the linked page opens</td>
+</tr>
+
+<tr>
+<td>src</td>
+<td>Specifies the image source</td>
+</tr>
+
+<tr>
+<td>alt</td>
+<td>Provides alternative text for an image</td>
+</tr>
+
+<tr>
+<td>width</td>
+<td>Specifies image width</td>
+</tr>
+
+<tr>
+<td>height</td>
+<td>Specifies image height</td>
+</tr>
+
+<tr>
+<td>type</td>
+<td>Specifies the numbering style of an ordered list</td>
+</tr>
+
+</table>
+
+
+<h2>36. Important Points to Remember</h2>
+
+<ol>
+
+<li>The <code>&lt;b&gt;</code> tag makes text bold.</li>
+
+<li>The <code>&lt;strong&gt;</code> tag indicates important text.</li>
+
+<li>The <code>&lt;i&gt;</code> tag displays italic text.</li>
+
+<li>The <code>&lt;em&gt;</code> tag emphasizes text.</li>
+
+<li>The <code>&lt;u&gt;</code> tag underlines text.</li>
+
+<li>The <code>&lt;mark&gt;</code> tag highlights text.</li>
+
+<li>The <code>&lt;small&gt;</code> tag displays smaller text.</li>
+
+<li>The <code>&lt;del&gt;</code> tag represents deleted text.</li>
+
+<li>The <code>&lt;ins&gt;</code> tag represents inserted text.</li>
+
+<li>The <code>&lt;sub&gt;</code> tag creates subscript text.</li>
+
+<li>The <code>&lt;sup&gt;</code> tag creates superscript text.</li>
+
+<li>The <code>&lt;ul&gt;</code> tag creates an unordered list.</li>
+
+<li>The <code>&lt;ol&gt;</code> tag creates an ordered list.</li>
+
+<li>The <code>&lt;li&gt;</code> tag creates a list item.</li>
+
+<li>The <code>&lt;a&gt;</code> tag creates hyperlinks.</li>
+
+<li>The <code>href</code> attribute specifies the link destination.</li>
+
+<li>The <code>target="_blank"</code> attribute opens a link in a new tab.</li>
+
+<li>The <code>&lt;img&gt;</code> tag displays images.</li>
+
+<li>The <code>src</code> attribute specifies the image source.</li>
+
+<li>The <code>alt</code> attribute provides alternative text for images.</li>
+
+<li>The <code>width</code> and <code>height</code> attributes specify image dimensions.</li>
+
+</ol>
+
+
+<div class="lesson-summary">
+
+<h2>Lesson Summary</h2>
+
+<p>In this lesson, you learned how to format text using HTML formatting tags, create unordered and ordered lists, create description lists, create links, open links in new tabs, create email and telephone links, add images and use important image attributes.</p>
+
+<p><b>Next Lesson:</b> HTML Tables and Forms</p>
+
+</div>
+
+</div>
+ 
+<script>
+function toggleStudentMenu(){
+const menu=document.getElementById("studentMenu");
+menu.classList.toggle("show");
+}
+</script>
+
+</body>
+</html>

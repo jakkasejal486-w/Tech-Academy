@@ -1,0 +1,1329 @@
+     
+  <!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Forms - Tech Learning Academy</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+}
+
+body{
+background-color:black;
+color:white;
+margin:0;
+padding:90px 30px 30px;
+}
+
+nav{
+position:fixed;
+top:0;
+left:0;
+right:0;
+width:100%;
+height:70px;
+background-color:#1e3a5f;
+padding:10px 20px;
+display:flex;
+align-items:center;
+gap:10px;
+z-index:1000;
+}
+
+nav a{
+color:#40E0D0;
+text-decoration:none;
+font-size:15px;
+font-weight:bold;
+white-space:nowrap;
+}
+
+nav a:hover{
+color:white;
+}
+
+nav p{
+color:white;
+font-size:20px;
+margin:0;
+padding:0;
+white-space:nowrap;
+}
+
+.student-dashboard{
+margin-left:auto;
+position:relative;
+flex-shrink:0;
+}
+
+.student-logo{
+width:55px;
+height:55px;
+border-radius:50%;
+border:3px solid #40E0D0;
+background-color:#1e3a5f;
+color:white;
+font-size:27px;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:0;
+transition:0.2s;
+}
+
+.student-logo:hover{
+background-color:#40E0D0;
+color:#1e3a5f;
+}
+
+.student-menu{
+display:none;
+position:absolute;
+top:65px;
+right:0;
+width:200px;
+background-color:#1e3a5f;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 5px 20px rgba(0,0,0,0.5);
+z-index:2000;
+}
+
+.student-menu.show{
+display:flex;
+flex-direction:column;
+}
+
+.student-menu a{
+color:#40E0D0;
+text-decoration:none;
+padding:15px 18px;
+font-size:16px;
+font-weight:bold;
+border-bottom:1px solid rgba(64,224,224,0.2);
+white-space:nowrap;
+}
+
+.student-menu a:hover{
+background-color:#40E0D0;
+color:#1e3a5f;
+}
+
+h1{
+color:#40E0D0;
+text-align:center;
+font-size:35px;
+margin-bottom:10px;
+}
+
+h2{
+color:#40E0D0;
+text-decoration:underline;
+text-align:center;
+font-size:28px;
+margin-bottom:30px;
+}
+
+form{
+width:850px;
+max-width:95%;
+margin:auto;
+padding:35px 45px;
+border:2px solid #40E0D0;
+border-radius:15px;
+background-color:#080808;
+box-shadow:0 0 20px rgba(64,224,224,0.25);
+}
+
+.section-title{
+color:#40E0D0;
+font-size:22px;
+border-bottom:1px solid #40E0D0;
+padding-bottom:8px;
+margin-top:20px;
+margin-bottom:25px;
+}
+
+.form-row{
+display:flex;
+align-items:center;
+margin-bottom:20px;
+}
+
+label{
+color:#40E0D0;
+width:230px;
+font-size:18px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="tel"],
+select{
+
+width:300px;
+height:40px;
+padding:8px 12px;
+font-size:16px;
+border:1px solid #40E0D0;
+border-radius:6px;
+background-color:#111;
+color:white;
+outline:none;
+
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="date"]:focus,
+input[type="tel"]:focus,
+select:focus{
+
+border:2px solid #40E0D0;
+box-shadow:0 0 8px rgba(64,224,224,0.4);
+
+}
+
+select{
+cursor:pointer;
+}
+
+input[type="date"]{
+color-scheme:dark;
+}
+
+.question{
+color:#40E0D0;
+font-size:20px;
+margin-top:30px;
+margin-bottom:15px;
+}
+
+.checkbox-group{
+display:flex;
+flex-wrap:wrap;
+gap:12px;
+margin-bottom:25px;
+}
+
+.checkbox-group input[type="checkbox"]{
+display:none;
+}
+
+.checkbox-group label{
+
+width:auto;
+padding:12px 18px;
+border:1px solid #40E0D0;
+border-radius:8px;
+color:white;
+cursor:pointer;
+transition:0.3s;
+
+}
+
+.checkbox-group label:hover{
+background-color:#123333;
+}
+
+.checkbox-group input[type="checkbox"]:checked+label{
+background-color:#40E0D0;
+color:black;
+font-weight:bold;
+}
+
+.button-area{
+text-align:center;
+margin-top:35px;
+}
+
+input[type="submit"],
+input[type="reset"]{
+
+width:130px;
+height:45px;
+font-size:17px;
+font-weight:bold;
+border-radius:7px;
+cursor:pointer;
+margin:10px;
+
+}
+
+input[type="submit"]{
+
+background-color:#40E0D0;
+color:black;
+border:2px solid #40E0D0;
+
+}
+
+input[type="submit"]:hover{
+
+background-color:black;
+color:#40E0D0;
+
+}
+
+input[type="reset"]{
+
+background-color:black;
+color:#40E0D0;
+border:2px solid #40E0D0;
+
+}
+
+input[type="reset"]:hover{
+
+background-color:#40E0D0;
+color:black;
+
+}
+
+
+/* OTP BUTTON */
+
+.getotp{
+
+width:130px;
+height:40px;
+font-size:15px;
+font-weight:bold;
+border-radius:7px;
+cursor:pointer;
+margin-left:230px;
+margin-bottom:20px;
+
+background-color:#40E0D0;
+color:black;
+border:2px solid #40E0D0;
+
+}
+
+.getotp:hover{
+
+background-color:black;
+color:#40E0D0;
+
+}
+
+
+/* VERIFY BUTTON */
+
+.otp{
+
+width:130px;
+height:40px;
+font-size:15px;
+font-weight:bold;
+border-radius:7px;
+cursor:pointer;
+margin-left:230px;
+margin-bottom:20px;
+
+background-color:#40E0D0;
+color:black;
+border:2px solid #40E0D0;
+
+}
+
+.otp:hover{
+
+background-color:black;
+color:#40E0D0;
+
+}
+
+
+/* OTP MESSAGE */
+
+#otpMessage{
+
+margin-left:230px;
+font-size:16px;
+font-weight:bold;
+margin-bottom:20px;
+
+}
+
+
+/* OTP SECTION */
+
+#otpSection{
+
+display:none;
+
+}
+
+
+.required{
+
+color:#40E0D0;
+font-size:14px;
+margin-bottom:20px;
+
+}
+
+
+@media(max-width:700px){
+
+body{
+
+padding:90px 15px 15px;
+
+}
+
+form{
+
+padding:25px 20px;
+
+}
+
+.form-row{
+
+flex-direction:column;
+align-items:flex-start;
+
+}
+
+label{
+
+width:auto;
+margin-bottom:8px;
+
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="tel"],
+select{
+
+width:100%;
+
+}
+
+.getotp,
+.otp{
+
+margin-left:0;
+
+}
+
+#otpMessage{
+
+margin-left:0;
+
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<nav>
+
+<p>|</p>
+
+<a href="index.html">
+HOME
+</a>
+
+<p>|</p>
+
+<a href="information.html">
+INFO
+</a>
+
+<p>|</p>
+
+<a href="courses.html">
+COURSES
+</a>
+
+<p>|</p>
+
+<a href="login.html">
+LOGIN
+</a>
+
+<p>|</p>
+
+<a href="forms.html">
+REGISTRATION
+</a>
+
+<p>|</p>
+
+<a href="contact.html">
+📞 CONTACT US
+</a>
+
+
+<div class="student-dashboard">
+
+<button
+class="student-logo"
+type="button"
+onclick="toggleStudentMenu()"
+title="Student Dashboard">
+
+🎓
+
+</button>
+
+
+<div
+class="student-menu"
+id="studentMenu">
+
+<a href="student-dashboard.php">
+🏠 Dashboard
+</a>
+
+<a href="logout.php">
+🏠 Logout
+</a>
+
+</div>
+
+</div>
+
+</nav>
+
+
+<h1>
+Tech Learning Academy
+</h1>
+
+
+<h2>
+Student Registration Form
+</h2>
+
+
+<form
+action="forms.php"
+method="POST"
+onsubmit="return checkRegistration()">
+
+
+<p class="required">
+
+Fields marked with * are required.
+
+</p>
+
+
+<!-- PERSONAL INFORMATION -->
+
+<div class="section-title">
+
+1. Personal Information
+
+</div>
+
+
+<div class="form-row">
+
+<label for="fname">
+
+First Name *
+
+</label>
+
+<input
+type="text"
+id="fname"
+name="fname"
+required>
+
+</div>
+
+
+<div class="form-row">
+
+<label for="lname">
+
+Last Name *
+
+</label>
+
+<input
+type="text"
+id="lname"
+name="lname"
+required>
+
+</div>
+
+
+<div class="form-row">
+
+<label for="dob">
+
+Date of Birth *
+
+</label>
+
+<input
+type="date"
+id="dob"
+name="dob"
+required>
+
+</div>
+
+
+<div class="form-row">
+
+<label for="gender">
+
+Gender *
+
+</label>
+
+<select
+id="gender"
+name="gender"
+required>
+
+<option value="">
+-- Select Gender --
+</option>
+
+<option value="male">
+Male
+</option>
+
+<option value="female">
+Female
+</option>
+
+<option value="other">
+Other
+</option>
+
+<option value="prefer_not_to_say">
+Prefer not to say
+</option>
+
+</select>
+
+</div>
+
+
+<!-- CONTACT INFORMATION -->
+
+<div class="section-title">
+
+2. Contact Information
+
+</div>
+
+
+<div class="form-row">
+
+<label for="email">
+
+Email Address *
+
+</label>
+
+<input
+type="email"
+id="email"
+name="email"
+required>
+
+</div>
+
+
+<!-- GET OTP -->
+
+<button
+type="button"
+class="getotp"
+onclick="sendOTP()">
+
+Get OTP
+
+</button>
+
+
+<!-- OTP SECTION -->
+
+<div id="otpSection">
+
+
+<div class="form-row">
+
+<label for="otp">
+
+OTP Verification *
+
+</label>
+
+<input
+type="text"
+id="otp"
+name="otp"
+maxlength="6"
+pattern="[0-9]{6}"
+placeholder="Enter 6-digit OTP">
+
+</div>
+
+
+<button
+type="button"
+class="otp"
+onclick="verifyOTP()">
+
+VERIFY
+
+</button>
+
+
+<p id="otpMessage"></p>
+
+
+</div>
+
+
+<div class="form-row">
+
+<label for="contact">
+
+Contact Number *
+
+</label>
+
+<input
+type="tel"
+id="contact"
+name="contact"
+pattern="[0-9]{10}"
+maxlength="10"
+placeholder="10-digit mobile number"
+required>
+
+</div>
+
+
+<!-- ACCOUNT INFORMATION -->
+
+<div class="section-title">
+
+3. Account Information
+
+</div>
+
+
+<div class="form-row">
+
+<label for="password">
+
+Password *
+
+</label>
+
+<input
+type="password"
+id="password"
+name="password"
+required>
+
+</div>
+
+
+<div class="form-row">
+
+<label for="confirmPassword">
+
+Confirm Password *
+
+</label>
+
+<input
+type="password"
+id="confirmPassword"
+name="confirmPassword"
+required>
+
+</div>
+
+
+<!-- EDUCATION -->
+
+<div class="section-title">
+
+4. Education
+
+</div>
+
+
+<div class="form-row">
+
+<label for="education">
+
+Highest Education *
+
+</label>
+
+<select
+id="education"
+name="education"
+required>
+
+<option value="">
+-- Select Education --
+</option>
+
+<option value="10th">
+10th
+</option>
+
+<option value="12th">
+12th
+</option>
+
+<option value="diploma">
+Diploma
+</option>
+
+<option value="btech">
+B.Tech / B.E.
+</option>
+
+<option value="bca">
+BCA
+</option>
+
+<option value="bsc">
+B.Sc
+</option>
+
+<option value="mca">
+MCA
+</option>
+
+<option value="msc">
+M.Sc
+</option>
+
+<option value="other">
+Other
+</option>
+
+</select>
+
+</div>
+
+
+<!-- COURSE SELECTION -->
+
+<div class="section-title">
+
+5. Course Selection
+
+</div>
+
+
+<p class="question">
+
+Select the course(s) you want to learn:
+
+</p>
+
+
+<div class="checkbox-group">
+
+
+<input
+type="checkbox"
+id="course1"
+name="course[]"
+value="HTML">
+
+<label for="course1">
+HTML
+</label>
+
+
+<input
+type="checkbox"
+id="course2"
+name="course[]"
+value="CSS">
+
+<label for="course2">
+CSS
+</label>
+
+
+<input
+type="checkbox"
+id="course3"
+name="course[]"
+value="JavaScript">
+
+<label for="course3">
+JavaScript
+</label>
+
+
+<input
+type="checkbox"
+id="course4"
+name="course[]"
+value="Python">
+
+<label for="course4">
+Python
+</label>
+
+
+<input
+type="checkbox"
+id="course5"
+name="course[]"
+value="SQL">
+
+<label for="course5">
+SQL
+</label>
+
+
+</div>
+
+
+<!-- LEARNING PREFERENCES -->
+
+<div class="section-title">
+
+6. Learning Preferences
+
+</div>
+
+
+<p class="question">
+
+What motivates you to learn technical skills?
+
+</p>
+
+
+<div class="checkbox-group">
+
+
+<input
+type="checkbox"
+id="mot1"
+name="motivation[]"
+value="Career Growth">
+
+<label for="mot1">
+Career Growth
+</label>
+
+
+<input
+type="checkbox"
+id="mot2"
+name="motivation[]"
+value="Better Job Opportunities">
+
+<label for="mot2">
+Better Job Opportunities
+</label>
+
+
+<input
+type="checkbox"
+id="mot3"
+name="motivation[]"
+value="Interest in Technology">
+
+<label for="mot3">
+Interest in Technology
+</label>
+
+
+<input
+type="checkbox"
+id="mot4"
+name="motivation[]"
+value="Problem Solving">
+
+<label for="mot4">
+Improve Problem-Solving Skills
+</label>
+
+
+<input
+type="checkbox"
+id="mot5"
+name="motivation[]"
+value="Projects">
+
+<label for="mot5">
+Build Projects & Websites
+</label>
+
+
+</div>
+
+
+<!-- BUTTONS -->
+
+<div class="button-area">
+
+
+<input
+type="reset"
+value="Reset"
+onclick="resetOTP()">
+
+
+<input
+type="submit"
+value="Register">
+
+
+</div>
+
+
+</form>
+
+
+<script>
+
+
+/* STUDENT MENU */
+
+function toggleStudentMenu(){
+
+const menu =
+document.getElementById("studentMenu");
+
+menu.classList.toggle("show");
+
+}
+
+
+/* SEND OTP */
+
+function sendOTP(){
+
+let email =
+document.getElementById("email").value.trim();
+
+
+if(email === ""){
+
+alert("Please enter your email address.");
+
+return;
+
+}
+
+
+if(!email.includes("@")){
+
+alert("Please enter a valid email address.");
+
+return;
+
+}
+
+
+let button =
+document.querySelector(".getotp");
+
+button.disabled = true;
+
+button.innerText = "Sending...";
+
+
+fetch("send_otp.php", {
+
+method: "POST",
+
+headers: {
+
+"Content-Type":
+"application/x-www-form-urlencoded"
+
+},
+
+body:
+"email=" +
+encodeURIComponent(email)
+
+})
+
+
+.then(response => response.text())
+
+
+.then(data => {
+
+
+if(data.trim() === "OTP_SENT"){
+
+document.getElementById(
+"otpSection"
+).style.display = "block";
+
+
+alert(
+"OTP has been sent to your email."
+);
+
+
+button.innerText = "OTP Sent";
+
+
+}
+else{
+
+alert(data);
+
+button.disabled = false;
+
+button.innerText = "Get OTP";
+
+}
+
+})
+
+
+.catch(error =>{
+
+console.log(error);
+
+alert(
+"Unable to send OTP. Please try again."
+);
+
+button.disabled = false;
+
+button.innerText = "Get OTP";
+
+});
+
+}
+
+
+/* VERIFY OTP */
+
+function verifyOTP(){
+
+let otp =
+document.getElementById("otp").value.trim();
+
+
+if(otp === ""){
+
+alert("Please enter the OTP.");
+
+return;
+
+}
+
+
+if(otp.length !== 6){
+
+alert("OTP must contain 6 digits.");
+
+return;
+
+}
+
+
+let button =
+document.querySelector(".otp");
+
+button.disabled = true;
+
+button.innerText = "Checking...";
+
+
+fetch("verify_otp.php", {
+
+method: "POST",
+
+headers: {
+
+"Content-Type":
+"application/x-www-form-urlencoded"
+
+},
+
+body:
+"otp=" +
+encodeURIComponent(otp)
+
+})
+
+
+.then(response => response.text())
+
+
+.then(data => {
+
+
+document.getElementById(
+"otpMessage"
+).innerHTML = data;
+
+
+if(
+data.includes("OTP Verified Successfully")
+){
+
+document.getElementById(
+"otpMessage"
+).style.color = "#40E0D0";
+
+
+document.getElementById(
+"otp"
+).disabled = true;
+
+
+button.innerText = "VERIFIED";
+
+
+button.style.backgroundColor =
+"#40E0D0";
+
+
+button.disabled = true;
+
+}
+else{
+
+button.disabled = false;
+
+button.innerText = "VERIFY";
+
+}
+
+})
+
+
+.catch(error =>{
+
+console.log(error);
+
+alert(
+"Unable to verify OTP."
+);
+
+button.disabled = false;
+
+button.innerText = "VERIFY";
+
+});
+
+}
+
+
+/* CHECK BEFORE REGISTRATION */
+
+function checkRegistration(){
+
+let otpMessage =
+document.getElementById("otpMessage");
+
+
+if(
+!otpMessage.innerHTML.includes(
+"OTP Verified Successfully"
+)
+){
+
+alert(
+"Please verify your email with OTP before registering."
+);
+
+return false;
+
+}
+
+
+let password =
+document.getElementById("password").value;
+
+let confirmPassword =
+document.getElementById("confirmPassword").value;
+
+
+if(password !== confirmPassword){
+
+alert(
+"Password and Confirm Password do not match."
+);
+
+return false;
+
+}
+
+
+return true;
+
+}
+
+
+/* RESET */
+
+function resetOTP(){
+
+document.getElementById(
+"otpSection"
+).style.display = "none";
+
+
+document.getElementById(
+"otp"
+).value = "";
+
+
+document.getElementById(
+"otpMessage"
+).innerHTML = "";
+
+
+let getButton =
+document.querySelector(".getotp");
+
+getButton.disabled = false;
+
+getButton.innerText = "Get OTP";
+
+}
+
+</script>
+
+
+</body>
+
+</html>

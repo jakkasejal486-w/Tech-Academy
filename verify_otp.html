@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Verify OTP - Tech Learning Academy</title>
+
+    <style>
+
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial;
+            text-align: center;
+            padding-top: 120px;
+        }
+
+        .box {
+            width: 400px;
+            margin: auto;
+            padding: 40px;
+            background-color: #111;
+            border-radius: 15px;
+        }
+
+        input {
+            width: 90%;
+            padding: 12px;
+            margin: 15px 0;
+            font-size: 18px;
+        }
+
+        button {
+            padding: 12px 30px;
+            background-color: purple;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="box">
+
+        <h1>Verify OTP</h1>
+
+        <p>Enter the OTP sent to your email.</p>
+
+        <form action="verify_otp.php" method="POST">
+
+            <input
+                type="text"
+                name="otp"
+                maxlength="6"
+                placeholder="Enter 6-digit OTP"
+                required
+            >
+
+            <br>
+
+            <button type="submit">
+                Verify OTP
+            </button>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>My Certificate - Tech Learning Academy</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    background-color:black;
+    color:white;
+    margin:0;
+    padding:90px 30px 30px;
+    font-family:Arial, sans-serif;
+}
+
+
+/* NAVIGATION */
+
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    width:100%;
+    height:70px;
+
+    background-color:#1e3a5f;
+
+    padding:10px 20px;
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    z-index:1000;
+}
+
+nav a{
+    color:#40E0D0;
+    text-decoration:none;
+    font-size:15px;
+    font-weight:bold;
+    white-space:nowrap;
+}
+
+nav a:hover{
+    color:white;
+}
+
+nav p{
+    color:white;
+    font-size:20px;
+    margin:0;
+    padding:0;
+}
+
+
+/* STUDENT MENU */
+
+.student-dashboard{
+    margin-left:auto;
+    position:relative;
+    flex-shrink:0;
+}
+
+.student-logo{
+
+    width:55px;
+    height:55px;
+
+    border-radius:50%;
+
+    border:3px solid #40E0D0;
+
+    background-color:#1e3a5f;
+
+    color:white;
+
+    font-size:27px;
+
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:0;
+
+    transition:0.2s;
+}
+
+.student-logo:hover{
+
+    background-color:#40E0D0;
+    color:#1e3a5f;
+
+}
+
+.student-menu{
+
+    display:none;
+
+    position:absolute;
+
+    top:65px;
+    right:0;
+
+    width:210px;
+
+    background-color:#1e3a5f;
+
+    border-radius:10px;
+
+    overflow:hidden;
+
+    box-shadow:0 5px 20px rgba(0,0,0,0.5);
+
+    z-index:2000;
+}
+
+.student-menu.show{
+
+    display:flex;
+    flex-direction:column;
+
+}
+
+.student-menu a{
+
+    color:#40E0D0;
+
+    text-decoration:none;
+
+    padding:15px 18px;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    border-bottom:1px solid rgba(64,224,208,0.2);
+
+    white-space:nowrap;
+
+}
+
+.student-menu a:hover{
+
+    background-color:#40E0D0;
+    color:#1e3a5f;
+
+}
+
+
+/* PAGE TITLE */
+
+h1{
+
+    color:#40E0D0;
+
+    text-align:center;
+
+    font-size:36px;
+
+    margin-bottom:10px;
+
+}
+
+.subtitle{
+
+    text-align:center;
+
+    color:#ccc;
+
+    font-size:17px;
+
+    margin-bottom:35px;
+
+}
+
+
+/* CERTIFICATE AREA */
+
+.certificate-container{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:20px;
+
+}
+
+
+/* CERTIFICATE */
+
+.certificate{
+
+    width:900px;
+
+    max-width:95%;
+
+    min-height:600px;
+
+    background-color:#f8f8f8;
+
+    color:#111;
+
+    border:12px solid #1e3a5f;
+
+    outline:3px solid #40E0D0;
+
+    outline-offset:-20px;
+
+    padding:65px 70px;
+
+    text-align:center;
+
+    position:relative;
+
+    box-shadow:0 0 30px rgba(64,224,208,0.3);
+
+}
+
+
+/* CORNER DECORATION */
+
+.certificate::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:25px;
+    left:25px;
+
+    width:55px;
+    height:55px;
+
+    border-top:3px solid #40E0D0;
+    border-left:3px solid #40E0D0;
+
+}
+
+.certificate::after{
+
+    content:"";
+
+    position:absolute;
+
+    bottom:25px;
+    right:25px;
+
+    width:55px;
+    height:55px;
+
+    border-bottom:3px solid #40E0D0;
+    border-right:3px solid #40E0D0;
+
+}
+
+
+/* CERTIFICATE CONTENT */
+
+.certificate-small-title{
+
+    font-size:20px;
+
+    letter-spacing:4px;
+
+    color:#1e3a5f;
+
+    font-weight:bold;
+
+}
+
+.certificate h2{
+
+    font-size:42px;
+
+    color:#1e3a5f;
+
+    margin:15px 0;
+
+    letter-spacing:2px;
+
+}
+
+.certificate-line{
+
+    width:150px;
+
+    height:3px;
+
+    background-color:#40E0D0;
+
+    margin:15px auto 30px;
+
+}
+
+.presented{
+
+    font-size:18px;
+
+    color:#555;
+
+    margin-bottom:10px;
+
+}
+
+.student-name{
+
+    font-size:36px;
+
+    font-weight:bold;
+
+    color:#111;
+
+    border-bottom:2px solid #1e3a5f;
+
+    display:inline-block;
+
+    padding:0 35px 8px;
+
+    margin-bottom:20px;
+
+}
+
+.completion-text{
+
+    font-size:17px;
+
+    color:#444;
+
+    line-height:1.7;
+
+    max-width:650px;
+
+    margin:0 auto 25px;
+
+}
+
+.course-name{
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    color:#1e3a5f;
+
+    margin:15px 0 30px;
+
+}
+
+
+/* CERTIFICATE DETAILS */
+
+.certificate-details{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-end;
+
+    margin-top:40px;
+
+    gap:40px;
+
+}
+
+.detail{
+
+    flex:1;
+
+    text-align:center;
+
+}
+
+.detail-line{
+
+    border-top:1px solid #555;
+
+    padding-top:8px;
+
+    font-size:14px;
+
+    color:#444;
+
+}
+
+
+/* SEAL */
+
+.seal{
+
+    width:90px;
+    height:90px;
+
+    border:4px solid #1e3a5f;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin:auto;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+    color:#1e3a5f;
+
+    text-align:center;
+
+}
+
+
+/* BUTTONS */
+
+.button-area{
+
+    text-align:center;
+
+    margin-top:30px;
+
+}
+
+.btn{
+
+    padding:13px 25px;
+
+    margin:8px;
+
+    border-radius:7px;
+
+    border:2px solid #40E0D0;
+
+    background-color:#40E0D0;
+
+    color:black;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+.btn:hover{
+
+    background-color:black;
+
+    color:#40E0D0;
+
+}
+
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+    body{
+
+        padding:90px 10px 20px;
+
+    }
+
+    nav{
+
+        gap:5px;
+
+        padding:10px;
+
+    }
+
+    nav a{
+
+        font-size:11px;
+
+    }
+
+    nav p{
+
+        font-size:14px;
+
+    }
+
+    .certificate{
+
+        padding:55px 25px;
+
+        min-height:500px;
+
+        border-width:8px;
+
+    }
+
+    .certificate h2{
+
+        font-size:28px;
+
+    }
+
+    .student-name{
+
+        font-size:25px;
+
+    }
+
+    .course-name{
+
+        font-size:22px;
+
+    }
+
+    .certificate-details{
+
+        flex-direction:column;
+
+        align-items:center;
+
+    }
+
+}
+
+
+/* PRINT */
+
+@media print{
+
+    body{
+
+        background:white;
+
+        padding:0;
+
+    }
+
+    nav,
+    h1,
+    .subtitle,
+    .button-area{
+
+        display:none;
+
+    }
+
+    .certificate-container{
+
+        padding:0;
+
+    }
+
+    .certificate{
+
+        max-width:none;
+
+        width:100%;
+
+        box-shadow:none;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- NAVIGATION -->
+
+<nav>
+
+<p>|</p>
+
+<a href="index.html">
+HOME
+</a>
+
+<p>|</p>
+
+<a href="information.html">
+INFO
+</a>
+
+<p>|</p>
+
+<a href="courses.html">
+COURSES
+</a>
+
+<p>|</p>
+
+<a href="login.html">
+LOGIN
+</a>
+
+<p>|</p>
+
+<a href="forms.html">
+REGISTRATION
+</a>
+
+<p>|</p>
+
+<a href="contact.html">
+📞 CONTACT US
+</a>
+
+
+<div class="student-dashboard">
+
+<button
+class="student-logo"
+type="button"
+onclick="toggleStudentMenu()"
+title="Student Dashboard">
+
+🎓
+
+</button>
+
+
+<div
+class="student-menu"
+id="studentMenu">
+ 
+                <a href="student-dashboard.php">
+                    🏠 Dashboard
+                </a>
+
+                <a href="logout.php">
+                    🏠Logout
+                </a>
+
+</div>
+
+</div>
+
+</nav>
+
+
+<!-- PAGE -->
+
+<h1>
+My Certificate
+</h1>
+
+<p class="subtitle">
+Your Tech Learning Academy Certificate
+</p>
+
+
+<!-- CERTIFICATE -->
+
+<div class="certificate-container">
+
+<div class="certificate">
+
+
+<div class="certificate-small-title">
+
+TECH LEARNING ACADEMY
+
+</div>
+
+
+<h2>
+
+CERTIFICATE
+
+</h2>
+
+
+<div class="certificate-line"></div>
+
+
+<div class="presented">
+
+This certificate is proudly presented to
+
+</div>
+
+
+<div class="student-name">
+
+Student Name
+
+</div>
+
+
+<p class="completion-text">
+
+For successfully completing the
+
+</p>
+
+
+<div class="course-name">
+
+HTML & Web Development
+
+</div>
+
+
+<p class="completion-text">
+
+This certificate recognizes the successful completion
+of the course requirements and demonstrates
+dedication to learning technical skills.
+
+</p>
+
+
+<div class="certificate-details">
+
+
+<div class="detail">
+
+<div class="detail-line">
+
+Date of Completion
+
+</div>
+
+</div>
+
+
+<div class="detail">
+
+<div class="seal">
+
+TECH<br>
+LEARNING<br>
+ACADEMY
+
+</div>
+
+</div>
+
+
+<div class="detail">
+
+<div class="detail-line">
+
+Certificate ID
+
+</div>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- BUTTONS -->
+
+<div class="button-area">
+
+<button
+class="btn"
+onclick="window.print()">
+
+🖨 Print Certificate
+
+</button>
+
+<button
+class="btn"
+onclick="window.location.href='student-dashboard.php'">
+
+← Back to Dashboard
+
+</button>
+
+</div>
+
+
+<script>
+
+function toggleStudentMenu(){
+
+const menu =
+document.getElementById("studentMenu");
+
+menu.classList.toggle("show");
+
+}
+
+</script>
+
+
+</body>
+
+</html>

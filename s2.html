@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+<title>SQL Lesson 2 - Data Manipulation</title>
+<style>
+*{
+box-sizing:border-box;
+}
+body{
+background-color:black;
+color:white; 
+margin:0;
+padding:100px 30px 40px;
+}
+nav{
+position:fixed;
+top:0;
+left:0;
+right:0;
+width:100%;
+height:70px;
+background-color:#1e3a5f;
+padding:10px 20px;
+display:flex;
+align-items:center;
+gap:10px;
+z-index:1000;
+}
+nav a{
+color:#40E0D0;
+text-decoration:none;
+font-size:15px;
+font-weight:bold;
+white-space:nowrap;
+}
+nav a:hover{
+color:white;
+}
+nav p{
+color:white;
+font-size:20px;
+margin:0;
+padding:0;
+white-space:nowrap;
+}
+.student-dashboard{
+margin-left:auto;
+position:relative;
+flex-shrink:0;
+}
+.student-logo{
+width:55px;
+height:55px;
+border-radius:50%;
+border:3px solid #40E0D0;
+background-color:#1e3a5f;
+color:white;
+font-size:27px;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:0;
+transition:0.2s;
+}
+.student-logo:hover{
+background-color:#40E0D0;
+color:#1e3a5f;
+}
+.student-menu{
+display:none;
+position:absolute;
+top:65px;
+right:0;
+width:200px;
+background-color:#1e3a5f;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 5px 20px rgba(0,0,0,0.5);
+z-index:2000;
+}
+.student-menu.show{
+display:flex;
+flex-direction:column;
+}
+.student-menu a{
+color:#40E0D0;
+text-decoration:none;
+padding:15px 18px;
+font-size:16px;
+font-weight:bold;
+border-bottom:1px solid rgba(64,224,208,0.2);
+white-space:nowrap;
+}
+.student-menu a:hover{
+background-color:#40E0D0;
+color:#1e3a5f;
+}
+.course-notes{
+max-width:1100px;
+margin:auto;
+}
+.course-notes h1{
+color:#40E0D0;
+text-align:center;
+font-size:36px;
+margin-bottom:40px;
+}
+.course-notes h2{
+color:#40E0D0;
+font-size:27px;
+margin-top:40px;
+border-bottom:1px solid #1e3a5f;
+padding-bottom:10px;
+}
+.course-notes h3{
+color:#40E0D0;
+font-size:21px;
+margin-top:25px;
+}
+.course-notes p{
+color:white;
+font-size:17px;
+line-height:1.8;
+}
+.course-notes ul,
+.course-notes ol{
+color:white;
+font-size:17px;
+line-height:2;
+}
+.course-notes li{
+margin-bottom:5px;
+}
+.course-notes code{
+color:#40E0D0;
+font-family:Consolas,monospace;
+}
+.course-notes pre{
+background-color:#111;
+border:1px solid #1e3a5f;
+border-left:5px solid #40E0D0;
+padding:20px;
+overflow-x:auto;
+border-radius:8px;
+line-height:1.6;
+}
+.course-notes pre code{
+color:#40E0D0;
+font-size:15px;
+}
+.course-notes table{
+width:100%;
+border-collapse:collapse;
+margin:20px 0 30px;
+}
+.course-notes th{
+background-color:#1e3a5f;
+color:#40E0D0;
+font-size:17px;
+padding:14px;
+border:1px solid #40E0D0;
+}
+.course-notes td{
+color:white;
+padding:14px;
+border:1px solid #40E0D0;
+font-size:16px;
+}
+.course-notes tr:nth-child(even){
+background-color:#111;
+}
+.course-notes tr:hover{
+background-color:#1e3a5f;
+}
+.example-box{
+background-color:#111;
+border:2px solid #1e3a5f;
+border-radius:10px;
+padding:20px;
+margin:20px 0;
+}
+.lesson-summary{
+background-color:#111;
+border:2px solid #40E0D0;
+border-radius:10px;
+padding:25px;
+margin-top:50px;
+}
+.lesson-summary h2{
+margin-top:0;
+border-bottom:none;
+}
+@media(max-width:900px){
+nav{
+gap:6px;
+padding:10px;
+}
+nav a{
+font-size:12px;
+}
+nav p{
+font-size:16px;
+}
+}
+@media(max-width:600px){
+body{
+padding:90px 15px 30px;
+}
+nav{
+height:60px;
+overflow-x:auto;
+}
+nav a{
+font-size:11px;
+}
+nav p{
+font-size:14px;
+}
+.student-logo{
+width:45px;
+height:45px;
+font-size:22px;
+}
+.student-menu{
+top:55px;
+}
+.course-notes h1{
+font-size:27px;
+}
+.course-notes h2{
+font-size:23px;
+}
+.course-notes h3{
+font-size:19px;
+}
+.course-notes p,
+.course-notes ul,
+.course-notes ol{
+font-size:15px;
+}
+.course-notes th,
+.course-notes td{
+padding:9px;
+font-size:14px;
+}
+}
+</style>
+</head>
+<body>
+
+<nav>
+
+<p>|</p>
+<a href="index.html">HOME</a>
+
+<p>|</p>
+<a href="information.html">INFO</a>
+
+<p>|</p>
+<a href="courses.html">COURSES</a>
+
+<p>|</p>
+<a href="login.html">LOGIN</a>
+
+<p>|</p>
+<a href="forms.html">REGISTRATION</a>
+
+<p>|</p>
+<a href="contact.html">📞 CONTACT US</a>
+
+<div class="student-dashboard">
+
+<button class="student-logo" onclick="toggleStudentMenu()" title="Student Dashboard">🎓</button>
+
+<div class="student-menu" id="studentMenu">
+  
+<a href="student-dashboard.php">
+🏠 Dashboard</a>  
+<a href="logout.php">🏠Logout</a> 
+
+
+</div>
+
+</div>
+
+</nav>
+
+
+<div class="course-notes">
+
+<h1>SQL Lesson 2: Data Manipulation and Queries</h1>
+
+
+<h2>1. Introduction to Data Manipulation</h2>
+
+<p>Data Manipulation means adding, retrieving, changing and removing data from a database.</p>
+
+<p>SQL provides different commands to perform these operations.</p>
+
+<p>The four most important data manipulation commands are:</p>
+
+<ul>
+<li>INSERT</li>
+<li>SELECT</li>
+<li>UPDATE</li>
+<li>DELETE</li>
+</ul>
+
+<p>These commands are commonly called DML commands.</p>
+
+
+<h2>2. What is DML?</h2>
+
+<p>DML stands for Data Manipulation Language.</p>
+
+<p>DML contains SQL commands that are used to work with the data stored inside database tables.</p>
+
+<table>
+
+<tr>
+<th>Command</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>INSERT</td>
+<td>Adds new records.</td>
+</tr>
+
+<tr>
+<td>SELECT</td>
+<td>Retrieves records.</td>
+</tr>
+
+<tr>
+<td>UPDATE</td>
+<td>Changes existing records.</td>
+</tr>
+
+<tr>
+<td>DELETE</td>
+<td>Removes records.</td>
+</tr>
+
+</table>
+
+
+<h2>3. Creating a Database for Practice</h2>
+
+<p>We will use a simple student database for the examples in this lesson.</p>
+
+<pre><code>CREATE DATABASE tech_learning_academy;
+
+USE tech_learning_academy;</code></pre>
+
+
+<h2>4. Creating a Students Table</h2>
+
+<pre><code>CREATE TABLE students(
+id INT,
+name VARCHAR(100),
+email VARCHAR(100),
+course VARCHAR(100),
+age INT
+);</code></pre>
+
+
+<h2>5. INSERT Command</h2>
+
+<p>The <code>INSERT INTO</code> command is used to add new records to a table.</p>
+
+<h3>Syntax</h3>
+
+<pre><code>INSERT INTO table_name(column1,column2,column3)
+VALUES(value1,value2,value3);</code></pre>
+
+
+<h2>6. Inserting One Record</h2>
+
+<pre><code>INSERT INTO students(id,name,email,course,age)
+VALUES(1,'Sejal','sejal@example.com','HTML',20);</code></pre>
+
+<p>This statement adds one student record to the students table.</p>
+
+
+<h2>7. Inserting Multiple Records</h2>
+
+<p>Multiple records can be inserted using one INSERT statement.</p>
+
+<pre><code>INSERT INTO students(id,name,email,course,age)
+VALUES
+(1,'Sejal','sejal@example.com','HTML',20),
+(2,'Rahul','rahul@example.com','CSS',21),
+(3,'Priya','priya@example.com','SQL',20),
+(4,'Amit','amit@example.com','JavaScript',22);</code></pre>
+
+
+<h2>8. SELECT Command</h2>
+
+<p>The <code>SELECT</code> command is used to retrieve data from a database table.</p>
+
+<h3>Syntax</h3>
+
+<pre><code>SELECT column_name
+FROM table_name;</code></pre>
+
+
+<h2>9. Selecting All Columns</h2>
+
+<p>The asterisk symbol <code>*</code> represents all columns.</p>
+
+<pre><code>SELECT * FROM students;</code></pre>
+
+<p>This displays all records and all columns from the students table.</p>
+
+
+<h2>10. Selecting Specific Columns</h2>
+
+<p>We can select only the columns that we need.</p>
+
+<pre><code>SELECT name,email
+FROM students;</code></pre>
+
+
+<h2>11. Selecting One Column</h2>
+
+<pre><code>SELECT name
+FROM students;</code></pre>
+
+<p>This displays only the names of students.</p>
+
+
+<h2>12. WHERE Clause</h2>
+
+<p>The <code>WHERE</code> clause is used to filter records according to a condition.</p>
+
+<h3>Syntax</h3>
+
+<pre><code>SELECT *
+FROM table_name
+WHERE condition;</code></pre>
+
+<h3>Example</h3>
+
+<pre><code>SELECT *
+FROM students
+WHERE course='HTML';</code></pre>
+
+<p>This returns students whose course is HTML.</p>
+
+
+<h2>13. WHERE with Numbers</h2>
+
+<p>Conditions can also be applied to numeric columns.</p>
+
+<pre><code>SELECT *
+FROM students
+WHERE age=20;</code></pre>
+
+
+<h2>14. Comparison Operators</h2>
+
+<table>
+
+<tr>
+<th>Operator</th>
+<th>Meaning</th>
+</tr>
+
+<tr>
+<td>=</td>
+<td>Equal to</td>
+</tr>
+
+<tr>
+<td>!=</td>
+<td>Not equal to</td>
+</tr>
+
+<tr>
+<td>&gt;</td>
+<td>Greater than</td>
+</tr>
+
+<tr>
+<td>&lt;</td>
+<td>Less than</td>
+</tr>
+
+<tr>
+<td>&gt;=</td>
+<td>Greater than or equal to</td>
+</tr>
+
+<tr>
+<td>&lt;=</td>
+<td>Less than or equal to</td>
+</tr>
+
+</table>
+
+
+<h2>15. Greater Than</h2>
+
+<pre><code>SELECT *
+FROM students
+WHERE age&gt;20;</code></pre>
+
+
+<h2>16. Less Than</h2>
+
+<pre><code>SELECT *
+FROM students
+WHERE age&lt;21;</code></pre>
+
+
+<h2>17. Not Equal To</h2>
+
+<pre><code>SELECT *
+FROM students
+WHERE course!='HTML';</code></pre>
+
+
+<h2>18. AND Operator</h2>
+
+<p>The <code>AND</code> operator is used when all specified conditions must be true.</p>
+
+<h3>Example</h3>
+
+<pre><code>SELECT *
+FROM students
+WHERE age=20 AND course='HTML';</code></pre>
+
+
+<h2>19. OR Operator</h2>
+
+<p>The <code>OR</code> operator is used when at least one condition must be true.</p>
+
+<h3>Example</h3>
+
+<pre><code>SELECT *
+FROM students
+WHERE course='HTML' OR course='CSS';</code></pre>
+
+
+<h2>20. NOT Operator</h2>
+
+<p>The <code>NOT</code> operator reverses a condition.</p>
+
+<h3>Example</h3>
+
+<pre><code>SELECT *
+FROM students
+WHERE NOT course='HTML';</code></pre>
+
+
+<h2>21. ORDER BY</h2>
+
+<p>The <code>ORDER BY</code> clause is used to sort records.</p>
+
+<h3>Ascending Order</h3>
+
+<pre><code>SELECT *
+FROM students
+ORDER BY name ASC;</code></pre>
+
+<h3>Descending Order</h3>
+
+<pre><code>SELECT *
+FROM students
+ORDER BY name DESC;</code></pre>
+
+
+<h2>22. ASC and DESC</h2>
+
+<table>
+
+<tr>
+<th>Keyword</th>
+<th>Meaning</th>
+</tr>
+
+<tr>
+<td>ASC</td>
+<td>Ascending order.</td>
+</tr>
+
+<tr>
+<td>DESC</td>
+<td>Descending order.</td>
+</tr>
+
+</table>
+
+<p>ASC is the default sorting direction when no direction is specified.</p>
+
+
+<h2>23. DISTINCT</h2>
+
+<p>The <code>DISTINCT</code> keyword is used to remove duplicate values from the result.</p>
+
+<h3>Example</h3>
+
+<pre><code>SELECT DISTINCT course
+FROM students;</code></pre>
+
+<p>This displays each course only once.</p>
+
+
+<h2>24. LIKE Operator</h2>
+
+<p>The <code>LIKE</code> operator is used to search for a specified pattern in text.</p>
+
+<h3>Example</h3>
+
+<pre><code>SELECT *
+FROM students
+WHERE name LIKE 'S%';</code></pre>
+
+<p>This finds names that start with the letter S.</p>
+
+
+<h2>25. Percentage Wildcard</h2>
+
+<p>The <code>%</code> wildcard represents zero or more characters.</p>
+
+<h3>Starts With</h3>
+
+<pre><code>SELECT *
+FROM students
+WHERE name LIKE 'S%';</code></pre>
+
+<h3>Ends With</h3>
+
+<pre><code>SELECT *
+FROM students
+WHERE name LIKE '%a';</code></pre>
+
+<h3>Contains</h3>
+
+<pre><code>SELECT *
+FROM students
+WHERE name LIKE '%e%';</code></pre>
+
+
+<h2>26. Underscore Wildcard</h2>
+
+<p>The underscore <code>_</code> represents one single character.</p>
+
+<h3>Example</h3>
+
+<pre><code>SELECT *
+FROM students
+WHERE name LIKE '_e%';</code></pre>
+
+<p>This searches for names where the second character is e.</p>
+
+
+<h2>27. IN Operator</h2>
+
+<p>The <code>IN</code> operator allows multiple possible values to be specified in a WHERE condition.</p>
+
+<h3>Example</h3>
+
+<pre><code>SELECT *
+FROM students
+WHERE course IN('HTML','CSS','SQL');</code></pre>
+
+
+<h2>28. NOT IN</h2>
+
+<p><code>NOT IN</code> returns records whose values are not present in the specified list.</p>
+
+<h3>Example</h3>
+
+<pre><code>SELECT *
+FROM students
+WHERE course NOT IN('HTML','CSS');</code></pre>
+
+
+<h2>29. BETWEEN Operator</h2>
+
+<p>The <code>BETWEEN</code> operator selects values within a specified range.</p>
+
+<h3>Example</h3>
+
+<pre><code>SELECT *
+FROM students
+WHERE age BETWEEN 20 AND 22;</code></pre>
+
+
+<h2>30. NOT BETWEEN</h2>
+
+<p><code>NOT BETWEEN</code> selects values outside the specified range.</p>
+
+<h3>Example</h3>
+
+<pre><code>SELECT *
+FROM students
+WHERE age NOT BETWEEN 20 AND 22;</code></pre>
+
+
+<h2>31. UPDATE Command</h2>
+
+<p>The <code>UPDATE</code> command is used to modify existing records.</p>
+
+<h3>Syntax</h3>
+
+<pre><code>UPDATE table_name
+SET column_name=value
+WHERE condition;</code></pre>
+
+
+<h2>32. Updating One Record</h2>
+
+<pre><code>UPDATE students
+SET course='CSS'
+WHERE id=1;</code></pre>
+
+<p>This changes the course of the student whose id is 1.</p>
+
+
+<h2>33. Updating Multiple Columns</h2>
+
+<p>Multiple columns can be updated in the same statement.</p>
+
+<pre><code>UPDATE students
+SET name='Sejal Jakka',
+email='sejaljakka@example.com'
+WHERE id=1;</code></pre>
+
+
+<h2>34. Importance of WHERE with UPDATE</h2>
+
+<p>Always use a suitable WHERE condition when you want to update specific records.</p>
+
+<p>Without a WHERE condition, the UPDATE statement can change every record in the table.</p>
+
+<h3>Example</h3>
+
+<pre><code>UPDATE students
+SET course='SQL';</code></pre>
+
+<p>This changes the course value for all records.</p>
+
+
+<h2>35. DELETE Command</h2>
+
+<p>The <code>DELETE</code> command is used to remove records from a table.</p>
+
+<h3>Syntax</h3>
+
+<pre><code>DELETE FROM table_name
+WHERE condition;</code></pre>
+
+
+<h2>36. Deleting One Record</h2>
+
+<pre><code>DELETE FROM students
+WHERE id=4;</code></pre>
+
+<p>This deletes the student whose id is 4.</p>
+
+
+<h2>37. Importance of WHERE with DELETE</h2>
+
+<p>Be careful when using DELETE.</p>
+
+<p>If the WHERE clause is not included, all records in the table may be deleted.</p>
+
+<h3>Example</h3>
+
+<pre><code>DELETE FROM students;</code></pre>
+
+<p>This removes all records from the students table while leaving the table itself available.</p>
+
+
+<h2>38. LIMIT</h2>
+
+<p>The <code>LIMIT</code> clause is commonly used to restrict the number of records returned by a query.</p>
+
+<h3>Example</h3>
+
+<pre><code>SELECT *
+FROM students
+LIMIT 2;</code></pre>
+
+<p>This returns up to two records.</p>
+
+
+<h2>39. Combining SQL Clauses</h2>
+
+<p>Multiple SQL features can be used together.</p>
+
+<h3>Example</h3>
+
+<pre><code>SELECT name,email,course
+FROM students
+WHERE age&gt;19
+ORDER BY name ASC
+LIMIT 3;</code></pre>
+
+
+<h2>40. Practical Example for Online Tech Learning Academy</h2>
+
+<p>Suppose your academy has the following student records:</p>
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Course</th>
+<th>Age</th>
+</tr>
+
+<tr>
+<td>1</td>
+<td>Sejal</td>
+<td>HTML</td>
+<td>20</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>Rahul</td>
+<td>CSS</td>
+<td>21</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>Priya</td>
+<td>SQL</td>
+<td>20</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>Amit</td>
+<td>JavaScript</td>
+<td>22</td>
+</tr>
+
+</table>
+
+<h3>Find all SQL students</h3>
+
+<pre><code>SELECT *
+FROM students
+WHERE course='SQL';</code></pre>
+
+<h3>Find students aged 20</h3>
+
+<pre><code>SELECT *
+FROM students
+WHERE age=20;</code></pre>
+
+<h3>Sort students by name</h3>
+
+<pre><code>SELECT *
+FROM students
+ORDER BY name ASC;</code></pre>
+
+<h3>Find HTML and CSS students</h3>
+
+<pre><code>SELECT *
+FROM students
+WHERE course IN('HTML','CSS');</code></pre>
+
+
+<h2>41. DML Command Summary</h2>
+
+<table>
+
+<tr>
+<th>Command</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+
+<tr>
+<td>INSERT</td>
+<td>Adds data.</td>
+<td>INSERT INTO</td>
+</tr>
+
+<tr>
+<td>SELECT</td>
+<td>Retrieves data.</td>
+<td>SELECT *</td>
+</tr>
+
+<tr>
+<td>UPDATE</td>
+<td>Changes data.</td>
+<td>UPDATE</td>
+</tr>
+
+<tr>
+<td>DELETE</td>
+<td>Removes data.</td>
+<td>DELETE FROM</td>
+</tr>
+
+</table>
+
+
+<h2>42. Important SQL Clauses</h2>
+
+<table>
+
+<tr>
+<th>Clause</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>WHERE</td>
+<td>Filters records.</td>
+</tr>
+
+<tr>
+<td>ORDER BY</td>
+<td>Sorts records.</td>
+</tr>
+
+<tr>
+<td>LIMIT</td>
+<td>Limits the number of returned records.</td>
+</tr>
+
+<tr>
+<td>DISTINCT</td>
+<td>Removes duplicate results.</td>
+</tr>
+
+</table>
+
+
+<h2>43. Important SQL Operators</h2>
+
+<table>
+
+<tr>
+<th>Operator</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>=</td>
+<td>Equal to</td>
+</tr>
+
+<tr>
+<td>!=</td>
+<td>Not equal to</td>
+</tr>
+
+<tr>
+<td>&gt;</td>
+<td>Greater than</td>
+</tr>
+
+<tr>
+<td>&lt;</td>
+<td>Less than</td>
+</tr>
+
+<tr>
+<td>&gt;=</td>
+<td>Greater than or equal to</td>
+</tr>
+
+<tr>
+<td>&lt;=</td>
+<td>Less than or equal to</td>
+</tr>
+
+<tr>
+<td>LIKE</td>
+<td>Searches for patterns.</td>
+</tr>
+
+<tr>
+<td>IN</td>
+<td>Matches values from a list.</td>
+</tr>
+
+<tr>
+<td>BETWEEN</td>
+<td>Checks a range.</td>
+</tr>
+
+</table>
+
+
+<h2>44. Important Points to Remember</h2>
+
+<ol>
+
+<li>DML stands for Data Manipulation Language.</li>
+
+<li>INSERT is used to add records.</li>
+
+<li>SELECT is used to retrieve records.</li>
+
+<li>UPDATE is used to modify records.</li>
+
+<li>DELETE is used to remove records.</li>
+
+<li>WHERE is used to filter records.</li>
+
+<li>ORDER BY is used to sort records.</li>
+
+<li>ASC sorts values in ascending order.</li>
+
+<li>DESC sorts values in descending order.</li>
+
+<li>DISTINCT removes duplicate results.</li>
+
+<li>LIKE is useful for pattern searching.</li>
+
+<li>The % wildcard represents zero or more characters.</li>
+
+<li>The _ wildcard represents one character.</li>
+
+<li>IN allows multiple possible values.</li>
+
+<li>BETWEEN is used for ranges.</li>
+
+<li>LIMIT restricts the number of returned records.</li>
+
+<li>Be careful when using UPDATE without WHERE.</li>
+
+<li>Be careful when using DELETE without WHERE.</li>
+
+<li>These commands are important for managing student and course data in your project.</li>
+
+</ol>
+
+
+<div class="lesson-summary">
+
+<h2>Lesson Summary</h2>
+
+<p>In this lesson, you learned how to manipulate and retrieve data using SQL.</p>
+
+<p>You learned INSERT, SELECT, UPDATE and DELETE commands and how to use WHERE to filter records.</p>
+
+<p>You also learned ORDER BY, DISTINCT, LIKE, IN, BETWEEN and LIMIT.</p>
+
+<p>These commands are very important for your Online Tech Learning Academy because they will allow your PHP application to add student registrations, display student information, update records and remove records from the database.</p>
+
+<p><b>Next Lesson:</b> SQL Constraints, Primary Keys, Foreign Keys and Relationships</p>
+
+</div>
+
+</div>
+
+
+<script>
+
+function toggleStudentMenu(){
+
+const menu=document.getElementById("studentMenu");
+
+menu.classList.toggle("show");
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+<title>CSS Lesson 1 - Introduction, Syntax and Selectors</title>
+<style>
+*{
+box-sizing:border-box;
+}
+body{
+background-color:black;
+color:white;
+ 
+margin:0;
+padding:100px 30px 40px;
+}
+nav{
+position:fixed;
+top:0;
+left:0;
+right:0;
+width:100%;
+height:70px;
+background-color:#1e3a5f;
+padding:10px 20px;
+display:flex;
+align-items:center;
+gap:10px;
+z-index:1000;
+}
+nav a{
+color:#40E0D0;
+text-decoration:none;
+font-size:15px;
+font-weight:bold;
+white-space:nowrap;
+}
+nav a:hover{
+color:white;
+}
+nav p{
+color:white;
+font-size:20px;
+margin:0;
+padding:0;
+white-space:nowrap;
+}
+.student-dashboard{
+margin-left:auto;
+position:relative;
+flex-shrink:0;
+}
+.student-logo{
+width:55px;
+height:55px;
+border-radius:50%;
+border:3px solid #40E0D0;
+background-color:#1e3a5f;
+color:white;
+font-size:27px;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:0;
+transition:0.2s;
+}
+.student-logo:hover{
+background-color:#40E0D0;
+color:#1e3a5f;
+}
+.student-menu{
+display:none;
+position:absolute;
+top:65px;
+right:0;
+width:200px;
+background-color:#1e3a5f;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 5px 20px rgba(0,0,0,0.5);
+z-index:2000;
+}
+.student-menu.show{
+display:flex;
+flex-direction:column;
+}
+.student-menu a{
+color:#40E0D0;
+text-decoration:none;
+padding:15px 18px;
+font-size:16px;
+font-weight:bold;
+border-bottom:1px solid rgba(64,224,208,0.2);
+white-space:nowrap;
+}
+.student-menu a:hover{
+background-color:#40E0D0;
+color:#1e3a5f;
+}
+.course-notes{
+max-width:1100px;
+margin:auto;
+}
+.course-notes h1{
+color:#40E0D0;
+text-align:center;
+font-size:36px;
+margin-bottom:40px;
+}
+.course-notes h2{
+color:#40E0D0;
+font-size:27px;
+margin-top:40px;
+border-bottom:1px solid #1e3a5f;
+padding-bottom:10px;
+}
+.course-notes h3{
+color:#40E0D0;
+font-size:21px;
+margin-top:25px;
+}
+.course-notes p{
+color:white;
+font-size:17px;
+line-height:1.8;
+}
+.course-notes ul,
+.course-notes ol{
+color:white;
+font-size:17px;
+line-height:2;
+}
+.course-notes li{
+margin-bottom:5px;
+}
+.course-notes code{
+color:#40E0D0;
+font-family:Consolas,monospace;
+}
+.course-notes pre{
+background-color:#111;
+border:1px solid #1e3a5f;
+border-left:5px solid #40E0D0;
+padding:20px;
+overflow-x:auto;
+border-radius:8px;
+line-height:1.6;
+}
+.course-notes pre code{
+color:#40E0D0;
+font-size:15px;
+}
+.course-notes table{
+width:100%;
+border-collapse:collapse;
+margin:20px 0 30px;
+}
+.course-notes th{
+background-color:#1e3a5f;
+color:#40E0D0;
+font-size:17px;
+padding:14px;
+border:1px solid #40E0D0;
+}
+.course-notes td{
+color:white;
+padding:14px;
+border:1px solid #40E0D0;
+font-size:16px;
+}
+.course-notes tr:nth-child(even){
+background-color:#111;
+}
+.course-notes tr:hover{
+background-color:#1e3a5f;
+}
+.lesson-summary{
+background-color:#111;
+border:2px solid #40E0D0;
+border-radius:10px;
+padding:25px;
+margin-top:50px;
+}
+.lesson-summary h2{
+margin-top:0;
+border-bottom:none;
+}
+</style>
+</head>
+<body>
+
+<nav>
+
+<p>|</p>
+<a href="index.html">HOME</a>
+
+<p>|</p>
+<a href="information.html">INFO</a>
+
+<p>|</p>
+<a href="courses.html">COURSES</a>
+
+<p>|</p>
+<a href="login.html">LOGIN</a>
+
+<p>|</p>
+<a href="forms.html">REGISTRATION</a>
+
+<p>|</p>
+<a href="contact.html">📞 CONTACT US</a>
+
+<div class="student-dashboard">
+
+<button class="student-logo" onclick="toggleStudentMenu()" title="Student Dashboard">🎓</button>
+
+<div class="student-menu" id="studentMenu">
+  
+<a href="student-dashboard.php">
+🏠 Dashboard</a>  
+<a href="logout.php">🏠Logout</a> 
+
+</div>
+
+</div>
+
+</nav>
+
+
+<div class="course-notes">
+
+<h1>CSS Lesson 1: Introduction, Syntax and Selectors</h1>
+
+
+<h2>1. Introduction to CSS</h2>
+
+<p>CSS stands for <b>Cascading Style Sheets</b>.</p>
+
+<p>CSS is a stylesheet language used to style and design HTML webpages.</p>
+
+<p>HTML is mainly used to create the structure of a webpage, while CSS is used to control its appearance and layout.</p>
+
+<p>With CSS, we can change colors, fonts, sizes, spacing, borders, backgrounds, positioning and many other visual properties.</p>
+
+
+<h2>2. Why Do We Use CSS?</h2>
+
+<p>Without CSS, webpages would mostly contain plain HTML content with very little visual styling.</p>
+
+<p>CSS allows developers to create attractive, organized and user-friendly webpages.</p>
+
+<h3>CSS can be used to:</h3>
+
+<ul>
+
+<li>Change text colors.</li>
+
+<li>Change background colors.</li>
+
+<li>Change font size and font style.</li>
+
+<li>Add borders.</li>
+
+<li>Add margins and padding.</li>
+
+<li>Control the width and height of elements.</li>
+
+<li>Align text and elements.</li>
+
+<li>Create layouts.</li>
+
+<li>Design navigation bars.</li>
+
+<li>Create responsive webpages.</li>
+
+<li>Add hover effects and transitions.</li>
+
+</ul>
+
+
+<h2>3. CSS Example</h2>
+
+<p>Consider the following HTML code:</p>
+
+<pre><code>
+&lt;h1&gt; Online Tech Learning Academy&lt;/h1&gt;
+
+&lt;p&gt;Learn Technology Online&lt;/p&gt;
+</code></pre>
+
+<p>We can use CSS to style these elements.</p>
+
+<pre><code>h1{
+color:#40E0D0;
+text-align:center;
+}
+
+p{
+color:white;
+font-size:18px;
+}</code></pre>
+
+
+<h2>4. Basic CSS Syntax</h2>
+
+<p>A CSS rule consists of a selector, property and value.</p>
+
+<h3>Syntax</h3>
+
+<pre><code>selector{
+property:value;
+}</code></pre>
+
+<h3>Example</h3>
+
+<pre><code>h1{
+color:blue;
+font-size:30px;
+}</code></pre>
+
+<p>Here, <code>h1</code> is the selector.</p>
+
+<p><code>color</code> and <code>font-size</code> are properties.</p>
+
+<p><code>blue</code> and <code>30px</code> are values.</p>
+
+
+<h2>5. CSS Selector</h2>
+
+<p>A selector is used to select the HTML element that we want to style.</p>
+
+<h3>Example</h3>
+
+<pre><code>p{
+color:white;
+}</code></pre>
+
+<p>Here, <code>p</code> selects all paragraph elements.</p>
+
+
+<h2>6. CSS Property</h2>
+
+<p>A CSS property defines what aspect of an HTML element we want to change.</p>
+
+<h3>Examples</h3>
+
+<pre><code>color
+
+background-color
+
+font-size
+
+font-family
+
+margin
+
+padding
+
+width
+
+height
+
+border</code></pre>
+
+
+<h2>7. CSS Value</h2>
+
+<p>A value specifies how the selected property should be applied.</p>
+
+<h3>Example</h3>
+
+<pre><code>
+    p{
+color:red;
+}</code></pre>
+
+<p>In this example, <code>red</code> is the value of the <code>color</code> property.</p>
+
+
+<h2>8. CSS Declaration</h2>
+
+<p>A property and its value together form a CSS declaration.</p>
+
+<h3>Example</h3>
+
+<pre><code>color:red;</code></pre>
+
+<p>Here, <code>color:red;</code> is one CSS declaration.</p>
+
+
+<h2>9. Multiple CSS Declarations</h2>
+
+<p>We can use multiple declarations inside one CSS rule.</p>
+
+<h3>Example</h3>
+
+<pre><code>h1{
+color:#40E0D0;
+font-size:35px;
+text-align:center;
+font-family:Arial;
+}</code></pre>
+
+
+<h2>10. Types of CSS</h2>
+
+<p>There are three main ways to apply CSS to an HTML document.</p>
+
+<ol>
+
+<li>Inline CSS</li>
+
+<li>Internal CSS</li>
+
+<li>External CSS</li>
+
+</ol>
+
+
+<h2>11. Inline CSS</h2>
+
+<p>Inline CSS is written directly inside an HTML element using the <code>style</code> attribute.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;h1 style="color:#40E0D0;"&gt;
+Online Tech Learning Academy
+&lt;/h1&gt;</code></pre>
+
+<p>Inline CSS affects only the particular HTML element where it is written.</p>
+
+
+<h2>12. Advantages of Inline CSS</h2>
+
+<ul>
+
+<li>Easy to apply to a single element.</li>
+
+<li>Useful for quick testing.</li>
+
+<li>Does not require a separate CSS file.</li>
+
+</ul>
+
+
+<h2>13. Disadvantages of Inline CSS</h2>
+
+<ul>
+
+<li>Creates repetitive code.</li>
+
+<li>Difficult to maintain for large websites.</li>
+
+<li>Makes HTML code less clean.</li>
+
+<li>Not suitable for styling many pages.</li>
+
+</ul>
+
+
+<h2>14. Internal CSS</h2>
+
+<p>Internal CSS is written inside the <code>&lt;style&gt;</code> element in the <code>&lt;head&gt;</code> section of an HTML document.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+
+&lt;html&gt;
+
+&lt;head&gt;
+
+&lt;style&gt;
+
+h1{
+color:#40E0D0;
+text-align:center;
+}
+
+p{
+color:white;
+}
+
+&lt;/style&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;h1&gt;My Website&lt;/h1&gt;
+
+&lt;p&gt;Welcome to my website.&lt;/p&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+
+
+<h2>15. External CSS</h2>
+
+<p>External CSS is written in a separate CSS file and connected to an HTML document using the <code>&lt;link&gt;</code> element.</p>
+
+<h3>HTML File</h3>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+
+&lt;html&gt;
+
+&lt;head&gt;
+
+&lt;link rel="stylesheet" href="style.css"&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;h1&gt;Online Tech Learning Academy&lt;/h1&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+
+<h3>style.css</h3>
+
+<pre><code>h1{
+color:#40E0D0;
+text-align:center;
+}</code></pre>
+
+
+<h2>16. Advantages of External CSS</h2>
+
+<ul>
+
+<li>Keeps HTML and CSS separate.</li>
+
+<li>Makes code easier to maintain.</li>
+
+<li>One CSS file can style multiple HTML pages.</li>
+
+<li>Reduces repeated CSS code.</li>
+
+<li>Makes large websites easier to manage.</li>
+
+</ul>
+
+
+<h2>17. Comparison of CSS Types</h2>
+
+<table>
+
+<tr>
+<th>Type</th>
+<th>Where It Is Written</th>
+<th>Best Use</th>
+</tr>
+
+<tr>
+<td>Inline CSS</td>
+<td>Inside HTML element</td>
+<td>Single element</td>
+</tr>
+
+<tr>
+<td>Internal CSS</td>
+<td>Inside &lt;style&gt;</td>
+<td>Single webpage</td>
+</tr>
+
+<tr>
+<td>External CSS</td>
+<td>Separate .css file</td>
+<td>Multiple webpages</td>
+</tr>
+
+</table>
+
+
+<h2>18. Element Selector</h2>
+
+<p>The element selector selects HTML elements based on their tag name.</p>
+
+<h3>Example</h3>
+
+<pre><code>p{
+color:white;
+}
+
+h1{
+color:#40E0D0;
+}</code></pre>
+
+<p>The first rule selects all <code>&lt;p&gt;</code> elements.</p>
+
+<p>The second rule selects all <code>&lt;h1&gt;</code> elements.</p>
+
+
+<h2>19. Class Selector</h2>
+
+<p>The class selector selects HTML elements that have a particular class attribute.</p>
+
+<p>A class selector starts with a dot <code>.</code>.</p>
+
+<h3>Example</h3>
+
+<pre><code>.heading{
+color:#40E0D0;
+text-align:center;
+}</code></pre>
+
+<h3>HTML</h3>
+
+<pre><code>&lt;h1 class="heading"&gt;
+Welcome
+&lt;/h1&gt;</code></pre>
+
+
+<h2>20. Using the Same Class on Multiple Elements</h2>
+
+<p>The same class can be applied to multiple HTML elements.</p>
+
+<h3>Example</h3>
+
+<pre><code>.important{
+color:#40E0D0;
+font-weight:bold;
+}</code></pre>
+
+<pre><code>&lt;h2 class="important"&gt;
+HTML
+&lt;/h2&gt;
+
+&lt;p class="important"&gt;
+Learn HTML.
+&lt;/p&gt;</code></pre>
+
+
+<h2>21. ID Selector</h2>
+
+<p>The ID selector selects an element using its unique <code>id</code> attribute.</p>
+
+<p>An ID selector starts with the hash symbol <code>#</code>.</p>
+
+<h3>Example</h3>
+
+<pre><code>#main-title{
+color:#40E0D0;
+text-align:center;
+}</code></pre>
+
+<h3>HTML</h3>
+
+<pre><code>&lt;h1 id="main-title"&gt;
+Online Tech Learning Academy
+&lt;/h1&gt;</code></pre>
+
+
+<h2>22. Class Selector vs ID Selector</h2>
+
+<table>
+
+<tr>
+<th>Class</th>
+<th>ID</th>
+</tr>
+
+<tr>
+<td>Starts with .</td>
+<td>Starts with #</td>
+</tr>
+
+<tr>
+<td>Can be used on multiple elements.</td>
+<td>Should identify a unique element.</td>
+</tr>
+
+<tr>
+<td>Example: .heading</td>
+<td>Example: #heading</td>
+</tr>
+
+</table>
+
+
+<h2>23. Universal Selector</h2>
+
+<p>The universal selector selects all HTML elements.</p>
+
+<p>It is represented by the <code>*</code> symbol.</p>
+
+<h3>Example</h3>
+
+<pre><code>*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}</code></pre>
+
+
+<h2>24. Grouping Selector</h2>
+
+<p>The grouping selector allows multiple selectors to share the same CSS rules.</p>
+
+<h3>Example</h3>
+
+<pre><code>h1,h2,h3{
+color:#40E0D0;
+}</code></pre>
+
+<p>This applies the same color to all <code>h1</code>, <code>h2</code> and <code>h3</code> elements.</p>
+
+
+<h2>25. Descendant Selector</h2>
+
+<p>The descendant selector selects elements that are inside another element.</p>
+
+<h3>Example</h3>
+
+<pre><code>div p{
+color:#40E0D0;
+}</code></pre>
+
+<p>This selects paragraph elements that are inside a <code>div</code>.</p>
+
+
+<h2>26. Child Selector</h2>
+
+<p>The child selector selects elements that are direct children of another element.</p>
+
+<h3>Example</h3>
+
+<pre><code>div&gt;p{
+color:#40E0D0;
+}</code></pre>
+
+<p>This selects only paragraphs that are direct children of the <code>div</code>.</p>
+
+
+<h2>27. Attribute Selector</h2>
+
+<p>The attribute selector selects HTML elements based on their attributes.</p>
+
+<h3>Example</h3>
+
+<pre><code>input[type="text"]{
+border:2px solid #40E0D0;
+}</code></pre>
+
+<p>This selects input elements whose type is <code>text</code>.</p>
+
+
+<h2>28. Pseudo-Class Selector</h2>
+
+<p>A pseudo-class is used to define a special state of an HTML element.</p>
+
+<p>One of the most commonly used pseudo-classes is <code>:hover</code>.</p>
+
+<h3>Example</h3>
+
+<pre><code>a:hover{
+color:white;
+}</code></pre>
+
+<p>This changes the link color when the mouse pointer is placed over the link.</p>
+
+
+<h2>29. CSS Comments</h2>
+
+<p>CSS comments are used to add notes inside CSS code.</p>
+
+<h3>Syntax</h3>
+
+<pre><code>/* This is a CSS comment */</code></pre>
+
+<h3>Example</h3>
+
+<pre><code>/* Navigation bar */
+
+nav{
+background-color:#1e3a5f;
+}</code></pre>
+
+<p>Comments are not displayed on the webpage.</p>
+
+
+<h2>30. CSS Colors</h2>
+
+<p>The <code>color</code> property is used to change the color of text.</p>
+
+<h3>Example</h3>
+
+<pre><code>h1{
+color:#40E0D0;
+}</code></pre>
+
+<p>CSS supports different ways of specifying colors.</p>
+
+
+<h3>Color Name</h3>
+
+<pre><code>h1{
+color:red;
+}</code></pre>
+
+
+<h3>Hexadecimal Color</h3>
+
+<pre><code>h1{
+color:#40E0D0;
+}</code></pre>
+
+
+<h3>RGB Color</h3>
+
+<pre><code>h1{
+color:rgb(64,224,208);
+}</code></pre>
+
+
+<h2>31. Background Color</h2>
+
+<p>The <code>background-color</code> property changes the background color of an element.</p>
+
+<h3>Example</h3>
+
+<pre><code>body{
+background-color:black;
+}
+
+nav{
+background-color:#1e3a5f;
+}</code></pre>
+
+
+<h2>32. Text Alignment</h2>
+
+<p>The <code>text-align</code> property controls the horizontal alignment of text.</p>
+
+<h3>Example</h3>
+
+<pre><code>h1{
+text-align:center;
+}</code></pre>
+
+<p>Common values include <code>left</code>, <code>center</code>, <code>right</code> and <code>justify</code>.</p>
+
+
+<h2>33. Font Size</h2>
+
+<p>The <code>font-size</code> property controls the size of text.</p>
+
+<h3>Example</h3>
+
+<pre><code>p{
+font-size:18px;
+}</code></pre>
+
+
+<h2>34. Font Family</h2>
+
+<p>The <code>font-family</code> property specifies the typeface used for text.</p>
+
+<h3>Example</h3>
+
+<pre><code>body{
+font-family:Arial,sans-serif;
+}</code></pre>
+
+
+<h2>35. Font Weight</h2>
+
+<p>The <code>font-weight</code> property controls the thickness of text.</p>
+
+<h3>Example</h3>
+
+<pre><code>h1{
+font-weight:bold;
+}</code></pre>
+
+
+<h2>36. Text Decoration</h2>
+
+<p>The <code>text-decoration</code> property adds or removes decorations such as underlines.</p>
+
+<h3>Example</h3>
+
+<pre><code>a{
+text-decoration:none;
+}</code></pre>
+
+
+<h2>37. CSS Selector Summary</h2>
+
+<table>
+
+<tr>
+<th>Selector</th>
+<th>Example</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>Element</td>
+<td>p</td>
+<td>Selects all paragraph elements</td>
+</tr>
+
+<tr>
+<td>Class</td>
+<td>.box</td>
+<td>Selects elements with class box</td>
+</tr>
+
+<tr>
+<td>ID</td>
+<td>#header</td>
+<td>Selects an element with a specific ID</td>
+</tr>
+
+<tr>
+<td>Universal</td>
+<td>*</td>
+<td>Selects all elements</td>
+</tr>
+
+<tr>
+<td>Grouping</td>
+<td>h1,h2</td>
+<td>Selects multiple elements</td>
+</tr>
+
+<tr>
+<td>Descendant</td>
+<td>div p</td>
+<td>Selects paragraphs inside div</td>
+</tr>
+
+<tr>
+<td>Child</td>
+<td>div&gt;p</td>
+<td>Selects direct child paragraphs</td>
+</tr>
+
+<tr>
+<td>Attribute</td>
+<td>input[type="text"]</td>
+<td>Selects elements by attribute</td>
+</tr>
+
+<tr>
+<td>Pseudo-class</td>
+<td>a:hover</td>
+<td>Selects an element in a special state</td>
+</tr>
+
+</table>
+
+
+<h2>38. Complete CSS Example</h2>
+
+<p>The following example combines HTML and CSS.</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+
+&lt;html&gt;
+
+&lt;head&gt;
+
+&lt;title&gt;CSS Example&lt;/title&gt;
+
+&lt;style&gt;
+
+*{
+box-sizing:border-box;
+}
+
+body{
+background-color:black;
+font-family:Arial,sans-serif;
+}
+
+h1{
+color:#40E0D0;
+text-align:center;
+font-size:35px;
+}
+
+p{
+color:white;
+font-size:18px;
+}
+
+.box{
+background-color:#1e3a5f;
+padding:20px;
+border:2px solid #40E0D0;
+}
+
+#special{
+color:#40E0D0;
+font-weight:bold;
+}
+
+a:hover{
+color:white;
+}
+
+&lt;/style&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;h1&gt;
+Online Tech Learning Academy
+&lt;/h1&gt;
+
+&lt;p&gt;
+Learn CSS from basic to advanced concepts.
+&lt;/p&gt;
+
+&lt;div class="box"&gt;
+
+&lt;p id="special"&gt;
+CSS makes webpages attractive.
+&lt;/p&gt;
+
+&lt;/div&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+
+
+<h2>39. CSS Properties Learned in This Lesson</h2>
+
+<table>
+
+<tr>
+<th>Property</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>color</td>
+<td>Changes text color</td>
+</tr>
+
+<tr>
+<td>background-color</td>
+<td>Changes background color</td>
+</tr>
+
+<tr>
+<td>font-size</td>
+<td>Changes text size</td>
+</tr>
+
+<tr>
+<td>font-family</td>
+<td>Changes font</td>
+</tr>
+
+<tr>
+<td>font-weight</td>
+<td>Changes text thickness</td>
+</tr>
+
+<tr>
+<td>text-align</td>
+<td>Aligns text</td>
+</tr>
+
+<tr>
+<td>text-decoration</td>
+<td>Adds or removes text decoration</td>
+</tr>
+
+</table>
+
+
+<h2>40. Important Points to Remember</h2>
+
+<ol>
+
+<li>CSS stands for Cascading Style Sheets.</li>
+
+<li>CSS is used to style HTML webpages.</li>
+
+<li>A CSS rule contains a selector and declarations.</li>
+
+<li>A declaration contains a property and a value.</li>
+
+<li>There are three main types of CSS: inline, internal and external.</li>
+
+<li>External CSS is useful for larger websites and multiple webpages.</li>
+
+<li>An element selector selects HTML elements by their tag name.</li>
+
+<li>A class selector starts with a dot.</li>
+
+<li>An ID selector starts with a hash symbol.</li>
+
+<li>The universal selector is represented by <code>*</code>.</li>
+
+<li>Grouping selectors allow multiple elements to share CSS rules.</li>
+
+<li>CSS comments are written between <code>/*</code> and <code>*/</code>.</li>
+
+<li>The <code>color</code> property changes text color.</li>
+
+<li>The <code>background-color</code> property changes background color.</li>
+
+<li>The <code>font-size</code> property changes text size.</li>
+
+<li>The <code>font-family</code> property specifies the font.</li>
+
+<li>The <code>text-align</code> property controls text alignment.</li>
+
+<li>The <code>:hover</code> pseudo-class is used for hover effects.</li>
+
+</ol>
+
+
+<div class="lesson-summary">
+
+<h2>Lesson Summary</h2>
+
+<p>In this lesson, you learned the fundamentals of CSS.</p>
+
+<p>You learned what CSS is, why CSS is used, CSS syntax, selectors, properties and values.</p>
+
+<p>You also learned the three types of CSS: inline CSS, internal CSS and external CSS.</p>
+
+<p>Important selectors such as element, class, ID, universal, grouping, descendant, child and attribute selectors were covered.</p>
+
+<p>You also learned basic CSS properties such as <code>color</code>, <code>background-color</code>, <code>font-size</code>, <code>font-family</code>, <code>font-weight</code> and <code>text-align</code>.</p>
+
+<p><b>Next Lesson:</b> CSS Colors, Fonts and Text Styling</p>
+
+</div>
+
+</div>
+
+
+<script>
+
+function toggleStudentMenu(){
+
+const menu=document.getElementById("studentMenu");
+
+menu.classList.toggle("show");
+
+}
+
+</script>
+
+</body>
+</html>

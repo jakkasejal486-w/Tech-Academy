@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+<title>CSS Lesson 5 - Responsive Design</title>
+<style>
+*{
+box-sizing:border-box;
+}
+body{
+background-color:black;
+color:white; 
+margin:0;
+padding:100px 30px 40px;
+}
+nav{
+position:fixed;
+top:0;
+left:0;
+right:0;
+width:100%;
+height:70px;
+background-color:#1e3a5f;
+padding:10px 20px;
+display:flex;
+align-items:center;
+gap:10px;
+z-index:1000;
+}
+nav a{
+color:#40E0D0;
+text-decoration:none;
+font-size:15px;
+font-weight:bold;
+white-space:nowrap;
+}
+nav a:hover{
+color:white;
+}
+nav p{
+color:white;
+font-size:20px;
+margin:0;
+padding:0;
+white-space:nowrap;
+}
+.student-dashboard{
+margin-left:auto;
+position:relative;
+flex-shrink:0;
+}
+.student-logo{
+width:55px;
+height:55px;
+border-radius:50%;
+border:3px solid #40E0D0;
+background-color:#1e3a5f;
+color:white;
+font-size:27px;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:0;
+transition:0.2s;
+}
+.student-logo:hover{
+background-color:#40E0D0;
+color:#1e3a5f;
+}
+.student-menu{
+display:none;
+position:absolute;
+top:65px;
+right:0;
+width:200px;
+background-color:#1e3a5f;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 5px 20px rgba(0,0,0,0.5);
+z-index:2000;
+}
+.student-menu.show{
+display:flex;
+flex-direction:column;
+}
+.student-menu a{
+color:#40E0D0;
+text-decoration:none;
+padding:15px 18px;
+font-size:16px;
+font-weight:bold;
+border-bottom:1px solid rgba(64,224,208,0.2);
+white-space:nowrap;
+}
+.student-menu a:hover{
+background-color:#40E0D0;
+color:#1e3a5f;
+}
+.course-notes{
+max-width:1100px;
+margin:auto;
+}
+.course-notes h1{
+color:#40E0D0;
+text-align:center;
+font-size:36px;
+margin-bottom:40px;
+}
+.course-notes h2{
+color:#40E0D0;
+font-size:27px;
+margin-top:40px;
+border-bottom:1px solid #1e3a5f;
+padding-bottom:10px;
+}
+.course-notes h3{
+color:#40E0D0;
+font-size:21px;
+margin-top:25px;
+}
+.course-notes p{
+color:white;
+font-size:17px;
+line-height:1.8;
+}
+.course-notes ul,
+.course-notes ol{
+color:white;
+font-size:17px;
+line-height:2;
+}
+.course-notes li{
+margin-bottom:5px;
+}
+.course-notes code{
+color:#40E0D0;
+font-family:Consolas,monospace;
+}
+.course-notes pre{
+background-color:#111;
+border:1px solid #1e3a5f;
+border-left:5px solid #40E0D0;
+padding:20px;
+overflow-x:auto;
+border-radius:8px;
+line-height:1.6;
+}
+.course-notes pre code{
+color:#40E0D0;
+font-size:15px;
+}
+.course-notes table{
+width:100%;
+border-collapse:collapse;
+margin:20px 0 30px;
+}
+.course-notes th{
+background-color:#1e3a5f;
+color:#40E0D0;
+font-size:17px;
+padding:14px;
+border:1px solid #40E0D0;
+}
+.course-notes td{
+color:white;
+padding:14px;
+border:1px solid #40E0D0;
+font-size:16px;
+}
+.course-notes tr:nth-child(even){
+background-color:#111;
+}
+.course-notes tr:hover{
+background-color:#1e3a5f;
+}
+.lesson-summary{
+background-color:#111;
+border:2px solid #40E0D0;
+border-radius:10px;
+padding:25px;
+margin-top:50px;
+}
+.lesson-summary h2{
+margin-top:0;
+border-bottom:none;
+}
+.example-box{
+background-color:#111;
+border:2px solid #1e3a5f;
+border-radius:10px;
+padding:20px;
+margin:20px 0;
+}
+@media(max-width:900px){
+nav{
+gap:6px;
+padding:10px;
+}
+nav a{
+font-size:12px;
+}
+nav p{
+font-size:16px;
+}
+.course-notes h1{
+font-size:30px;
+}
+}
+@media(max-width:600px){
+body{
+padding:90px 15px 30px;
+}
+nav{
+height:60px;
+overflow-x:auto;
+}
+nav a{
+font-size:11px;
+}
+nav p{
+font-size:14px;
+}
+.student-logo{
+width:45px;
+height:45px;
+font-size:22px;
+}
+.student-menu{
+top:55px;
+}
+.course-notes h1{
+font-size:25px;
+}
+.course-notes h2{
+font-size:23px;
+}
+.course-notes h3{
+font-size:19px;
+}
+.course-notes p,
+.course-notes ul,
+.course-notes ol{
+font-size:15px;
+}
+.course-notes table{
+font-size:14px;
+}
+.course-notes th,
+.course-notes td{
+padding:9px;
+}
+}
+</style>
+</head>
+<body>
+
+<nav>
+
+<p>|</p>
+<a href="index.html">HOME</a>
+
+<p>|</p>
+<a href="information.html">INFO</a>
+
+<p>|</p>
+<a href="courses.html">COURSES</a>
+
+<p>|</p>
+<a href="login.html">LOGIN</a>
+
+<p>|</p>
+<a href="forms.html">REGISTRATION</a>
+
+<p>|</p>
+<a href="contact.html">📞 CONTACT US</a>
+
+<div class="student-dashboard">
+
+<button class="student-logo" onclick="toggleStudentMenu()" title="Student Dashboard">🎓</button>
+
+<div class="student-menu" id="studentMenu"> 
+   
+<a href="student-dashboard.php">
+🏠 Dashboard</a>  
+<a href="logout.php">🏠Logout</a> 
+</div>
+
+</div>
+
+</nav>
+
+
+<div class="course-notes">
+
+<h1>CSS Lesson 5: Responsive Design and Advanced Styling</h1>
+
+
+<h2>1. Introduction to Responsive Web Design</h2>
+
+<p>Responsive Web Design is a technique used to make websites display properly on different screen sizes and devices.</p>
+
+<p>A responsive website can automatically adjust its layout according to the device being used.</p>
+
+<p>For example, the same website should work properly on:</p>
+
+<ul>
+<li>Desktop computers</li>
+<li>Laptops</li>
+<li>Tablets</li>
+<li>Mobile phones</li>
+</ul>
+
+
+<h2>2. Why Responsive Design is Important</h2>
+
+<p>Users access websites from different devices and screen sizes.</p>
+
+<p>If a website is designed only for a desktop screen, it may look incorrect on a mobile phone.</p>
+
+<p>Responsive design helps improve:</p>
+
+<ul>
+<li>User experience</li>
+<li>Readability</li>
+<li>Navigation</li>
+<li>Accessibility</li>
+<li>Mobile usability</li>
+</ul>
+
+
+<h2>3. Viewport Meta Tag</h2>
+
+<p>The viewport meta tag helps browsers control the dimensions and scaling of a webpage on mobile devices.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code></pre>
+
+<p>This is normally placed inside the <code>&lt;head&gt;</code> section of an HTML document.</p>
+
+
+<h2>4. Media Queries</h2>
+
+<p>Media queries are one of the most important features of responsive CSS.</p>
+
+<p>They allow different CSS rules to be applied depending on screen size, device characteristics or other conditions.</p>
+
+<h3>Basic Syntax</h3>
+
+<pre><code>@media(max-width:600px){
+
+body{
+background-color:black;
+}
+
+}</code></pre>
+
+
+<h2>5. Max Width</h2>
+
+<p><code>max-width</code> applies CSS rules when the screen width is less than or equal to the specified value.</p>
+
+<h3>Example</h3>
+
+<pre><code>@media(max-width:600px){
+
+h1{
+font-size:25px;
+}
+
+}</code></pre>
+
+
+<h2>6. Min Width</h2>
+
+<p><code>min-width</code> applies CSS rules when the screen width is greater than or equal to the specified value.</p>
+
+<h3>Example</h3>
+
+<pre><code>@media(min-width:768px){
+
+.container{
+width:80%;
+}
+
+}</code></pre>
+
+
+<h2>7. Common Screen Sizes</h2>
+
+<table>
+
+<tr>
+<th>Device</th>
+<th>Common Width</th>
+</tr>
+
+<tr>
+<td>Mobile</td>
+<td>Up to 600px</td>
+</tr>
+
+<tr>
+<td>Tablet</td>
+<td>601px - 900px</td>
+</tr>
+
+<tr>
+<td>Laptop</td>
+<td>901px - 1200px</td>
+</tr>
+
+<tr>
+<td>Desktop</td>
+<td>Above 1200px</td>
+</tr>
+
+</table>
+
+
+<h2>8. Responsive Text</h2>
+
+<p>Text sizes can be changed for smaller screens using media queries.</p>
+
+<h3>Example</h3>
+
+<pre><code>h1{
+font-size:40px;
+}
+
+@media(max-width:600px){
+
+h1{
+font-size:25px;
+}
+
+}</code></pre>
+
+
+<h2>9. Responsive Images</h2>
+
+<p>Images should be able to shrink according to the available screen width.</p>
+
+<h3>Example</h3>
+
+<pre><code>img{
+max-width:100%;
+height:auto;
+}</code></pre>
+
+<p>This prevents images from becoming wider than their containing element.</p>
+
+
+<h2>10. Responsive Width</h2>
+
+<p>Using percentages instead of fixed pixel values can make layouts more flexible.</p>
+
+<h3>Example</h3>
+
+<pre><code>.container{
+width:90%;
+margin:auto;
+}</code></pre>
+
+
+<h2>11. Max Width Container</h2>
+
+<p>The <code>max-width</code> property can prevent content from becoming too wide on large screens.</p>
+
+<h3>Example</h3>
+
+<pre><code>.container{
+width:90%;
+max-width:1100px;
+margin:auto;
+}</code></pre>
+
+
+<h2>12. CSS Units</h2>
+
+<p>CSS provides different units for specifying sizes.</p>
+
+<table>
+
+<tr>
+<th>Unit</th>
+<th>Description</th>
+</tr>
+
+<tr>
+<td>px</td>
+<td>Pixels.</td>
+</tr>
+
+<tr>
+<td>%</td>
+<td>Percentage relative to another value.</td>
+</tr>
+
+<tr>
+<td>em</td>
+<td>Relative to the font size of the element or its context.</td>
+</tr>
+
+<tr>
+<td>rem</td>
+<td>Relative to the root element's font size.</td>
+</tr>
+
+<tr>
+<td>vw</td>
+<td>Relative to viewport width.</td>
+</tr>
+
+<tr>
+<td>vh</td>
+<td>Relative to viewport height.</td>
+</tr>
+
+</table>
+
+
+<h2>13. Pixel Unit</h2>
+
+<p>The <code>px</code> unit represents pixels.</p>
+
+<h3>Example</h3>
+
+<pre><code>h1{
+font-size:30px;
+}</code></pre>
+
+
+<h2>14. Percentage Unit</h2>
+
+<p>The percentage unit is relative to the size of another element or property.</p>
+
+<h3>Example</h3>
+
+<pre><code>.box{
+width:80%;
+}</code></pre>
+
+
+<h2>15. Viewport Width</h2>
+
+<p><code>vw</code> means viewport width.</p>
+
+<p><code>1vw</code> represents 1% of the viewport width.</p>
+
+<h3>Example</h3>
+
+<pre><code>h1{
+font-size:5vw;
+}</code></pre>
+
+
+<h2>16. Viewport Height</h2>
+
+<p><code>vh</code> means viewport height.</p>
+
+<p><code>1vh</code> represents 1% of the viewport height.</p>
+
+<h3>Example</h3>
+
+<pre><code>.section{
+height:100vh;
+}</code></pre>
+
+
+<h2>17. CSS Variables</h2>
+
+<p>CSS variables allow commonly used values to be stored and reused throughout a stylesheet.</p>
+
+<h3>Example</h3>
+
+<pre><code>:root{
+--main-color:#40E0D0;
+--background-color:black;
+}
+
+h1{
+color:var(--main-color);
+}
+
+body{
+background-color:var(--background-color);
+}</code></pre>
+
+
+<h2>18. Benefits of CSS Variables</h2>
+
+<ul>
+
+<li>Reduce repeated code.</li>
+
+<li>Make CSS easier to maintain.</li>
+
+<li>Allow common values to be changed easily.</li>
+
+<li>Improve consistency throughout a website.</li>
+
+</ul>
+
+
+<h2>19. CSS Transitions</h2>
+
+<p>The <code>transition</code> property creates smooth changes between CSS property values.</p>
+
+<h3>Example</h3>
+
+<pre><code>button{
+background-color:#1e3a5f;
+transition:0.3s;
+}
+
+button:hover{
+background-color:#40E0D0;
+}</code></pre>
+
+
+<h2>20. Transition Property</h2>
+
+<p>A transition can specify the property, duration and timing function.</p>
+
+<h3>Example</h3>
+
+<pre><code>button{
+transition:background-color 0.3s ease;
+}</code></pre>
+
+
+<h2>21. CSS Transform</h2>
+
+<p>The <code>transform</code> property allows an element to be moved, rotated, scaled or skewed.</p>
+
+<h3>Example</h3>
+
+<pre><code>.box{
+transform:scale(1.1);
+}</code></pre>
+
+
+<h2>22. Translate</h2>
+
+<p><code>translate</code> moves an element from its original position.</p>
+
+<h3>Example</h3>
+
+<pre><code>.box{
+transform:translateX(20px);
+}</code></pre>
+
+
+<h2>23. Rotate</h2>
+
+<p><code>rotate</code> rotates an element.</p>
+
+<h3>Example</h3>
+
+<pre><code>.box{
+transform:rotate(10deg);
+}</code></pre>
+
+
+<h2>24. Scale</h2>
+
+<p><code>scale</code> increases or decreases the size of an element.</p>
+
+<h3>Example</h3>
+
+<pre><code>.box{
+transform:scale(1.2);
+}</code></pre>
+
+
+<h2>25. Hover Effects</h2>
+
+<p>The <code>:hover</code> pseudo-class applies CSS when the mouse pointer moves over an element.</p>
+
+<h3>Example</h3>
+
+<pre><code>button:hover{
+background-color:#40E0D0;
+color:#1e3a5f;
+}</code></pre>
+
+
+<h2>26. Transition and Hover Together</h2>
+
+<p>Transitions can be combined with hover effects to create smooth animations.</p>
+
+<h3>Example</h3>
+
+<pre><code>button{
+background-color:#1e3a5f;
+color:#40E0D0;
+transition:0.3s;
+}
+
+button:hover{
+background-color:#40E0D0;
+color:#1e3a5f;
+transform:scale(1.05);
+}</code></pre>
+
+
+<h2>27. Opacity</h2>
+
+<p>The <code>opacity</code> property controls the transparency of an element.</p>
+
+<p>The value can range from 0 to 1.</p>
+
+<h3>Example</h3>
+
+<pre><code>.box{
+opacity:0.5;
+}</code></pre>
+
+
+<h2>28. Box Shadow</h2>
+
+<p>The <code>box-shadow</code> property adds a shadow around an element.</p>
+
+<h3>Example</h3>
+
+<pre><code>.card{
+box-shadow:0 5px 20px rgba(0,0,0,0.5);
+}</code></pre>
+
+
+<h2>29. Text Shadow</h2>
+
+<p>The <code>text-shadow</code> property adds a shadow to text.</p>
+
+<h3>Example</h3>
+
+<pre><code>h1{
+text-shadow:2px 2px 5px black;
+}</code></pre>
+
+
+<h2>30. Border Radius</h2>
+
+<p>The <code>border-radius</code> property creates rounded corners.</p>
+
+<h3>Example</h3>
+
+<pre><code>.card{
+border-radius:15px;
+}</code></pre>
+
+
+<h2>31. Cursor Property</h2>
+
+<p>The <code>cursor</code> property changes the appearance of the mouse pointer.</p>
+
+<h3>Example</h3>
+
+<pre><code>button{
+cursor:pointer;
+}</code></pre>
+
+
+<h2>32. Common Cursor Values</h2>
+
+<table>
+
+<tr>
+<th>Value</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>pointer</td>
+<td>Shows a pointer cursor.</td>
+</tr>
+
+<tr>
+<td>default</td>
+<td>Shows the normal cursor.</td>
+</tr>
+
+<tr>
+<td>text</td>
+<td>Shows a text selection cursor.</td>
+</tr>
+
+<tr>
+<td>move</td>
+<td>Shows a move cursor.</td>
+</tr>
+
+<tr>
+<td>not-allowed</td>
+<td>Indicates that an action is not allowed.</td>
+</tr>
+
+</table>
+
+
+<h2>33. Object Fit</h2>
+
+<p>The <code>object-fit</code> property controls how an image or video fits inside its container.</p>
+
+<h3>Example</h3>
+
+<pre><code>img{
+width:300px;
+height:200px;
+object-fit:cover;
+}</code></pre>
+
+
+<h2>34. Common Object Fit Values</h2>
+
+<table>
+
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+
+<tr>
+<td>fill</td>
+<td>Stretches the image to fill the container.</td>
+</tr>
+
+<tr>
+<td>contain</td>
+<td>Shows the complete image inside the container.</td>
+</tr>
+
+<tr>
+<td>cover</td>
+<td>Fills the container while maintaining aspect ratio.</td>
+</tr>
+
+<tr>
+<td>none</td>
+<td>Keeps the original image size.</td>
+</tr>
+
+</table>
+
+
+<h2>35. Responsive Flexbox</h2>
+
+<p>Flexbox can be combined with media queries to create responsive layouts.</p>
+
+<h3>Example</h3>
+
+<pre><code>.container{
+display:flex;
+gap:20px;
+}
+
+.card{
+flex:1;
+}
+
+@media(max-width:600px){
+
+.container{
+flex-direction:column;
+}
+
+.card{
+width:100%;
+}
+
+}</code></pre>
+
+
+<h2>36. Responsive Navigation Bar</h2>
+
+<p>A navigation bar can be adjusted for smaller screens using media queries.</p>
+
+<h3>Example</h3>
+
+<pre><code>nav{
+display:flex;
+gap:20px;
+}
+
+@media(max-width:600px){
+
+nav{
+flex-direction:column;
+height:auto;
+}
+
+}</code></pre>
+
+
+<h2>37. Responsive Course Cards</h2>
+
+<p>Course cards can be made responsive using Flexbox and media queries.</p>
+
+<h3>Example</h3>
+
+<pre><code>.courses{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.course{
+flex:1 1 300px;
+padding:25px;
+}
+
+@media(max-width:600px){
+
+.course{
+flex:1 1 100%;
+}
+
+}</code></pre>
+
+
+<h2>38. Complete Responsive Website Example</h2>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+
+&lt;html&gt;
+
+&lt;head&gt;
+
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+
+&lt;title&gt;Responsive Website&lt;/title&gt;
+
+&lt;style&gt;
+
+*{
+box-sizing:border-box;
+}
+
+body{
+margin:0;
+background-color:black;
+color:white;
+font-family:Arial,sans-serif;
+}
+
+.container{
+width:90%;
+max-width:1100px;
+margin:auto;
+}
+
+nav{
+background-color:#1e3a5f;
+padding:20px;
+display:flex;
+justify-content:center;
+gap:20px;
+}
+
+nav a{
+color:#40E0D0;
+text-decoration:none;
+}
+
+.courses{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+margin-top:30px;
+}
+
+.card{
+flex:1 1 300px;
+padding:30px;
+background-color:#1e3a5f;
+border:2px solid #40E0D0;
+border-radius:10px;
+text-align:center;
+transition:0.3s;
+}
+
+.card:hover{
+transform:scale(1.05);
+}
+
+@media(max-width:600px){
+
+nav{
+flex-direction:column;
+align-items:center;
+}
+
+.card{
+flex:1 1 100%;
+}
+
+}
+
+&lt;/style&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;div class="container"&gt;
+
+&lt;nav&gt;
+
+&lt;a href="#"&gt;HOME&lt;/a&gt;
+
+&lt;a href="#"&gt;COURSES&lt;/a&gt;
+
+&lt;a href="#"&gt;LOGIN&lt;/a&gt;
+
+&lt;/nav&gt;
+
+&lt;div class="courses"&gt;
+
+&lt;div class="card"&gt;
+
+&lt;h2&gt;HTML&lt;/h2&gt;
+
+&lt;p&gt;Learn HTML.&lt;/p&gt;
+
+&lt;/div&gt;
+
+&lt;div class="card"&gt;
+
+&lt;h2&gt;CSS&lt;/h2&gt;
+
+&lt;p&gt;Learn CSS.&lt;/p&gt;
+
+&lt;/div&gt;
+
+&lt;div class="card"&gt;
+
+&lt;h2&gt;JavaScript&lt;/h2&gt;
+
+&lt;p&gt;Learn JavaScript.&lt;/p&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+
+
+<h2>39. Important CSS Responsive Design Properties</h2>
+
+<table>
+
+<tr>
+<th>Property</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>max-width</td>
+<td>Sets the maximum width of an element.</td>
+</tr>
+
+<tr>
+<td>min-width</td>
+<td>Sets the minimum width of an element.</td>
+</tr>
+
+<tr>
+<td>width</td>
+<td>Controls the width of an element.</td>
+</tr>
+
+<tr>
+<td>height</td>
+<td>Controls the height of an element.</td>
+</tr>
+
+<tr>
+<td>max-width:100%</td>
+<td>Helps images fit inside their containers.</td>
+</tr>
+
+<tr>
+<td>transition</td>
+<td>Creates smooth property changes.</td>
+</tr>
+
+<tr>
+<td>transform</td>
+<td>Moves, rotates or scales elements.</td>
+</tr>
+
+<tr>
+<td>opacity</td>
+<td>Controls transparency.</td>
+</tr>
+
+<tr>
+<td>cursor</td>
+<td>Changes the mouse cursor.</td>
+</tr>
+
+<tr>
+<td>object-fit</td>
+<td>Controls how media fits inside its container.</td>
+</tr>
+
+<tr>
+<td>box-shadow</td>
+<td>Adds a shadow around an element.</td>
+</tr>
+
+<tr>
+<td>text-shadow</td>
+<td>Adds a shadow to text.</td>
+</tr>
+
+</table>
+
+
+<h2>40. Important Points to Remember</h2>
+
+<ol>
+
+<li>Responsive design allows websites to work on different screen sizes.</li>
+
+<li>The viewport meta tag is important for mobile responsive websites.</li>
+
+<li>Media queries allow different CSS rules for different screen sizes.</li>
+
+<li><code>max-width</code> is commonly used for mobile layouts.</li>
+
+<li><code>min-width</code> can be used for larger screen layouts.</li>
+
+<li>Percentage, vw and vh units can help create flexible layouts.</li>
+
+<li>Responsive images can use <code>max-width:100%</code>.</li>
+
+<li>CSS variables allow values to be reused throughout a stylesheet.</li>
+
+<li>Transitions create smooth changes between CSS states.</li>
+
+<li>Transform can move, rotate and scale elements.</li>
+
+<li>The <code>:hover</code> pseudo-class is commonly used for interactive effects.</li>
+
+<li>Opacity controls the transparency of an element.</li>
+
+<li>Box shadow creates visual depth around elements.</li>
+
+<li>Object-fit controls how images fit inside their containers.</li>
+
+<li>Flexbox combined with media queries can create responsive layouts.</li>
+
+<li>Responsive design is important for your Online Tech Learning Academy because students may access the website from mobile phones, tablets and computers.</li>
+
+</ol>
+
+
+<div class="lesson-summary">
+
+<h2>Lesson Summary</h2>
+
+<p>In this lesson, you learned how to make websites responsive and suitable for different screen sizes.</p>
+
+<p>You learned about media queries, viewport settings, responsive units, responsive images and flexible layouts.</p>
+
+<p>You also learned CSS variables, transitions, transforms, hover effects, opacity, shadows and object-fit.</p>
+
+<p>Responsive Flexbox layouts can be used to make your course cards, navigation bars and other website sections work properly on mobile and desktop screens.</p>
+
+<p>These concepts complete the five important CSS lessons for your Online Tech Learning Academy course.</p>
+
+<p><b>CSS Course Complete:</b> You can now move toward CSS practice, projects and integration with your HTML pages.</p>
+
+</div>
+
+</div>
+
+
+<script>
+
+function toggleStudentMenu(){
+
+const menu=document.getElementById("studentMenu");
+
+menu.classList.toggle("show");
+
+}
+
+</script>
+
+</body>
+</html>

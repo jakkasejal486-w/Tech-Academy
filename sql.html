@@ -1,0 +1,638 @@
+ <!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Information</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: black;
+            margin: 0;
+        }
+
+        /* NAVIGATION */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 70px;
+            background-color: #1e3a5f;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: #40E0D0;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        nav a:hover {
+            color: white;
+        }
+
+        nav p {
+            color: white;
+            font-size: 20px;
+            margin: 0;
+            padding: 0;
+            white-space: nowrap;
+        }
+
+        /* STUDENT DASHBOARD */
+
+        .student-dashboard {
+            margin-left: auto;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .student-logo {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            border: 3px solid #40E0D0;
+            background-color: #1e3a5f;
+            color: white;
+            font-size: 27px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            transition: 0.2s;
+        }
+
+        .student-logo:hover {
+            background-color: #40E0D0;
+            color: #1e3a5f;
+        }
+
+        .student-menu {
+            display: none;
+            position: absolute;
+            top: 65px;
+            right: 0;
+            width: 200px;
+            background-color: #1e3a5f;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+        }
+
+        .student-menu.show {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .student-menu a {
+            color: #40E0D0;
+            text-decoration: none;
+            padding: 15px 18px;
+            font-size: 16px;
+            font-weight: bold;
+            border-bottom: 1px solid rgba(64, 224, 208, 0.2);
+            white-space: nowrap;
+        }
+
+        .student-menu a:hover {
+            background-color: #40E0D0;
+            color: #1e3a5f;
+        }
+
+        /* MAIN HEADING */
+
+        h2 {
+            padding: 58px;
+            text-align: center;
+            color: #40E0D0;
+        }
+
+        /* COURSE HEADINGS */
+
+        h3 {
+            color: #40E0D0;
+        }
+
+        h4 {
+            margin: 10px 30px 20px 90px;
+            color: #40E0D0;
+        }
+
+        dl {
+            color: white;
+        }
+
+        dt {
+            color: #40E0D0;
+        }
+
+        p {
+            color: white;
+        }
+
+        /* ENROLL BUTTON */
+
+        .enroll-area {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .enroll-btn {
+            padding: 10px 30px;
+            color: #40E0D0;
+            background-color: #1e3a5f;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .enroll-btn:hover {
+            background-color: #40E0D0;
+            color: #1e3a5f;
+        }
+
+        /* START BUTTON */
+
+        .start {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 30px;
+            background-color: #1e3a5f;
+            color: #40E0D0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .start:hover {
+            background-color: #40E0D0;
+            color: #1e3a5f;
+        }
+
+        /* QUIZ BUTTON */
+
+        .quiz {
+            display: block;
+            margin: 10px auto;
+            padding: 10px 30px;
+            background-color: #1e3a5f;
+            color: #40E0D0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .quiz:hover {
+            background-color: #40E0D0;
+            color: #1e3a5f;
+        }
+
+        /* START QUIZ */
+
+        .startquiz {
+            margin: 10px auto;
+            padding: 10px 60px;
+            text-align: center;
+            color: #40E0D0;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVIGATION BAR -->
+
+    <nav>
+
+        <p>|</p>
+
+        <a href="index.html">
+            HOME
+        </a>
+
+        <p>|</p>
+
+        <a href="information.html">
+            INFO
+        </a>
+
+        <p>|</p>
+
+        <a href="courses.html">
+            COURSES
+        </a>
+
+        <p>|</p>
+
+        <a href="login.html">
+            LOGIN
+        </a>
+
+        <p>|</p>
+
+        <a href="forms.html">
+            REGISTRATION
+        </a>
+
+        <p>|</p>
+
+        <a href="contact.html">
+            📞 CONTACT US
+        </a>
+
+
+        <!-- STUDENT DASHBOARD -->
+
+        <div class="student-dashboard">
+
+            <button
+                class="student-logo"
+                type="button"
+                onclick="toggleStudentMenu()"
+                title="Student Dashboard">
+
+                🎓
+
+            </button>
+
+
+            <div
+                class="student-menu"
+                id="studentMenu">
+
+                <a href="student-dashboard.php">
+                    🏠 Dashboard
+                </a>
+
+                <a href="logout.php">
+                    🏠Logout
+                </a>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <!-- SQL COURSE INTRODUCTION -->
+
+    <h2>
+
+        SQL — Structured Query Language is a programming language used
+        to create, store, retrieve, update, and manage data in
+        relational databases.
+
+    </h2>
+
+
+     <h3> LESSONS</h3>
+
+
+    <!-- LESSON 1 -->
+
+    <h3>
+        1) SQL Basics & Database
+    </h3>
+
+    <a href="s1.html">
+
+        <button class="start">
+            Start
+        </button>
+
+    </a>
+
+
+    <!-- LESSON 2 -->
+
+    <h3>
+        2) SQL Data Manipulation
+    </h3>
+
+    <a href="s2.html">
+
+        <button class="start">
+            Start
+        </button>
+
+    </a>
+
+
+    <!-- LESSON 3 -->
+
+    <h3>
+        3) SQL Constraints & Keys
+    </h3>
+
+    <a href="s3.html">
+
+        <button class="start">
+            Start
+        </button>
+
+    </a>
+
+
+    <!-- LESSON 4 -->
+
+    <h3>
+        4) SQL Queries & Filtering
+    </h3>
+
+    <a href="s4.html">
+
+        <button class="start">
+            Start
+        </button>
+
+    </a>
+
+
+    <!-- LESSON 5 -->
+
+    <h3>
+        5) SQL Joins & Relationships
+    </h3>
+
+    <a href="s5.html">
+
+        <button class="start">
+            Start
+        </button>
+
+    </a>
+
+
+    <!-- QUIZ -->
+
+    <h3 class="startquiz">
+
+        --------------------------------------------------
+        Start Quiz
+        --------------------------------------------------
+
+    </h3>
+
+
+    <a href="sqlquiz.html">
+
+        <button class="quiz">
+            QUIZ
+        </button>
+
+    </a>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+
+        /* STUDENT MENU */
+
+        function toggleStudentMenu() {
+
+            const menu =
+            document.getElementById("studentMenu");
+
+            menu.classList.toggle("show");
+
+        }
+
+
+        /* CHECK SQL ENROLLMENT */
+
+        fetch("check-enrollment.php")
+
+        .then(function(response) {
+
+            return response.json();
+
+        })
+
+        .then(function(data) {
+
+            if (!data.logged_in) {
+
+                return;
+
+            }
+
+
+            if (!data.courses) {
+
+                return;
+
+            }
+
+
+            data.courses.forEach(function(course) {
+
+                if (course === "SQL") {
+
+                    const button =
+                    document.getElementById("sql-btn");
+
+                    if (button) {
+
+                        button.innerText =
+                        "ENROLLED ✅";
+
+                    }
+
+                }
+
+            });
+
+        })
+
+        .catch(function(error) {
+
+            console.error(
+                "Enrollment check error:",
+                error
+            );
+
+        });
+
+
+        /* ENROLL COURSE */
+
+        function enrollCourse(courseName, coursePage) {
+
+
+            /* CHECK LOGIN */
+
+            fetch("check-login.php")
+
+            .then(function(response) {
+
+                return response.json();
+
+            })
+
+            .then(function(loginData) {
+
+
+                /* NOT LOGGED IN */
+
+                if (!loginData.logged_in) {
+
+                    alert(
+                        "Please login first to enroll in a course."
+                    );
+
+                    window.location.href =
+                    "login.html";
+
+                    return;
+
+                }
+
+
+                /* CHECK ENROLLMENT */
+
+                fetch("check-enrollment.php")
+
+                .then(function(response) {
+
+                    return response.json();
+
+                })
+
+                .then(function(enrollmentData) {
+
+
+                    /* ALREADY ENROLLED */
+
+                    if (
+                        enrollmentData.courses &&
+                        enrollmentData.courses.includes(courseName)
+                    ) {
+
+                        window.location.href =
+                        coursePage;
+
+                        return;
+
+                    }
+
+
+                    /* NEW ENROLLMENT */
+
+                    const formData =
+                    new FormData();
+
+                    formData.append(
+                        "course_name",
+                        courseName
+                    );
+
+
+                    /* SAVE ENROLLMENT */
+
+                    fetch("en.php", {
+
+                        method: "POST",
+
+                        body: formData
+
+                    })
+
+                    .then(function(response) {
+
+                        return response.json();
+
+                    })
+
+                    .then(function(result) {
+
+
+                        if (result.success) {
+
+                            alert(
+                                "🎉 " +
+                                courseName +
+                                " enrolled successfully!"
+                            );
+
+                            window.location.href =
+                            coursePage;
+
+                        }
+
+                        else {
+
+                            alert(
+                                result.message ||
+                                "Enrollment failed."
+                            );
+
+                        }
+
+                    })
+
+                    .catch(function(error) {
+
+                        console.error(error);
+
+                        alert(
+                            "There was a problem saving enrollment."
+                        );
+
+                    });
+
+                })
+
+                .catch(function(error) {
+
+                    console.error(error);
+
+                    alert(
+                        "Could not check enrollment."
+                    );
+
+                });
+
+            })
+
+            .catch(function(error) {
+
+                console.error(error);
+
+                alert(
+                    "Could not check login."
+                );
+
+            });
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

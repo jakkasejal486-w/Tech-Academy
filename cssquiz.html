@@ -1,0 +1,1075 @@
+   <!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+
+<title>CSS Quiz - Tech Learning Academy</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+}
+
+body{
+background-color:black;
+color:white;
+margin:0;
+padding:100px 30px 40px;
+}
+
+nav{
+position:fixed;
+top:0;
+left:0;
+right:0;
+width:100%;
+height:70px;
+background-color:#1e3a5f;
+padding:10px 20px;
+display:flex;
+align-items:center;
+gap:10px;
+z-index:1000;
+}
+
+nav a{
+color:#40E0D0;
+text-decoration:none;
+font-size:15px;
+font-weight:bold;
+white-space:nowrap;
+}
+
+nav a:hover{
+color:white;
+}
+
+nav p{
+color:white;
+font-size:20px;
+margin:0;
+padding:0;
+white-space:nowrap;
+}
+
+.student-dashboard{
+margin-left:auto;
+position:relative;
+flex-shrink:0;
+}
+
+.student-logo{
+width:55px;
+height:55px;
+border-radius:50%;
+border:3px solid #40E0D0;
+background-color:#1e3a5f;
+color:white;
+font-size:27px;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:0;
+}
+
+.student-logo:hover{
+background-color:#40E0D0;
+color:#1e3a5f;
+}
+
+.student-menu{
+display:none;
+position:absolute;
+top:65px;
+right:0;
+width:200px;
+background-color:#1e3a5f;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 5px 20px rgba(0,0,0,0.5);
+z-index:2000;
+}
+
+.student-menu.show{
+display:flex;
+flex-direction:column;
+}
+
+.student-menu a{
+color:#40E0D0;
+text-decoration:none;
+padding:15px 18px;
+font-size:16px;
+font-weight:bold;
+border-bottom:1px solid rgba(64,224,208,0.2);
+white-space:nowrap;
+}
+
+.student-menu a:hover{
+background-color:#40E0D0;
+color:#1e3a5f;
+}
+
+.quiz{
+max-width:1000px;
+margin:auto;
+}
+
+h1{
+color:#40E0D0;
+text-align:center;
+font-size:36px;
+margin-bottom:10px;
+}
+
+.subtitle{
+text-align:center;
+font-size:18px;
+margin-bottom:40px;
+color:white;
+}
+
+.question{
+background-color:#111;
+border:2px solid #1e3a5f;
+border-radius:10px;
+padding:25px;
+margin-bottom:25px;
+}
+
+.question h2{
+color:#40E0D0;
+font-size:20px;
+margin-top:0;
+}
+
+.option{
+display:block;
+background-color:#1e1e1e;
+border:1px solid #333;
+border-radius:6px;
+padding:12px;
+margin:10px 0;
+cursor:pointer;
+}
+
+.option:hover{
+background-color:#1e3a5f;
+}
+
+.option input{
+margin-right:10px;
+}
+
+.submit-btn{
+display:block;
+margin:35px auto;
+padding:15px 35px;
+background-color:#40E0D0;
+color:#1e3a5f;
+border:none;
+border-radius:8px;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.submit-btn:hover{
+background-color:white;
+}
+
+.submit-btn:disabled{
+opacity:0.6;
+cursor:not-allowed;
+}
+
+#result{
+text-align:center;
+font-size:24px;
+font-weight:bold;
+color:#40E0D0;
+margin:30px 0;
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<nav>
+
+<p>|</p>
+
+<a href="index.html">HOME</a>
+
+<p>|</p>
+
+<a href="information.html">INFO</a>
+
+<p>|</p>
+
+<a href="courses.html">COURSES</a>
+
+<p>|</p>
+
+<a href="login.html">LOGIN</a>
+
+<p>|</p>
+
+<a href="forms.html">REGISTRATION</a>
+
+<p>|</p>
+
+<a href="contact.html">📞 CONTACT US</a>
+
+
+<div class="student-dashboard">
+
+<button
+class="student-logo"
+onclick="toggleStudentMenu()"
+title="Student Dashboard">
+🎓
+</button>
+
+
+<div class="student-menu" id="studentMenu">
+
+ 
+<a href="student-dashboard.php">
+🏠 Dashboard</a>  
+<a href="logout.php">🏠Logout</a> 
+
+</div>
+
+</div>
+
+</nav>
+
+
+
+<div class="quiz">
+
+<h1>CSS Quiz</h1>
+
+<p class="subtitle">
+Test your knowledge of CSS with these 20 multiple-choice questions.
+</p>
+
+
+
+<!-- QUESTION 1 -->
+
+<div class="question">
+
+<h2>1. What does CSS stand for?</h2>
+
+<label class="option">
+<input type="radio" name="q1" value="a">
+A. Cascading Style Sheets
+</label>
+
+<label class="option">
+<input type="radio" name="q1" value="b">
+B. Computer Style Sheets
+</label>
+
+<label class="option">
+<input type="radio" name="q1" value="c">
+C. Creative Style Sheets
+</label>
+
+<label class="option">
+<input type="radio" name="q1" value="d">
+D. Colorful Style Sheets
+</label>
+
+</div>
+
+
+
+<!-- QUESTION 2 -->
+
+<div class="question">
+
+<h2>2. Which HTML tag is used to link an external CSS file?</h2>
+
+<label class="option">
+<input type="radio" name="q2" value="a">
+A. &lt;css&gt;
+</label>
+
+<label class="option">
+<input type="radio" name="q2" value="b">
+B. &lt;style&gt;
+</label>
+
+<label class="option">
+<input type="radio" name="q2" value="c">
+C. &lt;link&gt;
+</label>
+
+<label class="option">
+<input type="radio" name="q2" value="d">
+D. &lt;script&gt;
+</label>
+
+</div>
+
+
+
+<!-- QUESTION 3 -->
+
+<div class="question">
+
+<h2>3. Which CSS property is used to change text color?</h2>
+
+<label class="option">
+<input type="radio" name="q3" value="a">
+A. text-color
+</label>
+
+<label class="option">
+<input type="radio" name="q3" value="b">
+B. color
+</label>
+
+<label class="option">
+<input type="radio" name="q3" value="c">
+C. font-color
+</label>
+
+<label class="option">
+<input type="radio" name="q3" value="d">
+D. text-style
+</label>
+
+</div>
+
+
+
+<!-- QUESTION 4 -->
+
+<div class="question">
+
+<h2>4. Which CSS property changes the background color?</h2>
+
+<label class="option">
+<input type="radio" name="q4" value="a">
+A. bgcolor
+</label>
+
+<label class="option">
+<input type="radio" name="q4" value="b">
+B. background
+</label>
+
+<label class="option">
+<input type="radio" name="q4" value="c">
+C. background-color
+</label>
+
+<label class="option">
+<input type="radio" name="q4" value="d">
+D. color-background
+</label>
+
+</div>
+
+
+
+<!-- QUESTION 5 -->
+
+<div class="question">
+
+<h2>5. Which CSS property is used to change the font size?</h2>
+
+<label class="option">
+<input type="radio" name="q5" value="a">
+A. font-size
+</label>
+
+<label class="option">
+<input type="radio" name="q5" value="b">
+B. text-size
+</label>
+
+<label class="option">
+<input type="radio" name="q5" value="c">
+C. font-height
+</label>
+
+<label class="option">
+<input type="radio" name="q5" value="d">
+D. size
+</label>
+
+</div>
+
+
+
+<!-- QUESTION 6 -->
+
+<div class="question">
+
+<h2>6. Which CSS property makes text bold?</h2>
+
+<label class="option">
+<input type="radio" name="q6" value="a">
+A. font-style
+</label>
+
+<label class="option">
+<input type="radio" name="q6" value="b">
+B. text-bold
+</label>
+
+<label class="option">
+<input type="radio" name="q6" value="c">
+C. font-weight
+</label>
+
+<label class="option">
+<input type="radio" name="q6" value="d">
+D. bold
+</label>
+
+</div>
+
+
+
+<!-- QUESTION 7 -->
+
+<div class="question">
+
+<h2>7. Which CSS property is used to change the font family?</h2>
+
+<label class="option">
+<input type="radio" name="q7" value="a">
+A. font-family
+</label>
+
+<label class="option">
+<input type="radio" name="q7" value="b">
+B. font-name
+</label>
+
+<label class="option">
+<input type="radio" name="q7" value="c">
+C. text-family
+</label>
+
+<label class="option">
+<input type="radio" name="q7" value="d">
+D. family
+</label>
+
+</div>
+
+
+
+<!-- QUESTION 8 -->
+
+<div class="question">
+
+<h2>8. Which CSS property is used to add space inside an element?</h2>
+
+<label class="option">
+<input type="radio" name="q8" value="a">
+A. margin
+</label>
+
+<label class="option">
+<input type="radio" name="q8" value="b">
+B. padding
+</label>
+
+<label class="option">
+<input type="radio" name="q8" value="c">
+C. spacing
+</label>
+
+<label class="option">
+<input type="radio" name="q8" value="d">
+D. border
+</label>
+
+</div>
+
+
+
+<!-- QUESTION 9 -->
+
+<div class="question">
+
+<h2>9. Which CSS property is used to add space outside an element?</h2>
+
+<label class="option">
+<input type="radio" name="q9" value="a">
+A. padding
+</label>
+
+<label class="option">
+<input type="radio" name="q9" value="b">
+B. margin
+</label>
+
+<label class="option">
+<input type="radio" name="q9" value="c">
+C. spacing
+</label>
+
+<label class="option">
+<input type="radio" name="q9" value="d">
+D. outside
+</label>
+
+</div>
+
+
+
+<!-- QUESTION 10 -->
+
+<div class="question">
+
+<h2>10. Which CSS property is used to create a border around an element?</h2>
+
+<label class="option">
+<input type="radio" name="q10" value="a">
+A. outline
+</label>
+
+<label class="option">
+<input type="radio" name="q10" value="b">
+B. border
+</label>
+
+<label class="option">
+<input type="radio" name="q10" value="c">
+C. box
+</label>
+
+<label class="option">
+<input type="radio" name="q10" value="d">
+D. border-style-only
+</label>
+
+</div>
+
+
+
+<!-- QUESTION 11 -->
+
+<div class="question">
+
+<h2>11. Which CSS property is used to align text?</h2>
+
+<label class="option">
+<input type="radio" name="q11" value="a">
+A. text-align
+</label>
+
+<label class="option">
+<input type="radio" name="q11" value="b">
+B. align-text
+</label>
+
+<label class="option">
+<input type="radio" name="q11" value="c">
+C. text-position
+</label>
+
+<label class="option">
+<input type="radio" name="q11" value="d">
+D. alignment
+</label>
+
+</div>
+
+
+
+<!-- QUESTION 12 -->
+
+<div class="question">
+
+<h2>12. Which CSS property controls the width of an element?</h2>
+
+<label class="option">
+<input type="radio" name="q12" value="a">
+A. size
+</label>
+
+<label class="option">
+<input type="radio" name="q12" value="b">
+B. width
+</label>
+
+<label class="option">
+<input type="radio" name="q12" value="c">
+C. element-width
+</label>
+
+<label class="option">
+<input type="radio" name="q12" value="d">
+D. length
+</label>
+
+</div>
+
+
+
+<!-- QUESTION 13 -->
+
+<div class="question">
+
+<h2>13. Which CSS property controls the height of an element?</h2>
+
+<label class="option">
+<input type="radio" name="q13" value="a">
+A. height
+</label>
+
+<label class="option">
+<input type="radio" name="q13" value="b">
+B. element-height
+</label>
+
+<label class="option">
+<input type="radio" name="q13" value="c">
+C. size-height
+</label>
+
+<label class="option">
+<input type="radio" name="q13" value="d">
+D. length
+</label>
+
+</div>
+
+
+
+<!-- QUESTION 14 -->
+
+<div class="question">
+
+<h2>14. Which CSS selector is used to select an element with a specific ID?</h2>
+
+<label class="option">
+<input type="radio" name="q14" value="a">
+A. .
+</label>
+
+<label class="option">
+<input type="radio" name="q14" value="b">
+B. #
+</label>
+
+<label class="option">
+<input type="radio" name="q14" value="c">
+C. *
+</label>
+
+<label class="option">
+<input type="radio" name="q14" value="d">
+D. @
+</label>
+
+</div>
+
+
+
+<!-- QUESTION 15 -->
+
+<div class="question">
+
+<h2>15. Which CSS selector is used to select elements with a specific class?</h2>
+
+<label class="option">
+<input type="radio" name="q15" value="a">
+A. #
+</label>
+
+<label class="option">
+<input type="radio" name="q15" value="b">
+B. .
+</label>
+
+<label class="option">
+<input type="radio" name="q15" value="c">
+C. *
+</label>
+
+<label class="option">
+<input type="radio" name="q15" value="d">
+D. $
+</label>
+
+</div>
+
+
+
+<!-- QUESTION 16 -->
+
+<div class="question">
+
+<h2>16. Which CSS property is used to make an element invisible?</h2>
+
+<label class="option">
+<input type="radio" name="q16" value="a">
+A. display: none;
+</label>
+
+<label class="option">
+<input type="radio" name="q16" value="b">
+B. invisible: true;
+</label>
+
+<label class="option">
+<input type="radio" name="q16" value="c">
+C. hide: true;
+</label>
+
+<label class="option">
+<input type="radio" name="q16" value="d">
+D. visible: false;
+</label>
+
+</div>
+
+
+
+<!-- QUESTION 17 -->
+
+<div class="question">
+
+<h2>17. Which CSS property is used to make an element have rounded corners?</h2>
+
+<label class="option">
+<input type="radio" name="q17" value="a">
+A. corner-radius
+</label>
+
+<label class="option">
+<input type="radio" name="q17" value="b">
+B. border-radius
+</label>
+
+<label class="option">
+<input type="radio" name="q17" value="c">
+C. radius
+</label>
+
+<label class="option">
+<input type="radio" name="q17" value="d">
+D. round-border
+</label>
+
+</div>
+
+
+
+<!-- QUESTION 18 -->
+
+<div class="question">
+
+<h2>18. Which CSS property is used to control the transparency of an element?</h2>
+
+<label class="option">
+<input type="radio" name="q18" value="a">
+A. transparency
+</label>
+
+<label class="option">
+<input type="radio" name="q18" value="b">
+B. opacity
+</label>
+
+<label class="option">
+<input type="radio" name="q18" value="c">
+C. transparent
+</label>
+
+<label class="option">
+<input type="radio" name="q18" value="d">
+D. alpha
+</label>
+
+</div>
+
+
+
+<!-- QUESTION 19 -->
+
+<div class="question">
+
+<h2>19. Which CSS layout system is designed for one-dimensional layouts?</h2>
+
+<label class="option">
+<input type="radio" name="q19" value="a">
+A. Grid
+</label>
+
+<label class="option">
+<input type="radio" name="q19" value="b">
+B. Flexbox
+</label>
+
+<label class="option">
+<input type="radio" name="q19" value="c">
+C. Table
+</label>
+
+<label class="option">
+<input type="radio" name="q19" value="d">
+D. Float
+</label>
+
+</div>
+
+
+
+<!-- QUESTION 20 -->
+
+<div class="question">
+
+<h2>20. Which CSS property is used to change the position of an element?</h2>
+
+<label class="option">
+<input type="radio" name="q20" value="a">
+A. position
+</label>
+
+<label class="option">
+<input type="radio" name="q20" value="b">
+B. location
+</label>
+
+<label class="option">
+<input type="radio" name="q20" value="c">
+C. placement
+</label>
+
+<label class="option">
+<input type="radio" name="q20" value="d">
+D. element-position
+</label>
+
+</div>
+
+
+
+<button
+id="submitButton"
+class="submit-btn"
+onclick="checkQuiz()">
+
+SUBMIT QUIZ
+
+</button>
+
+
+<div id="result"></div>
+
+
+</div>
+
+
+
+<script>
+
+/* STUDENT MENU */
+
+function toggleStudentMenu(){
+
+    const menu =
+        document.getElementById("studentMenu");
+
+    menu.classList.toggle("show");
+
+}
+
+
+
+/* CSS QUIZ */
+
+function checkQuiz(){
+
+    const answers = {
+
+        q1:"a",
+        q2:"c",
+        q3:"b",
+        q4:"c",
+        q5:"a",
+        q6:"c",
+        q7:"a",
+        q8:"b",
+        q9:"b",
+        q10:"b",
+        q11:"a",
+        q12:"b",
+        q13:"a",
+        q14:"b",
+        q15:"b",
+        q16:"a",
+        q17:"b",
+        q18:"b",
+        q19:"b",
+        q20:"a"
+
+    };
+
+
+    let score = 0;
+
+
+    /* Calculate score */
+
+    for(let question in answers){
+
+        const selected =
+            document.querySelector(
+                'input[name="' +
+                question +
+                '"]:checked'
+            );
+
+
+        if(
+            selected &&
+            selected.value === answers[question]
+        ){
+
+            score++;
+
+        }
+
+    }
+
+
+    /* Display score */
+
+    document.getElementById("result").innerHTML =
+        "Your Score: " +
+        score +
+        " / 20";
+
+
+    /* Disable button */
+
+    const button =
+        document.getElementById("submitButton");
+
+    button.disabled = true;
+
+    button.innerHTML = "SAVING RESULT...";
+
+
+    /* Send result to PHP */
+
+    const formData = new FormData();
+
+
+    formData.append(
+        "course_name",
+        "CSS"
+    );
+
+
+    formData.append(
+        "score",
+        score
+    );
+
+
+    formData.append(
+        "total_questions",
+        20
+    );
+
+
+    fetch(
+        "save_quiz.php",
+        {
+            method:"POST",
+            body:formData
+        }
+    )
+
+
+    .then(
+        response => response.json()
+    )
+
+
+    .then(
+        data => {
+
+            if(data.success){
+
+                document.getElementById("result").innerHTML =
+                    "Your Score: " +
+                    score +
+                    " / 20<br><br>" +
+                    data.message;
+
+
+                button.innerHTML =
+                    "RESULT SAVED";
+
+            }
+
+
+            else{
+
+                document.getElementById("result").innerHTML =
+                    "Your Score: " +
+                    score +
+                    " / 20<br><br>" +
+                    data.message;
+
+
+                button.disabled = false;
+
+                button.innerHTML =
+                    "SUBMIT QUIZ";
+
+            }
+
+        }
+    )
+
+
+    .catch(
+        error => {
+
+            console.error(error);
+
+
+            document.getElementById("result").innerHTML =
+                "Your Score: " +
+                score +
+                " / 20<br><br>" +
+                "There was a problem saving your result.";
+
+
+            button.disabled = false;
+
+            button.innerHTML =
+                "SUBMIT QUIZ";
+
+        }
+    );
+
+}
+
+</script>
+
+
+</body>
+</html>

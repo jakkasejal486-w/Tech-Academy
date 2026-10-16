@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+<title>Information</title>
+<style>
+*{
+box-sizing:border-box;
+}
+body{
+background-color:black;
+margin:0;
+}
+nav{
+position:fixed;
+top:0;
+left:0;
+right:0;
+width:100%;
+height:70px;
+background-color:#1e3a5f;
+padding:10px 20px;
+display:flex;
+align-items:center;
+gap:10px;
+z-index:1000;
+}
+nav a{
+color:#40E0D0;
+text-decoration:none;
+font-size:15px;
+font-weight:bold;
+white-space:nowrap;
+}
+nav a:hover{
+color:white;
+}
+nav p{
+color:white;
+font-size:20px;
+margin:0;
+padding:0;
+white-space:nowrap;
+}
+.student-dashboard{
+margin-left:auto;
+position:relative;
+flex-shrink:0;
+}
+.student-logo{
+width:55px;
+height:55px;
+border-radius:50%;
+border:3px solid #40E0D0;
+background-color:#1e3a5f;
+color:white;
+font-size:27px;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:0;
+transition:0.2s;
+}
+.student-logo:hover{
+background-color:#40E0D0;
+color:#1e3a5f;
+}
+.student-menu{
+display:none;
+position:absolute;
+top:65px;
+right:0;
+width:200px;
+background-color:#1e3a5f;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 5px 20px rgba(0,0,0,0.5);
+z-index:2000;
+}
+.student-menu.show{
+display:flex;
+flex-direction:column;
+}
+.student-menu a{
+color:#40E0D0;
+text-decoration:none;
+padding:15px 18px;
+font-size:16px;
+font-weight:bold;
+border-bottom:1px solid rgba(64,224,208,0.2);
+white-space:nowrap;
+}
+.student-menu a:hover{
+background-color:#40E0D0;
+color:#1e3a5f;
+} 
+.course-notes{
+padding:100px 40px 40px;
+color:white;
+font-family:none;
+line-height:1.7;
+}
+.course-notes h1{
+color:#40E0D0;
+text-align:center;
+font-size:38px;
+margin-bottom:30px;
+}
+.course-notes h2{
+color:#40E0D0;
+font-size:28px;
+margin-top:35px;
+border-bottom:1px solid #40E0D0;
+padding-bottom:8px;
+}
+.course-notes h3{
+color:#40E0D0;
+font-size:22px;
+margin-top:25px;
+}
+.course-notes p{
+font-size:18px;
+margin:12px 0;
+}
+.course-notes ul,.course-notes ol{
+font-size:18px;
+margin-left:25px;
+}
+.course-notes li{
+margin:6px 0;
+}
+.course-notes table{
+width:100%;
+border-collapse:collapse;
+margin:20px 0;
+font-size:17px;
+}
+.course-notes th,.course-notes td{
+border:1px solid #40E0D0;
+padding:12px;
+text-align:left;
+}
+.course-notes th{
+color:#40E0D0;
+}
+.course-notes code{
+color:#40E0D0;
+}
+.course-notes pre{
+background-color:#111;
+border:1px solid #333;
+padding:20px;
+overflow-x:auto;
+border-radius:8px;
+font-size:16px;
+line-height:1.5;
+}
+.lesson-summary{
+border-left:4px solid #40E0D0;
+padding:10px 20px;
+margin:20px 0;
+background-color:#111;
+}
+</style>
+</head>
+<body>
+<nav> 
+<p>|</p>
+<a href="index.html">HOME</a>
+<p>|</p>
+<a href="information.html">INFO</a>
+<p>|</p>
+<a href="courses.html">COURSES</a>
+<p>|</p>
+<a href="login.html">LOGIN</a>
+<p>|</p>
+<a href="forms.html">REGISTRATION</a>
+<p>|</p>
+<a href="contact.html">📞 CONTACT US</a>
+
+<div class="student-dashboard">
+<button class="student-logo" onclick="toggleStudentMenu()" title="Student Dashboard">🎓</button>
+<div class="student-menu" id="studentMenu"> 
+    
+<a href="student-dashboard.php"> 
+<a href="student-dashboard.php">
+🏠 Dashboard</a>  
+<a href="logout.php">🏠Logout</a> 
+</div>
+</div>
+</nav> 
+<div class="course-notes">
+
+<h1>HTML Lesson 1: HTML Basics</h1>
+
+<h2>1. What is HTML?</h2>
+
+<p><b>HTML</b> stands for <b>HyperText Markup Language</b>.</p>
+
+<p>HTML is the standard markup language used to <b>create and structure web pages</b>.</p>
+
+<p>HTML tells the browser what different parts of a webpage are, such as headings, paragraphs, images, links, tables and forms.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;h1&gt;Online Tech Learning Academy&lt;/h1&gt;
+&lt;p&gt;Welcome to our website.&lt;/p&gt;</code></pre>
+
+<p>The browser reads the HTML code and displays the content as a webpage.</p>
+
+
+<h2>2. What is HyperText?</h2>
+
+<p><b>HyperText</b> means text that contains links to other pages or resources.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;a href="https://www.google.com"&gt;Visit Google&lt;/a&gt;</code></pre>
+
+<p>When the user clicks <b>Visit Google</b>, the browser opens the linked page.</p>
+
+
+<h2>3. What is Markup Language?</h2>
+
+<p>HTML is called a <b>markup language</b> because we use special tags to mark and describe different parts of a webpage.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;h1&gt;This is a heading&lt;/h1&gt;</code></pre>
+
+<p>Here:</p>
+
+<ul>
+<li><code>&lt;h1&gt;</code> is the opening tag.</li>
+<li><code>This is a heading</code> is the content.</li>
+<li><code>&lt;/h1&gt;</code> is the closing tag.</li>
+</ul>
+
+<p>Together, they form an <b>HTML element</b>.</p>
+
+
+<h2>4. HTML Tags</h2>
+
+<p>HTML uses tags to define different elements on a webpage.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;p&gt;Hello World&lt;/p&gt;</code></pre>
+
+<table>
+<tr>
+<th>Tag</th>
+<th>Purpose</th>
+</tr>
+<tr>
+<td>&lt;html&gt;</td>
+<td>Defines the HTML document</td>
+</tr>
+<tr>
+<td>&lt;head&gt;</td>
+<td>Contains information about the webpage</td>
+</tr>
+<tr>
+<td>&lt;title&gt;</td>
+<td>Defines the webpage title</td>
+</tr>
+<tr>
+<td>&lt;body&gt;</td>
+<td>Contains visible webpage content</td>
+</tr>
+<tr>
+<td>&lt;h1&gt;</td>
+<td>Main heading</td>
+</tr>
+<tr>
+<td>&lt;h2&gt;</td>
+<td>Second-level heading</td>
+</tr>
+<tr>
+<td>&lt;p&gt;</td>
+<td>Paragraph</td>
+</tr>
+<tr>
+<td>&lt;br&gt;</td>
+<td>Line break</td>
+</tr>
+<tr>
+<td>&lt;hr&gt;</td>
+<td>Horizontal line</td>
+</tr>
+<tr>
+<td>&lt;a&gt;</td>
+<td>Hyperlink</td>
+</tr>
+<tr>
+<td>&lt;img&gt;</td>
+<td>Image</td>
+</tr>
+<tr>
+<td>&lt;ul&gt;</td>
+<td>Unordered list</td>
+</tr>
+<tr>
+<td>&lt;ol&gt;</td>
+<td>Ordered list</td>
+</tr>
+<tr>
+<td>&lt;li&gt;</td>
+<td>List item</td>
+</tr>
+</table>
+
+
+<h2>5. Opening and Closing Tags</h2>
+
+<p>Most HTML elements have an <b>opening tag</b> and a <b>closing tag</b>.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;p&gt;This is a paragraph.&lt;/p&gt;</code></pre>
+
+<p>The opening tag is:</p>
+
+<pre><code>&lt;p&gt;</code></pre>
+
+<p>The closing tag is:</p>
+
+<pre><code>&lt;/p&gt;</code></pre>
+
+<p>The <b>/</b> indicates the closing tag.</p>
+
+
+<h2>6. HTML Element</h2>
+
+<p>An HTML element normally consists of:</p>
+
+<p><b>Opening Tag + Content + Closing Tag</b></p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;h1&gt;My Website&lt;/h1&gt;</code></pre>
+
+<ul>
+<li><code>&lt;h1&gt;</code> → Opening tag</li>
+<li><code>My Website</code> → Content</li>
+<li><code>&lt;/h1&gt;</code> → Closing tag</li>
+</ul>
+
+
+<h2>7. Basic Structure of an HTML Document</h2>
+
+<p>Every basic HTML webpage follows a structure like this:</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;My Website&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Welcome to My Website&lt;/h1&gt;
+&lt;p&gt;This is my first webpage.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+
+<h3>DOCTYPE Declaration</h3>
+
+<pre><code>&lt;!DOCTYPE html&gt;</code></pre>
+
+<p>It tells the browser that the document uses <b>HTML5</b>.</p>
+
+
+<h3>&lt;html&gt; Element</h3>
+
+<p>The <code>&lt;html&gt;</code> element is the root element of the webpage.</p>
+
+<pre><code>&lt;html&gt;
+&lt;/html&gt;</code></pre>
+
+
+<h3>&lt;head&gt; Element</h3>
+
+<p>The <code>&lt;head&gt;</code> contains information about the webpage that is not normally displayed as the main page content.</p>
+
+<pre><code>&lt;head&gt;
+&lt;title&gt;My Website&lt;/title&gt;
+&lt;/head&gt;</code></pre>
+
+
+<h3>&lt;title&gt; Element</h3>
+
+<p>The <code>&lt;title&gt;</code> defines the title shown in the browser tab.</p>
+
+<pre><code>&lt;title&gt;Online Tech Learning Academy&lt;/title&gt;</code></pre>
+
+
+<h3>&lt;body&gt; Element</h3>
+
+<p>The <code>&lt;body&gt;</code> contains the visible content of the webpage.</p>
+
+<pre><code>&lt;body&gt;
+&lt;h1&gt;Welcome&lt;/h1&gt;
+&lt;p&gt;This is my website.&lt;/p&gt;
+&lt;/body&gt;</code></pre>
+
+
+<h2>8. Complete First HTML Program</h2>
+
+<p>Create a file named <b>index.html</b> and write the following code:</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;My First Webpage&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Welcome to My Website&lt;/h1&gt;
+&lt;h2&gt;About Me&lt;/h2&gt;
+&lt;p&gt;My name is Sejal.&lt;/p&gt;
+&lt;p&gt;I am learning HTML.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+
+<h2>9. HTML Headings</h2>
+
+<p>HTML provides six levels of headings.</p>
+
+<pre><code>&lt;h1&gt;Heading 1&lt;/h1&gt;
+&lt;h2&gt;Heading 2&lt;/h2&gt;
+&lt;h3&gt;Heading 3&lt;/h3&gt;
+&lt;h4&gt;Heading 4&lt;/h4&gt;
+&lt;h5&gt;Heading 5&lt;/h5&gt;
+&lt;h6&gt;Heading 6&lt;/h6&gt;</code></pre>
+
+<p><code>&lt;h1&gt;</code> is the main and most important heading, while <code>&lt;h6&gt;</code> is the lowest-level heading.</p>
+
+
+<h2>10. Paragraph Tag</h2>
+
+<p>The <code>&lt;p&gt;</code> tag is used to create a paragraph.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;p&gt;This is my first paragraph.&lt;/p&gt;
+&lt;p&gt;This is my second paragraph.&lt;/p&gt;</code></pre>
+
+
+<h2>11. Line Break</h2>
+
+<p>The <code>&lt;br&gt;</code> tag is used to move content to the next line.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;p&gt;Hello&lt;br&gt;Welcome to my website.&lt;/p&gt;</code></pre>
+
+<p>The <code>&lt;br&gt;</code> tag does not require a closing tag.</p>
+
+
+<h2>12. Horizontal Line</h2>
+
+<p>The <code>&lt;hr&gt;</code> tag creates a horizontal line.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;h1&gt;Courses&lt;/h1&gt;
+&lt;hr&gt;
+&lt;p&gt;Learn HTML, CSS and JavaScript.&lt;/p&gt;</code></pre>
+
+
+<h2>13. HTML Attributes</h2>
+
+<p>Attributes provide <b>additional information</b> about an HTML element.</p>
+
+<p>Attributes are written inside the opening tag.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;a href="https://www.google.com"&gt;Google&lt;/a&gt;</code></pre>
+
+
+<h2>14. The href Attribute</h2>
+
+<p>The <code>href</code> attribute specifies the destination of a link.</p>
+
+<pre><code>&lt;a href="https://www.google.com"&gt;Google&lt;/a&gt;</code></pre>
+
+
+<h2>15. The src Attribute</h2>
+
+<p>The <code>src</code> attribute specifies the source of an image or other resource.</p>
+
+<pre><code>&lt;img src="photo.jpg"&gt;</code></pre>
+
+
+<h2>16. The alt Attribute</h2>
+
+<p>The <code>alt</code> attribute provides alternative text for an image.</p>
+
+<pre><code>&lt;img src="student.jpg" alt="Student"&gt;</code></pre>
+
+<p>If the image cannot be displayed, the alternative text can help describe the image.</p>
+
+
+<h2>17. HTML Comments</h2>
+
+<p>Comments are notes written inside HTML code that are not displayed on the webpage.</p>
+
+<h3>Syntax</h3>
+
+<pre><code>&lt;!-- This is a comment --&gt;</code></pre>
+
+
+<h2>18. Nested HTML Elements</h2>
+
+<p>An HTML element can contain another HTML element. This is called <b>nesting</b>.</p>
+
+<h3>Example</h3>
+
+<pre><code>&lt;p&gt;Welcome to &lt;b&gt;my website&lt;/b&gt;.&lt;/p&gt;</code></pre>
+
+
+<h2>19. Proper Nesting</h2>
+
+<h3>Correct</h3>
+
+<pre><code>&lt;p&gt;This is &lt;b&gt;important&lt;/b&gt;.&lt;/p&gt;</code></pre>
+
+<h3>Incorrect</h3>
+
+<pre><code>&lt;p&gt;This is &lt;b&gt;important&lt;/p&gt;&lt;/b&gt;</code></pre>
+
+
+<h2>20. HTML File Extension</h2>
+
+<p>HTML files normally use the <code>.html</code> extension.</p>
+
+<pre><code>index.html
+home.html
+about.html
+courses.html
+contact.html
+login.html</code></pre>
+
+
+<h2>21. Connecting Multiple HTML Pages</h2>
+
+<p>Different HTML pages can be connected using the <code>&lt;a&gt;</code> tag.</p>
+
+<pre><code>&lt;a href="index.html"&gt;Home&lt;/a&gt;
+&lt;a href="about.html"&gt;About&lt;/a&gt;
+&lt;a href="courses.html"&gt;Courses&lt;/a&gt;
+&lt;a href="contact.html"&gt;Contact&lt;/a&gt;</code></pre>
+
+
+<h2>22. Important HTML Terms</h2>
+
+<h3>Tag</h3>
+
+<p>A tag is a markup keyword enclosed inside angle brackets.</p>
+
+<pre><code>&lt;p&gt;</code></pre>
+
+
+<h3>Element</h3>
+
+<p>An element normally consists of an opening tag, content and a closing tag.</p>
+
+<pre><code>&lt;p&gt;Hello&lt;/p&gt;</code></pre>
+
+
+<h3>Attribute</h3>
+
+<p>An attribute provides additional information about an HTML element.</p>
+
+<pre><code>&lt;a href="page.html"&gt;Open Page&lt;/a&gt;</code></pre>
+
+
+<h3>Content</h3>
+
+<p>Content is the information between the opening and closing tags.</p>
+
+<pre><code>&lt;p&gt;Hello World&lt;/p&gt;</code></pre>
+
+
+<h2>23. Important Points to Remember</h2>
+
+<ol>
+<li>HTML stands for HyperText Markup Language.</li>
+<li>HTML is used to create and structure webpages.</li>
+<li>HTML uses tags to define webpage elements.</li>
+<li>Most HTML elements have opening and closing tags.</li>
+<li><code>&lt;html&gt;</code> is the root element.</li>
+<li><code>&lt;head&gt;</code> contains webpage information.</li>
+<li><code>&lt;title&gt;</code> defines the browser-tab title.</li>
+<li><code>&lt;body&gt;</code> contains visible webpage content.</li>
+<li><code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code> are heading tags.</li>
+<li><code>&lt;p&gt;</code> is used for paragraphs.</li>
+<li><code>&lt;a&gt;</code> is used for links.</li>
+<li><code>&lt;img&gt;</code> is used for images.</li>
+<li><code>href</code> specifies a link destination.</li>
+<li><code>src</code> specifies a resource source.</li>
+<li><code>alt</code> provides alternative text for images.</li>
+<li><code>&lt;br&gt;</code> creates a line break.</li>
+<li><code>&lt;hr&gt;</code> creates a horizontal line.</li>
+<li><code>&lt;!-- --&gt;</code> creates a comment.</li>
+<li>HTML files normally use the <code>.html</code> extension.</li>
+<li><code>&lt;!DOCTYPE html&gt;</code> declares an HTML5 document.</li>
+</ol>
+
+
+<div class="lesson-summary">
+
+<h2>Lesson Summary</h2>
+
+<p>HTML is the foundation of a webpage. In this lesson, you learned about HTML structure, tags, elements, attributes, headings, paragraphs, links, images, comments, nesting and connecting multiple HTML pages.</p>
+
+<p><b>Next Lesson:</b> HTML Text Formatting, Lists, Links and Images</p>
+
+</div>
+
+</div>
+ 
+ 
+<script>
+function toggleStudentMenu(){
+const menu=document.getElementById("studentMenu");
+menu.classList.toggle("show");
+}
+</script>
+
+</body>
+</html>

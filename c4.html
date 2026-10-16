@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+<title>CSS Lesson 4 - Layout and Flexbox</title>
+<style>
+*{
+box-sizing:border-box;
+}
+body{
+background-color:black;
+color:white; 
+margin:0;
+padding:100px 30px 40px;
+}
+nav{
+position:fixed;
+top:0;
+left:0;
+right:0;
+width:100%;
+height:70px;
+background-color:#1e3a5f;
+padding:10px 20px;
+display:flex;
+align-items:center;
+gap:10px;
+z-index:1000;
+}
+nav a{
+color:#40E0D0;
+text-decoration:none;
+font-size:15px;
+font-weight:bold;
+white-space:nowrap;
+}
+nav a:hover{
+color:white;
+}
+nav p{
+color:white;
+font-size:20px;
+margin:0;
+padding:0;
+white-space:nowrap;
+}
+.student-dashboard{
+margin-left:auto;
+position:relative;
+flex-shrink:0;
+}
+.student-logo{
+width:55px;
+height:55px;
+border-radius:50%;
+border:3px solid #40E0D0;
+background-color:#1e3a5f;
+color:white;
+font-size:27px;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:0;
+transition:0.2s;
+}
+.student-logo:hover{
+background-color:#40E0D0;
+color:#1e3a5f;
+}
+.student-menu{
+display:none;
+position:absolute;
+top:65px;
+right:0;
+width:200px;
+background-color:#1e3a5f;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 5px 20px rgba(0,0,0,0.5);
+z-index:2000;
+}
+.student-menu.show{
+display:flex;
+flex-direction:column;
+}
+.student-menu a{
+color:#40E0D0;
+text-decoration:none;
+padding:15px 18px;
+font-size:16px;
+font-weight:bold;
+border-bottom:1px solid rgba(64,224,208,0.2);
+white-space:nowrap;
+}
+.student-menu a:hover{
+background-color:#40E0D0;
+color:#1e3a5f;
+}
+.course-notes{
+max-width:1100px;
+margin:auto;
+}
+.course-notes h1{
+color:#40E0D0;
+text-align:center;
+font-size:36px;
+margin-bottom:40px;
+}
+.course-notes h2{
+color:#40E0D0;
+font-size:27px;
+margin-top:40px;
+border-bottom:1px solid #1e3a5f;
+padding-bottom:10px;
+}
+.course-notes h3{
+color:#40E0D0;
+font-size:21px;
+margin-top:25px;
+}
+.course-notes p{
+color:white;
+font-size:17px;
+line-height:1.8;
+}
+.course-notes ul,
+.course-notes ol{
+color:white;
+font-size:17px;
+line-height:2;
+}
+.course-notes li{
+margin-bottom:5px;
+}
+.course-notes code{
+color:#40E0D0;
+font-family:Consolas,monospace;
+}
+.course-notes pre{
+background-color:#111;
+border:1px solid #1e3a5f;
+border-left:5px solid #40E0D0;
+padding:20px;
+overflow-x:auto;
+border-radius:8px;
+line-height:1.6;
+}
+.course-notes pre code{
+color:#40E0D0;
+font-size:15px;
+}
+.course-notes table{
+width:100%;
+border-collapse:collapse;
+margin:20px 0 30px;
+}
+.course-notes th{
+background-color:#1e3a5f;
+color:#40E0D0;
+font-size:17px;
+padding:14px;
+border:1px solid #40E0D0;
+}
+.course-notes td{
+color:white;
+padding:14px;
+border:1px solid #40E0D0;
+font-size:16px;
+}
+.course-notes tr:nth-child(even){
+background-color:#111;
+}
+.course-notes tr:hover{
+background-color:#1e3a5f;
+}
+.lesson-summary{
+background-color:#111;
+border:2px solid #40E0D0;
+border-radius:10px;
+padding:25px;
+margin-top:50px;
+}
+.lesson-summary h2{
+margin-top:0;
+border-bottom:none;
+}
+</style>
+</head>
+<body>
+
+<nav>
+
+<p>|</p>
+<a href="index.html">HOME</a>
+
+<p>|</p>
+<a href="information.html">INFO</a>
+
+<p>|</p>
+<a href="courses.html">COURSES</a>
+
+<p>|</p>
+<a href="login.html">LOGIN</a>
+
+<p>|</p>
+<a href="forms.html">REGISTRATION</a>
+
+<p>|</p>
+<a href="contact.html">📞 CONTACT US</a>
+
+<div class="student-dashboard">
+
+<button class="student-logo" onclick="toggleStudentMenu()" title="Student Dashboard">🎓</button>
+
+<div class="student-menu" id="studentMenu">
+ 
+ 
+   
+<a href="student-dashboard.php">
+🏠 Dashboard</a>  
+<a href="logout.php">🏠Logout</a> 
+
+
+</div>
+
+</div>
+
+</nav>
+
+
+<div class="course-notes">
+
+<h1>CSS Lesson 4: Layout, Display, Positioning and Flexbox</h1>
+
+
+<h2>1. Introduction to CSS Layout</h2>
+
+<p>CSS layout controls how HTML elements are arranged and positioned on a webpage.</p>
+
+<p>CSS provides several properties and techniques for creating layouts.</p>
+
+<p>The important layout concepts include:</p>
+
+<ul>
+<li>Display</li>
+<li>Position</li>
+<li>Float</li>
+<li>Flexbox</li>
+<li>Alignment</li>
+<li>Gap</li>
+<li>Responsive layout</li>
+</ul>
+
+
+<h2>2. Display Property</h2>
+
+<p>The <code>display</code> property specifies how an HTML element should be displayed.</p>
+
+<h3>Common Display Values</h3>
+
+<table>
+
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+
+<tr>
+<td>block</td>
+<td>Element takes the full available width.</td>
+</tr>
+
+<tr>
+<td>inline</td>
+<td>Element takes only the required width.</td>
+</tr>
+
+<tr>
+<td>inline-block</td>
+<td>Behaves like inline but allows width and height.</td>
+</tr>
+
+<tr>
+<td>none</td>
+<td>Element is completely removed from the layout.</td>
+</tr>
+
+<tr>
+<td>flex</td>
+<td>Creates a flexible layout.</td>
+</tr>
+
+<tr>
+<td>grid</td>
+<td>Creates a grid-based layout.</td>
+</tr>
+
+</table>
+
+
+<h2>3. Display Block</h2>
+
+<p>A block-level element normally starts on a new line and takes the available width.</p>
+
+<h3>Example</h3>
+
+<pre><code>div{
+display:block;
+}</code></pre>
+
+<p>Common block elements include <code>div</code>, <code>p</code>, <code>h1</code> and <code>section</code>.</p>
+
+
+<h2>4. Display Inline</h2>
+
+<p>Inline elements do not normally start on a new line and occupy only the space required by their content.</p>
+
+<h3>Example</h3>
+
+<pre><code>span{
+display:inline;
+}</code></pre>
+
+<p>Common inline elements include <code>span</code>, <code>a</code> and <code>strong</code>.</p>
+
+
+<h2>5. Display Inline-Block</h2>
+
+<p><code>inline-block</code> combines characteristics of inline and block elements.</p>
+
+<p>Elements can appear on the same line while still allowing width and height.</p>
+
+<h3>Example</h3>
+
+<pre><code>button{
+display:inline-block;
+width:150px;
+height:50px;
+}</code></pre>
+
+
+<h2>6. Display None</h2>
+
+<p>The <code>display:none</code> property completely hides an element from the page layout.</p>
+
+<h3>Example</h3>
+
+<pre><code>.menu{
+display:none;
+}</code></pre>
+
+<p>This technique is commonly used with JavaScript to show and hide menus.</p>
+
+
+<h2>7. Position Property</h2>
+
+<p>The <code>position</code> property specifies how an element is positioned on a webpage.</p>
+
+<p>The main position values are:</p>
+
+<ul>
+<li>static</li>
+<li>relative</li>
+<li>absolute</li>
+<li>fixed</li>
+<li>sticky</li>
+</ul>
+
+
+<h2>8. Position Static</h2>
+
+<p><code>static</code> is the default position of HTML elements.</p>
+
+<h3>Example</h3>
+
+<pre><code>div{
+position:static;
+}</code></pre>
+
+<p>Top, right, bottom and left properties do not affect a static element.</p>
+
+
+<h2>9. Position Relative</h2>
+
+<p><code>position:relative</code> positions an element relative to its normal position.</p>
+
+<h3>Example</h3>
+
+<pre><code>div{
+position:relative;
+top:20px;
+left:30px;
+}</code></pre>
+
+<p>The element moves from its normal position while its original space remains in the layout.</p>
+
+
+<h2>10. Position Absolute</h2>
+
+<p><code>position:absolute</code> positions an element relative to its nearest positioned ancestor.</p>
+
+<h3>Example</h3>
+
+<pre><code>.box{
+position:absolute;
+top:100px;
+left:50px;
+}</code></pre>
+
+<p>An absolutely positioned element is removed from the normal document flow.</p>
+
+
+<h2>11. Position Fixed</h2>
+
+<p><code>position:fixed</code> keeps an element fixed relative to the browser window.</p>
+
+<h3>Example</h3>
+
+<pre><code>nav{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+}</code></pre>
+
+<p>This is exactly the technique used for the navigation bar of your project.</p>
+
+
+<h2>12. Position Sticky</h2>
+
+<p><code>position:sticky</code> behaves like a normal element until a specified position is reached while scrolling.</p>
+
+<h3>Example</h3>
+
+<pre><code>h2{
+position:sticky;
+top:70px;
+}</code></pre>
+
+
+<h2>13. Top, Right, Bottom and Left</h2>
+
+<p>The <code>top</code>, <code>right</code>, <code>bottom</code> and <code>left</code> properties are used with positioned elements.</p>
+
+<h3>Example</h3>
+
+<pre><code>.box{
+position:absolute;
+top:50px;
+right:30px;
+}</code></pre>
+
+
+<h2>14. Z-Index</h2>
+
+<p>The <code>z-index</code> property controls the stacking order of positioned elements.</p>
+
+<h3>Example</h3>
+
+<pre><code>nav{
+position:fixed;
+z-index:1000;
+}</code></pre>
+
+<p>An element with a higher z-index normally appears above an element with a lower z-index.</p>
+
+
+<h2>15. CSS Flexbox</h2>
+
+<p>Flexbox is a CSS layout system used to arrange elements in rows or columns.</p>
+
+<p>It makes it easier to create flexible and responsive layouts.</p>
+
+<h3>Basic Syntax</h3>
+
+<pre><code>.container{
+display:flex;
+}</code></pre>
+
+
+<h2>16. Flex Container</h2>
+
+<p>An element becomes a flex container when <code>display:flex</code> is applied to it.</p>
+
+<h3>Example</h3>
+
+<pre><code>.container{
+display:flex;
+}</code></pre>
+
+<p>The direct children of the container become flex items.</p>
+
+
+<h2>17. Flex Direction</h2>
+
+<p>The <code>flex-direction</code> property specifies the direction of flex items.</p>
+
+<h3>Values</h3>
+
+<table>
+
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+
+<tr>
+<td>row</td>
+<td>Items are arranged horizontally.</td>
+</tr>
+
+<tr>
+<td>row-reverse</td>
+<td>Items are arranged horizontally in reverse order.</td>
+</tr>
+
+<tr>
+<td>column</td>
+<td>Items are arranged vertically.</td>
+</tr>
+
+<tr>
+<td>column-reverse</td>
+<td>Items are arranged vertically in reverse order.</td>
+</tr>
+
+</table>
+
+
+<h3>Example</h3>
+
+<pre><code>.container{
+display:flex;
+flex-direction:row;
+}</code></pre>
+
+
+<h2>18. Justify Content</h2>
+
+<p>The <code>justify-content</code> property controls the alignment of flex items along the main axis.</p>
+
+<h3>Common Values</h3>
+
+<table>
+
+<tr>
+<th>Value</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>flex-start</td>
+<td>Items start from the beginning.</td>
+</tr>
+
+<tr>
+<td>flex-end</td>
+<td>Items move to the end.</td>
+</tr>
+
+<tr>
+<td>center</td>
+<td>Items are centered.</td>
+</tr>
+
+<tr>
+<td>space-between</td>
+<td>Equal space is placed between items.</td>
+</tr>
+
+<tr>
+<td>space-around</td>
+<td>Space is placed around items.</td>
+</tr>
+
+<tr>
+<td>space-evenly</td>
+<td>Equal space is placed between and around items.</td>
+</tr>
+
+</table>
+
+
+<h3>Example</h3>
+
+<pre><code>.container{
+display:flex;
+justify-content:center;
+}</code></pre>
+
+
+<h2>19. Align Items</h2>
+
+<p>The <code>align-items</code> property controls alignment along the cross axis.</p>
+
+<h3>Example</h3>
+
+<pre><code>.container{
+display:flex;
+align-items:center;
+}</code></pre>
+
+<p>This is commonly used to vertically center elements.</p>
+
+
+<h2>20. Flex Wrap</h2>
+
+<p>The <code>flex-wrap</code> property controls whether flex items should move to another line when there is not enough space.</p>
+
+<h3>Example</h3>
+
+<pre><code>.container{
+display:flex;
+flex-wrap:wrap;
+}</code></pre>
+
+<p>This is useful when creating responsive course cards.</p>
+
+
+<h2>21. Gap</h2>
+
+<p>The <code>gap</code> property creates space between flex items.</p>
+
+<h3>Example</h3>
+
+<pre><code>.container{
+display:flex;
+gap:20px;
+}</code></pre>
+
+
+<h2>22. Flex Grow</h2>
+
+<p>The <code>flex-grow</code> property controls how much a flex item can grow relative to other items.</p>
+
+<h3>Example</h3>
+
+<pre><code>.box{
+flex-grow:1;
+}</code></pre>
+
+
+<h2>23. Flex Shrink</h2>
+
+<p>The <code>flex-shrink</code> property controls how much a flex item can shrink when there is not enough space.</p>
+
+<h3>Example</h3>
+
+<pre><code>.box{
+flex-shrink:1;
+}</code></pre>
+
+
+<h2>24. Flex Basis</h2>
+
+<p>The <code>flex-basis</code> property specifies the initial size of a flex item.</p>
+
+<h3>Example</h3>
+
+<pre><code>.box{
+flex-basis:200px;
+}</code></pre>
+
+
+<h2>25. Flex Shorthand</h2>
+
+<p>The <code>flex</code> property is a shorthand for flex-grow, flex-shrink and flex-basis.</p>
+
+<h3>Example</h3>
+
+<pre><code>.box{
+flex:1;
+}</code></pre>
+
+
+<h2>26. Align Self</h2>
+
+<p>The <code>align-self</code> property allows one flex item to have a different alignment from the other items.</p>
+
+<h3>Example</h3>
+
+<pre><code>.box{
+align-self:flex-end;
+}</code></pre>
+
+
+<h2>27. Order Property</h2>
+
+<p>The <code>order</code> property changes the visual order of flex items.</p>
+
+<h3>Example</h3>
+
+<pre><code>.box1{
+order:2;
+}
+
+.box2{
+order:1;
+}</code></pre>
+
+
+<h2>28. Flexbox Example</h2>
+
+<pre><code>&lt;div class="container"&gt;
+
+&lt;div class="box"&gt;HTML&lt;/div&gt;
+
+&lt;div class="box"&gt;CSS&lt;/div&gt;
+
+&lt;div class="box"&gt;JavaScript&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;style&gt;
+
+.container{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.box{
+width:200px;
+padding:30px;
+background-color:#1e3a5f;
+color:#40E0D0;
+border:2px solid #40E0D0;
+text-align:center;
+border-radius:10px;
+}
+
+&lt;/style&gt;</code></pre>
+
+
+<h2>29. Float</h2>
+
+<p>The <code>float</code> property was traditionally used to position elements to the left or right.</p>
+
+<h3>Example</h3>
+
+<pre><code>img{
+float:left;
+margin-right:20px;
+}</code></pre>
+
+<p>Modern layouts generally use Flexbox or Grid instead of float.</p>
+
+
+<h2>30. Clear Property</h2>
+
+<p>The <code>clear</code> property controls whether an element can appear beside floated elements.</p>
+
+<h3>Example</h3>
+
+<pre><code>div{
+clear:both;
+}</code></pre>
+
+
+<h2>31. CSS Grid Introduction</h2>
+
+<p>CSS Grid is another powerful layout system that allows elements to be arranged in rows and columns.</p>
+
+<h3>Example</h3>
+
+<pre><code>.container{
+display:grid;
+grid-template-columns:1fr 1fr 1fr;
+gap:20px;
+}</code></pre>
+
+
+<h2>32. Grid Columns</h2>
+
+<p>The <code>grid-template-columns</code> property specifies the number and size of grid columns.</p>
+
+<h3>Example</h3>
+
+<pre><code>.container{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+}</code></pre>
+
+
+<h2>33. Grid Gap</h2>
+
+<p>The <code>gap</code> property can also be used with CSS Grid to create space between rows and columns.</p>
+
+<h3>Example</h3>
+
+<pre><code>.container{
+display:grid;
+gap:20px;
+}</code></pre>
+
+
+<h2>34. Flexbox vs Grid</h2>
+
+<table>
+
+<tr>
+<th>Flexbox</th>
+<th>Grid</th>
+</tr>
+
+<tr>
+<td>One-dimensional layout.</td>
+<td>Two-dimensional layout.</td>
+</tr>
+
+<tr>
+<td>Works mainly with rows or columns.</td>
+<td>Works with rows and columns.</td>
+</tr>
+
+<tr>
+<td>Excellent for navigation bars.</td>
+<td>Excellent for complex page layouts.</td>
+</tr>
+
+<tr>
+<td>Useful for arranging items in one direction.</td>
+<td>Useful for arranging items in two directions.</td>
+</tr>
+
+</table>
+
+
+<h2>35. Responsive Flexbox Layout</h2>
+
+<p>Flexbox can help create layouts that automatically adjust according to screen size.</p>
+
+<h3>Example</h3>
+
+<pre><code>.container{
+display:flex;
+flex-wrap:wrap;
+gap:20px;
+}
+
+.card{
+flex:1 1 250px;
+}</code></pre>
+
+
+<h2>36. Navigation Bar Using Flexbox</h2>
+
+<p>Your project navigation bar uses Flexbox.</p>
+
+<pre><code>nav{
+display:flex;
+align-items:center;
+gap:10px;
+}</code></pre>
+
+<p><code>display:flex</code> places the navigation elements in a flexible layout.</p>
+
+<p><code>align-items:center</code> vertically centers the items.</p>
+
+<p><code>gap:10px</code> creates space between the navigation items.</p>
+
+
+<h2>37. Student Dashboard Using Positioning</h2>
+
+<p>Your student dashboard also uses CSS positioning.</p>
+
+<pre><code>.student-dashboard{
+margin-left:auto;
+position:relative;
+}
+
+.student-menu{
+display:none;
+position:absolute;
+top:65px;
+right:0;
+}</code></pre>
+
+<p>The dashboard menu is positioned relative to the student dashboard container.</p>
+
+
+<h2>38. Complete Layout Example</h2>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+
+&lt;html&gt;
+
+&lt;head&gt;
+
+&lt;title&gt;CSS Layout&lt;/title&gt;
+
+&lt;style&gt;
+
+*{
+box-sizing:border-box;
+}
+
+body{
+background-color:black;
+color:white;
+font-family:Arial,sans-serif;
+}
+
+.container{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:20px;
+flex-wrap:wrap;
+padding:30px;
+}
+
+.card{
+flex:1 1 250px;
+padding:30px;
+background-color:#1e3a5f;
+border:2px solid #40E0D0;
+border-radius:10px;
+text-align:center;
+}
+
+.card h2{
+color:#40E0D0;
+}
+
+&lt;/style&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;div class="container"&gt;
+
+&lt;div class="card"&gt;
+
+&lt;h2&gt;HTML&lt;/h2&gt;
+
+&lt;p&gt;Learn HTML basics.&lt;/p&gt;
+
+&lt;/div&gt;
+
+&lt;div class="card"&gt;
+
+&lt;h2&gt;CSS&lt;/h2&gt;
+
+&lt;p&gt;Learn CSS styling.&lt;/p&gt;
+
+&lt;/div&gt;
+
+&lt;div class="card"&gt;
+
+&lt;h2&gt;JavaScript&lt;/h2&gt;
+
+&lt;p&gt;Learn JavaScript.&lt;/p&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+
+
+<h2>39. Important CSS Layout Properties</h2>
+
+<table>
+
+<tr>
+<th>Property</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>display</td>
+<td>Controls how an element is displayed.</td>
+</tr>
+
+<tr>
+<td>position</td>
+<td>Controls element positioning.</td>
+</tr>
+
+<tr>
+<td>top</td>
+<td>Moves a positioned element from the top.</td>
+</tr>
+
+<tr>
+<td>right</td>
+<td>Moves a positioned element from the right.</td>
+</tr>
+
+<tr>
+<td>bottom</td>
+<td>Moves a positioned element from the bottom.</td>
+</tr>
+
+<tr>
+<td>left</td>
+<td>Moves a positioned element from the left.</td>
+</tr>
+
+<tr>
+<td>z-index</td>
+<td>Controls stacking order.</td>
+</tr>
+
+<tr>
+<td>display:flex</td>
+<td>Creates a Flexbox container.</td>
+</tr>
+
+<tr>
+<td>flex-direction</td>
+<td>Controls the direction of flex items.</td>
+</tr>
+
+<tr>
+<td>justify-content</td>
+<td>Aligns items along the main axis.</td>
+</tr>
+
+<tr>
+<td>align-items</td>
+<td>Aligns items along the cross axis.</td>
+</tr>
+
+<tr>
+<td>flex-wrap</td>
+<td>Controls whether items wrap.</td>
+</tr>
+
+<tr>
+<td>gap</td>
+<td>Creates space between items.</td>
+</tr>
+
+<tr>
+<td>display:grid</td>
+<td>Creates a CSS Grid layout.</td>
+</tr>
+
+</table>
+
+
+<h2>40. Important Points to Remember</h2>
+
+<ol>
+
+<li>The <code>display</code> property controls how an element is displayed.</li>
+
+<li>Block elements normally occupy the available width.</li>
+
+<li>Inline elements occupy only the required space.</li>
+
+<li><code>inline-block</code> allows width and height while keeping elements inline.</li>
+
+<li><code>display:none</code> hides an element completely.</li>
+
+<li>The <code>position</code> property controls how an element is positioned.</li>
+
+<li>The main position values are static, relative, absolute, fixed and sticky.</li>
+
+<li><code>z-index</code> controls the stacking order of elements.</li>
+
+<li>Flexbox is used to create flexible one-dimensional layouts.</li>
+
+<li><code>justify-content</code> controls alignment along the main axis.</li>
+
+<li><code>align-items</code> controls alignment along the cross axis.</li>
+
+<li><code>flex-wrap</code> allows flex items to move to another line.</li>
+
+<li><code>gap</code> creates space between flex items.</li>
+
+<li>CSS Grid is useful for two-dimensional layouts.</li>
+
+<li>Flexbox is commonly useful for navigation bars and cards.</li>
+
+<li>Grid is useful for layouts involving rows and columns.</li>
+
+</ol>
+
+
+<div class="lesson-summary">
+
+<h2>Lesson Summary</h2>
+
+<p>In this lesson, you learned how CSS controls the layout and positioning of elements on a webpage.</p>
+
+<p>You learned about the display property, different positioning methods, z-index and Flexbox.</p>
+
+<p>You also learned important Flexbox properties such as flex-direction, justify-content, align-items, flex-wrap and gap.</p>
+
+<p>CSS Grid was introduced as another method for creating two-dimensional layouts.</p>
+
+<p>These concepts are especially useful for your Online Tech Learning Academy project because they can be used to create navigation bars, course cards, dashboards, forms and responsive layouts.</p>
+
+<p><b>Next Lesson:</b> CSS Responsive Design, Media Queries and Advanced Styling</p>
+
+</div>
+
+</div>
+
+
+<script>
+
+function toggleStudentMenu(){
+
+const menu=document.getElementById("studentMenu");
+
+menu.classList.toggle("show");
+
+}
+
+</script>
+
+</body>
+</html>
